@@ -6,10 +6,10 @@ const NAV_LINKS = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
   { name: 'Courses', href: '/courses' },
-  { name: 'Mentors', href: '/mentors' },
+  { name: 'Mentors', href: '/mentor' },
   { name: 'Achievements', href: '/achievements' },
-  { name: 'Contact', href: '/contact', active: true },
-  { name: 'Blog', href: '/#blog' },
+  { name: 'Contact', href: '/contact' },
+  { name: 'Blog' , href: '/#blog'}
 ];
 
 function Header() {
