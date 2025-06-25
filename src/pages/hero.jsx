@@ -1,7 +1,12 @@
 import { Button } from 'antd';
 import { PhoneOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 
-export default function Hero() {
+export default function Hero({ onApplyClick }) {
+  const navigate = useNavigate();
+  const handleAdmissionInfo = () => {
+    navigate('/contact');
+  };
   return (
     <div className="relative overflow-hidden overflow-x-hidden min-h-screen w-full flex items-center justify-center" style={{ minHeight: '100vh' }}>
       <div
@@ -32,6 +37,7 @@ export default function Hero() {
                 size="large"
                 className="!rounded-button whitespace-nowrap cursor-pointer"
                 style={{ backgroundColor: '#FFD700', borderColor: '#FFD700', color: '#004AAD', fontWeight: 'bold' }}
+                onClick={handleAdmissionInfo}
               >
                 Get Admission Info
               </Button>

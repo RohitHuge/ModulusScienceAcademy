@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
 const NAV_LINKS = [
@@ -96,11 +96,192 @@ const TESTIMONIALS = [
   }
 ];
 
+// Individual Student Achievements Data
+const STUDENT_ACHIEVEMENTS = [
+  { id: 1, name: 'Sanvi Kadam', exam: 'MHT-CET 2025', score: '93.26%', image: 'https://randomuser.me/api/portraits/women/44.jpg' },
+  { id: 2, name: 'Rohan Desai', exam: 'JEE Mains 2024', score: '99.12%', image: 'https://randomuser.me/api/portraits/men/32.jpg' },
+  { id: 3, name: 'Sneha Patil', exam: 'NEET 2024', score: '98.70%', image: 'https://randomuser.me/api/portraits/women/45.jpg' },
+  { id: 4, name: 'Amit Sharma', exam: 'Class 10 SSC 2023', score: '94.80%', image: 'https://randomuser.me/api/portraits/men/46.jpg' },
+  { id: 5, name: 'Meera Joshi', exam: 'MHT-CET 2025', score: '91.50%', image: 'https://randomuser.me/api/portraits/women/47.jpg' }
+];
+
+// Custom hook for in-view animation (play only once)
+function useInViewOnce(ref, options = {}) {
+  const [hasBeenInView, setHasBeenInView] = useState(false);
+  useEffect(() => {
+    if (hasBeenInView) return;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setHasBeenInView(true);
+      },
+      options
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [ref, options, hasBeenInView]);
+  return hasBeenInView;
+}
+
+function StudentAchievementCard({ student }) {
+  return (
+    <div
+      className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center mx-2 min-w-[260px] max-w-[280px] w-[90vw] sm:w-[260px] md:w-[260px] lg:w-[300px] transition-all duration-300"
+      style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.08)' }}
+    >
+      <img
+        src={student.image}
+        alt={student.name}
+        className="w-[100px] h-[100px] rounded-full object-cover border-4 border-primary mb-4"
+      />
+      <div className="text-2xl font-bold text-primary mb-1 text-center" style={{ fontSize: 24 }}>{student.name}</div>
+      <div className="text-base text-gray-700 mb-2 text-center" style={{ fontSize: 16 }}>{student.exam}</div>
+      <div className="text-[18px] font-bold bg-[#FFD700] text-[#004AAD] px-4 py-1 rounded-full mt-1" style={{ fontSize: 18 }}>{student.score}</div>
+    </div>
+  );
+}
+
+function StudentAchievementsCarousel() {
+  const containerRef = useRef();
+  const [isPaused, setIsPaused] = useState(false);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const [cardWidth, setCardWidth] = useState(300);
+  const [visibleCards, setVisibleCards] = useState(3);
+  const sectionRef = useRef();
+  const inView = useInViewOnce(sectionRef, { threshold: 0.1 });
+
+  // Responsive visible cards
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 640) {
+        setVisibleCards(1);
+        setCardWidth(260);
+      } else if (window.innerWidth < 1024) {
+        setVisibleCards(2);
+        setCardWidth(260);
+      } else {
+        setVisibleCards(3);
+        setCardWidth(300);
+      }
+    }
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Auto-scroll logic
+  useEffect(() => {
+    if (!inView || isPaused) return;
+    const interval = setInterval(() => {
+      if (!containerRef.current) return;
+      const totalWidth = cardWidth * STUDENT_ACHIEVEMENTS.length;
+      let nextScroll = containerRef.current.scrollLeft + 1.5;
+      if (nextScroll >= totalWidth) {
+        nextScroll = 0;
+      }
+      containerRef.current.scrollLeft = nextScroll;
+      setScrollLeft(nextScroll);
+    }, 16);
+    return () => clearInterval(interval);
+  }, [isPaused, inView, cardWidth]);
+
+  // Pause on hover/touch
+  const pause = () => setIsPaused(true);
+  const resume = () => setIsPaused(false);
+
+  // Manual scroll
+  const scrollBy = (dir) => {
+    if (!containerRef.current) return;
+    const amount = cardWidth * (visibleCards === 1 ? 1 : visibleCards - 1);
+    containerRef.current.scrollBy({ left: dir * amount, behavior: 'smooth' });
+  };
+
+  // Touch/swipe support
+  useEffect(() => {
+    let startX = 0;
+    let scrollStart = 0;
+    const el = containerRef.current;
+    if (!el) return;
+    const onTouchStart = (e) => {
+      pause();
+      startX = e.touches[0].clientX;
+      scrollStart = el.scrollLeft;
+    };
+    const onTouchMove = (e) => {
+      const dx = startX - e.touches[0].clientX;
+      el.scrollLeft = scrollStart + dx;
+    };
+    const onTouchEnd = () => {
+      resume();
+    };
+    el.addEventListener('touchstart', onTouchStart);
+    el.addEventListener('touchmove', onTouchMove);
+    el.addEventListener('touchend', onTouchEnd);
+    return () => {
+      el.removeEventListener('touchstart', onTouchStart);
+      el.removeEventListener('touchmove', onTouchMove);
+      el.removeEventListener('touchend', onTouchEnd);
+    };
+  }, [containerRef, cardWidth]);
+
+  // Duplicate cards for seamless looping
+  const cards = [...STUDENT_ACHIEVEMENTS, ...STUDENT_ACHIEVEMENTS];
+
+  return (
+    <section
+      ref={sectionRef}
+      className={`py-16 bg-background transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+    >
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="text-center mb-6">
+          <h2 className="text-4xl md:text-5xl font-montserrat font-bold text-primary mb-2" style={{ fontSize: 48 }}>Individual Student Achievements</h2>
+          <div className="text-lg md:text-xl text-gray-600 mb-4">Our toppers and their proud scores</div>
+        </div>
+        <div className="relative">
+          {/* Left Arrow */}
+          <button
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow p-2 rounded-full border border-gray-200 hover:bg-accent hover:text-primary transition-colors hidden sm:flex"
+            style={{ background: '#fff' }}
+            onClick={() => scrollBy(-1)}
+            aria-label="Scroll left"
+            tabIndex={0}
+          >
+            <svg width="28" height="28" fill="none" stroke="#004AAD" strokeWidth="2"><path d="M18 6l-8 8 8 8" /></svg>
+          </button>
+          {/* Carousel */}
+          <div
+            ref={containerRef}
+            className="flex overflow-x-auto no-scrollbar py-4"
+            style={{ scrollBehavior: 'smooth' }}
+            onMouseEnter={pause}
+            onMouseLeave={resume}
+            onTouchStart={pause}
+            onTouchEnd={resume}
+          >
+            {cards.map((student, idx) => (
+              <StudentAchievementCard key={student.id + '-' + idx} student={student} />
+            ))}
+          </div>
+          {/* Right Arrow */}
+          <button
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow p-2 rounded-full border border-gray-200 hover:bg-accent hover:text-primary transition-colors hidden sm:flex"
+            style={{ background: '#fff' }}
+            onClick={() => scrollBy(1)}
+            aria-label="Scroll right"
+            tabIndex={0}
+          >
+            <svg width="28" height="28" fill="none" stroke="#004AAD" strokeWidth="2"><path d="M10 6l8 8-8 8" /></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  
+  const navigate = useNavigate();
   const handleApplyClick = () => {
-    window.location.href = 'mailto:info@modulusacademy.com?subject=Achievement%20Inquiry';
+    navigate('/courses');
   };
 
   return (
@@ -134,7 +315,7 @@ function Header() {
                   <li key={link.name}><Link to={link.href}>{link.name}</Link></li>
                 ))}
               </ul>
-              <button onClick={handleApplyClick} className="bg-accent text-primary font-bold px-5 py-2 rounded shadow hover:bg-yellow-400 transition-colors">Apply Now</button>
+              <button className="bg-accent text-primary font-bold px-5 py-2 rounded shadow hover:bg-yellow-400 transition-colors" onClick={handleApplyClick}>Apply Now</button>
             </div>
           </div>
         )}
@@ -243,8 +424,13 @@ function TestimonialCard({ testimonial, onCardClick }) {
 }
 
 function AchievementsSection() {
+  const sectionRef = useRef();
+  const inView = useInViewOnce(sectionRef, { threshold: 0.1 });
   return (
-    <section className="py-16 bg-[#F9F9F9]">
+    <section
+      ref={sectionRef}
+      className={`py-16 bg-[#F9F9F9] transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+    >
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-montserrat font-bold text-primary mb-4">Our Achievements</h1>
@@ -263,6 +449,8 @@ function AchievementsSection() {
 }
 
 function TestimonialsSection() {
+  const sectionRef = useRef();
+  const inView = useInViewOnce(sectionRef, { threshold: 0.1 });
   const [selectedTestimonial, setSelectedTestimonial] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -277,7 +465,10 @@ function TestimonialsSection() {
   };
 
   return (
-    <section className="py-16 bg-white">
+    <section
+      ref={sectionRef}
+      className={`py-16 bg-white transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+    >
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-montserrat font-bold text-primary mb-4">What Our Students Say</h2>
@@ -343,6 +534,7 @@ export default function Achievements() {
     <div className="font-poppins bg-background text-text min-h-screen">
       <Header />
       <AchievementsSection />
+      <StudentAchievementsCarousel />
       <TestimonialsSection />
       <Footer />
     </div>

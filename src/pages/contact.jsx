@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
 const NAV_LINKS = [
@@ -12,11 +12,28 @@ const NAV_LINKS = [
   { name: 'Blog' , href: '/#blog'}
 ];
 
+// Custom hook for in-view animation (play only once)
+function useInViewOnce(ref, options = {}) {
+  const [hasBeenInView, setHasBeenInView] = useState(false);
+  useEffect(() => {
+    if (hasBeenInView) return;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setHasBeenInView(true);
+      },
+      options
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [ref, options, hasBeenInView]);
+  return hasBeenInView;
+}
+
 function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  
+  const navigate = useNavigate();
   const handleApplyClick = () => {
-    window.location.href = 'mailto:info@modulusacademy.com?subject=Contact%20Inquiry';
+    navigate('/courses');
   };
 
   return (
@@ -50,7 +67,7 @@ function Header() {
                   <li key={link.name}><Link to={link.href}>{link.name}</Link></li>
                 ))}
               </ul>
-              <button onClick={handleApplyClick} className="bg-accent text-primary font-bold px-5 py-2 rounded shadow hover:bg-yellow-400 transition-colors">Apply Now</button>
+              <button className="bg-accent text-primary font-bold px-5 py-2 rounded shadow hover:bg-yellow-400 transition-colors" onClick={handleApplyClick}>Apply Now</button>
             </div>
           </div>
         )}
@@ -69,8 +86,13 @@ function HeroSection() {
 }
 
 function ContactDetails() {
+  const ref = useRef();
+  const inView = useInViewOnce(ref, { threshold: 0.1 });
   return (
-    <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+    <div
+      ref={ref}
+      className={`bg-white rounded-2xl shadow-lg p-8 border border-gray-100 transition-all duration-700 ${inView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}
+    >
       <h2 className="text-2xl font-bold text-primary mb-6 font-montserrat">Contact Information</h2>
       
       <div className="space-y-6">
@@ -147,6 +169,8 @@ function ContactDetails() {
 }
 
 function ContactForm() {
+  const ref = useRef();
+  const inView = useInViewOnce(ref, { threshold: 0.1 });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -171,7 +195,10 @@ function ContactForm() {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+    <div
+      ref={ref}
+      className={`bg-white rounded-2xl shadow-lg p-8 border border-gray-100 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+    >
       <h2 className="text-2xl font-bold text-primary mb-6 font-montserrat">Send us a Message</h2>
       
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -251,15 +278,20 @@ function ContactForm() {
 }
 
 function GoogleMap() {
+  const ref = useRef();
+  const inView = useInViewOnce(ref, { threshold: 0.1 });
   return (
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+    <div
+      ref={ref}
+      className={`bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 transition-all duration-700 ${inView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}
+    >
       <div className="p-6 border-b border-gray-100">
         <h2 className="text-2xl font-bold text-primary font-montserrat">Our Location</h2>
         <p className="text-gray-600 mt-2">Find us at Saraswati Park, Vinayak Nagar</p>
       </div>
       <div className="h-80 md:h-96">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.1234567890123!2d73.7890123456789!3d18.45678901234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDI3JzI0LjQiTiA3M8KwNDcnMjAuNCJF!5e0!3m2!1sen!2sin!4v1234567890123"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.732666036576!2d73.81217337595761!3d18.586087367168144!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b9ddd8d5ce95%3A0x4e03963d0e177a1b!2sModulus%20Science%20Academy!5e0!3m2!1sen!2sus!4v1750845055678!5m2!1sen!2sus" 
           width="100%"
           height="100%"
           style={{ border: 0 }}
