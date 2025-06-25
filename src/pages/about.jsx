@@ -8,8 +8,9 @@ const NAV_LINKS = [
   { name: 'Courses', href: '/courses' },
   { name: 'Mentors', href: '/mentor' },
   { name: 'Achievements', href: '/achievements' },
+  { name : 'Gallery' , href : '/gallery'},
   { name: 'Contact', href: '/contact' },
-  { name: 'Blog' , href: '/#blog'}
+  { name: 'Blog' , href: '/#blog'},
 ];
 
 function useInView(ref, options = {}) {
