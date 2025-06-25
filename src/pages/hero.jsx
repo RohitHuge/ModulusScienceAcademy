@@ -1,6 +1,7 @@
 import { Button } from 'antd';
 import { PhoneOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import logobg from '../assets/logobg.png';
 
 export default function Hero({ onApplyClick }) {
   const navigate = useNavigate();
@@ -51,11 +52,12 @@ export default function Hero({ onApplyClick }) {
           <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
             <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 flex items-center justify-center">
               <div className="absolute -inset-1 rounded-full bg-yellow-400 blur-md"></div>
+              <div className="absolute w-5/6 h-5/6 bg-white rounded-full z-10"></div>
               <div className="relative rounded-full overflow-hidden border-4 border-yellow-400 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 flex items-center justify-center">
                 <img
-                  src="https://readdy.ai/api/search-image?query=high%20quality%20professional%20image%20of%20a%20student%20studying%20science%20with%20books%20and%20lab%20equipment%2C%20focused%20expression%2C%20educational%20setting%2C%20bright%20lighting%2C%20inspirational%20academic%20environment&width=500&height=500&seq=2&orientation=squarish"
-                  alt="Student studying"
-                  className="w-full h-full object-cover object-top"
+                  src={logobg}
+                  alt="Modulus Academy Logo"
+                  className="w-4/5 h-4/5 object-contain relative z-20"
                 />
               </div>
             </div>
