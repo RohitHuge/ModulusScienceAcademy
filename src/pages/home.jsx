@@ -3,7 +3,7 @@ import Hero1 from './hero';
 import { Button } from 'antd';
 import { PhoneOutlined } from '@ant-design/icons';
 import logo from '../assets/logo.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // Add smooth scroll CSS globally
 if (typeof window !== 'undefined') {
@@ -102,6 +102,7 @@ function useInView(ref, options = {}) {
 
 function Header({ onApplyClick }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navigate = useNavigate();
 
   // Smooth scroll handler
   const handleNavClick = (e, href) => {
@@ -522,7 +523,8 @@ function Contact() {
   );
 }
 
-function AdmissionsCTA({ onApplyClick }) {
+function AdmissionsCTA() {
+  const navigate = useNavigate();
   const ref = useRef();
   const inView = useInView(ref, { threshold: 0.1 });
   return (
@@ -535,7 +537,7 @@ function AdmissionsCTA({ onApplyClick }) {
             {PHONES.map(phone => <span key={phone} className="bg-white/20 px-4 py-1 rounded-full border border-white/30">{phone}</span>)}
           </div>
         </div>
-        <button onClick={onApplyClick} className="bg-accent text-primary font-bold px-8 py-3 rounded shadow-lg text-lg hover:bg-yellow-400 transition-colors mb-6 md:mb-0">Apply Now</button>
+        <button onClick={() => navigate('/courses')} className="bg-accent text-primary font-bold px-8 py-3 rounded shadow-lg text-lg hover:bg-yellow-400 transition-colors mb-6 md:mb-0">Apply Now</button>
       </div>
     </section>
   );
@@ -576,20 +578,21 @@ function Footer() {
 }
 
 export default function Home() {
-  // For Apply Now modal or redirect
-  const handleApply = () => {
-    window.location.href = 'mailto:info@modulusacademy.com?subject=Application%20for%20Admission';
+  const navigate = useNavigate();
+  // Redirect to contact page for 'Get Admission Information'
+  const handleAdmissionInfo = () => {
+    navigate('/contact');
   };
   return (
     <div className="font-poppins bg-background text-text">
-      <Header onApplyClick={handleApply} />
+      <Header onApplyClick={handleAdmissionInfo} />
       <AnchorNavigation />
-      <Hero onApplyClick={handleApply} />
+      <Hero onApplyClick={handleAdmissionInfo} />
       <Courses />
       <Mentors />
       <Achievements />
       <Contact />
-      <AdmissionsCTA onApplyClick={handleApply} />
+      <AdmissionsCTA />
       <Footer />
     </div>
   );

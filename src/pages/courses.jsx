@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
 const NAV_LINKS = [
@@ -71,9 +71,9 @@ const COURSES = [
 
 function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  
+  const navigate = useNavigate();
   const handleApplyClick = () => {
-    window.location.href = 'mailto:info@modulusacademy.com?subject=Course%20Application%20Inquiry';
+    navigate('/courses');
   };
 
   return (
@@ -107,7 +107,7 @@ function Header() {
                   <li key={link.name}><Link to={link.href}>{link.name}</Link></li>
                 ))}
               </ul>
-              <button onClick={handleApplyClick} className="bg-accent text-primary font-bold px-5 py-2 rounded shadow hover:bg-yellow-400 transition-colors">Apply Now</button>
+              <button className="bg-accent text-primary font-bold px-5 py-2 rounded shadow hover:bg-yellow-400 transition-colors" onClick={handleApplyClick}>Apply Now</button>
             </div>
           </div>
         )}
@@ -116,81 +116,171 @@ function Header() {
   );
 }
 
-function CourseModal({ course, isOpen, onClose }) {
-  if (!isOpen) return null;
-
-  const handleApplyClick = () => {
-    window.location.href = `mailto:info@modulusacademy.com?subject=Application%20for%20${encodeURIComponent(course.title)}`;
+function ApplyModal({ course, isOpen, onClose }) {
+  const [form, setForm] = useState({ name: '', phone: '', email: '', message: '' });
+  const [touched, setTouched] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+  const [fade, setFade] = useState(false);
+  useEffect(() => {
+    if (isOpen) {
+      setFade(true);
+      setForm({ name: '', phone: '', email: '', message: '' });
+      setTouched({});
+      setSubmitted(false);
+    } else {
+      setTimeout(() => setFade(false), 300);
+    }
+  }, [isOpen]);
+  if (!isOpen && !fade) return null;
+  const handleChange = e => {
+    setForm(f => ({ ...f, [e.target.name]: e.target.value }));
   };
-
+  const handleBlur = e => {
+    setTouched(t => ({ ...t, [e.target.name]: true }));
+  };
+  const validate = () => {
+    return {
+      name: !form.name.trim(),
+      phone: !form.phone.trim() || !/^\d{7,15}$/.test(form.phone.trim()),
+    };
+  };
+  const errors = validate();
+  const isValid = !errors.name && !errors.phone;
+  const handleSubmit = e => {
+    e.preventDefault();
+    setTouched({ name: true, phone: true });
+    if (!isValid) return;
+    setSubmitted(true);
+    // Demo: log to console
+    console.log({ ...form, course: course?.title });
+  };
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4" onClick={onClose}>
-      <div className="bg-white rounded-2xl p-8 max-w-md w-full mx-4 relative animate-fade-in" onClick={e => e.stopPropagation()}>
-        <button 
+    <div
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-300 ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+      onClick={onClose}
+    >
+      <div
+        className={`relative bg-white rounded-2xl md:rounded-2xl shadow-xl w-full max-w-lg mx-4 p-8 transition-all duration-300 font-poppins animate-fade-in ${isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`}
+        style={{ borderRadius: 16, maxWidth: 600 }}
+        onClick={e => e.stopPropagation()}
+      >
+        <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors"
+          className="absolute top-4 right-4 text-gray-400 hover:text-primary transition-colors"
           aria-label="Close modal"
         >
-          <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M6 6l12 12M6 18L18 6" />
-          </svg>
+          <svg width="24" height="24" fill="none" stroke="#004AAD" strokeWidth="2"><path d="M6 6l12 12M6 18L18 6" /></svg>
         </button>
-        
-        <div className="space-y-6">
-          <div>
-            <h3 className="text-2xl font-bold text-primary mb-2 font-montserrat">{course.title}</h3>
-            <p className="text-gray-600 font-medium">{course.classes}</p>
+        {!submitted ? (
+          <>
+            <h2 className="text-2xl font-bold text-primary mb-2 font-montserrat text-center">Apply for {course?.title}</h2>
+            <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
+              <div>
+                <label className="block text-sm font-medium text-primary mb-1">Full Name *</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  required
+                  className={`w-full px-4 py-3 rounded-lg border ${errors.name && touched.name ? 'border-red-400' : 'border-gray-300'} focus:ring-2 focus:ring-primary focus:border-transparent transition-colors`}
+                  placeholder="Enter your full name"
+                  style={{ fontFamily: 'Poppins, Montserrat, sans-serif' }}
+                />
+                {errors.name && touched.name && <div className="text-red-500 text-xs mt-1">Full Name is required</div>}
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-primary mb-1">Phone Number *</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={form.phone}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  required
+                  className={`w-full px-4 py-3 rounded-lg border ${errors.phone && touched.phone ? 'border-red-400' : 'border-gray-300'} focus:ring-2 focus:ring-primary focus:border-transparent transition-colors`}
+                  placeholder="Enter your phone number"
+                  style={{ fontFamily: 'Poppins, Montserrat, sans-serif' }}
+                />
+                {errors.phone && touched.phone && <div className="text-red-500 text-xs mt-1">Valid phone number is required</div>}
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-primary mb-1">Email (optional)</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+                  placeholder="Enter your email address"
+                  style={{ fontFamily: 'Poppins, Montserrat, sans-serif' }}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-primary mb-1">Message / Query (optional)</label>
+                <textarea
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-colors resize-none"
+                  rows={4}
+                  placeholder="Your message or query..."
+                  style={{ fontFamily: 'Poppins, Montserrat, sans-serif' }}
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-[#004AAD] text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-[#FFD700] hover:text-[#004AAD] transition-all duration-300 transform hover:scale-105"
+                style={{ fontFamily: 'Poppins, Montserrat, sans-serif', marginTop: 16 }}
+              >
+                Submit Application
+              </button>
+            </form>
+          </>
+        ) : (
+          <div className="flex flex-col items-center justify-center py-12">
+            <svg width="64" height="64" fill="#FFD700" viewBox="0 0 24 24" className="mb-4"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+            <div className="text-2xl font-bold text-primary mb-2 font-montserrat text-center">Thank you!</div>
+            <div className="text-lg text-gray-700 text-center">We'll get back to you soon.</div>
           </div>
-          
-          <div>
-            <h4 className="text-lg font-bold text-primary mb-2">Subjects Covered:</h4>
-            <div className="flex flex-wrap gap-2">
-              {course.subjects.map(subject => (
-                <span key={subject} className="bg-accent/20 text-primary px-3 py-1 rounded-full text-sm font-medium">
-                  {subject}
-                </span>
-              ))}
-            </div>
-          </div>
-          
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <h4 className="text-lg font-bold text-primary mb-1">Fee Structure:</h4>
-              <p className="text-gray-700 font-semibold">{course.fee}</p>
-            </div>
-            <div>
-              <h4 className="text-lg font-bold text-primary mb-1">Duration:</h4>
-              <p className="text-gray-700">{course.duration}</p>
-            </div>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-bold text-primary mb-2">Course Description:</h4>
-            <p className="text-gray-700 leading-relaxed">{course.description}</p>
-          </div>
-          
-          <button 
-            onClick={handleApplyClick}
-            className="w-full bg-accent text-primary font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105"
-          >
-            Apply Now
-          </button>
-        </div>
+        )}
       </div>
     </div>
   );
 }
 
-function CourseCard({ course, onCardClick }) {
-  const handleApplyClick = (e) => {
-    e.stopPropagation();
-    window.location.href = `mailto:info@modulusacademy.com?subject=Application%20for%20${encodeURIComponent(course.title)}`;
-  };
+function useInView(ref, options = {}) {
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const observer = new window.IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      options
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [ref, options]);
+  return inView;
+}
+
+function CourseCard({ course, onApply, onCardClick, animate, delay }) {
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    if (animate) {
+      const timeout = setTimeout(() => setShow(true), delay);
+      return () => clearTimeout(timeout);
+    } else {
+      setShow(false);
+    }
+  }, [animate, delay]);
 
   return (
-    <div 
-      className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] cursor-pointer border border-gray-100"
+    <div
+      className={`bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] cursor-pointer border border-gray-100
+        transition-all duration-700
+        ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
       onClick={onCardClick}
+      style={{ transitionDelay: `${delay}ms` }}
     >
       <div className="space-y-4">
         <div>
@@ -220,9 +310,13 @@ function CourseCard({ course, onCardClick }) {
           </div>
         </div>
         
-        <button 
-          onClick={handleApplyClick}
-          className="w-full bg-accent text-primary font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105"
+        <button
+          onClick={e => {
+            e.stopPropagation();
+            onApply(course);
+          }}
+          className="w-full bg-[#FFD700] text-[#004AAD] font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-[#004AAD] hover:text-[#FFD700] transition-all duration-300 transform hover:scale-105 font-montserrat"
+          style={{ marginTop: 8 }}
         >
           Apply Now
         </button>
@@ -234,6 +328,8 @@ function CourseCard({ course, onCardClick }) {
 function CoursesSection() {
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const sectionRef = useRef();
+  const inView = useInView(sectionRef, { threshold: 0.1 });
 
   const openModal = (course) => {
     setSelectedCourse(course);
@@ -242,29 +338,34 @@ function CoursesSection() {
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setSelectedCourse(null);
+    setTimeout(() => setSelectedCourse(null), 300);
   };
 
   return (
-    <section className="py-16 bg-[#F9F9F9]">
+    <section className="py-16 bg-[#F9F9F9]" ref={sectionRef}>
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-montserrat font-bold text-primary mb-4">Our Courses</h1>
           <p className="text-lg md:text-xl text-gray-600">Find the right program for you.</p>
         </div>
         
-        {/* All Screen Layout - Grid with Modal for all */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {COURSES.map(course => (
-            <CourseCard key={course.id} course={course} onCardClick={() => openModal(course)} />
+          {COURSES.map((course, idx) => (
+            <CourseCard
+              key={course.id}
+              course={course}
+              onCardClick={() => openModal(course)}
+              onApply={openModal}
+              animate={inView}
+              delay={inView ? idx * 150 : 0}
+            />
           ))}
         </div>
         
-        {/* Modal for All Screen Types */}
-        <CourseModal 
-          course={selectedCourse} 
-          isOpen={isModalOpen} 
-          onClose={closeModal} 
+        <ApplyModal
+          course={selectedCourse}
+          isOpen={isModalOpen}
+          onClose={closeModal}
         />
       </div>
     </section>

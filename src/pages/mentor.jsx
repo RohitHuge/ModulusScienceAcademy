@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import logo from '../assets/logo.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const NAV_LINKS = [
   { name: 'Home', href: '/' },
@@ -27,6 +27,7 @@ function useInView(ref, options = {}) {
 
 function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navigate = useNavigate();
   return (
     <header className="sticky top-0 z-30 bg-white shadow-sm">
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-4 py-2 md:py-3">
@@ -43,7 +44,7 @@ function Header() {
             </li>
           ))}
         </ul>
-        <button className="hidden lg:inline-block bg-accent text-primary font-bold px-5 py-2 rounded shadow hover:bg-yellow-400 transition-colors">Apply Now</button>
+        <button className="hidden lg:inline-block bg-accent text-primary font-bold px-5 py-2 rounded shadow hover:bg-yellow-400 transition-colors" onClick={() => navigate('/courses')}>Apply Now</button>
         <button className="lg:hidden ml-2" onClick={() => setMobileOpen(v => !v)} aria-label="Open menu">
           <svg width="28" height="28" fill="none" stroke="#004AAD" strokeWidth="2"><path d="M4 8h20M4 16h20M4 24h20" /></svg>
         </button>
@@ -58,7 +59,7 @@ function Header() {
                   <li key={link.name}><Link to={link.href}>{link.name}</Link></li>
                 ))}
               </ul>
-              <button className="bg-accent text-primary font-bold px-5 py-2 rounded shadow hover:bg-yellow-400 transition-colors">Apply Now</button>
+              <button className="bg-accent text-primary font-bold px-5 py-2 rounded shadow hover:bg-yellow-400 transition-colors" onClick={() => navigate('/courses')}>Apply Now</button>
             </div>
           </div>
         )}
@@ -153,6 +154,25 @@ function MentorModal({ mentor, isOpen, onClose }) {
 function MentorShowcase() {
   const [selectedMentor, setSelectedMentor] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const sectionRef = useRef();
+  const inView = useInView(sectionRef, { threshold: 0.1 });
+  const [showArr, setShowArr] = useState(Array(MENTORS.length).fill(false));
+
+  useEffect(() => {
+    if (inView) {
+      MENTORS.forEach((_, idx) => {
+        setTimeout(() => {
+          setShowArr(prev => {
+            const next = [...prev];
+            next[idx] = true;
+            return next;
+          });
+        }, idx * 180);
+      });
+    } else {
+      setShowArr(Array(MENTORS.length).fill(false));
+    }
+  }, [inView]);
 
   const openModal = (mentor) => {
     setSelectedMentor(mentor);
@@ -165,20 +185,23 @@ function MentorShowcase() {
   };
 
   return (
-    <section className="py-16 bg-[#F9F9F9]">
+    <section className="py-16 bg-[#F9F9F9]" ref={sectionRef}>
       <div className="max-w-6xl mx-auto px-4">
         {/* Desktop Layout - Vertical List */}
         <div className="hidden lg:block">
           <div className="space-y-8">
             {MENTORS.map((mentor, i) => (
-              <div 
+              <div
                 key={mentor.name}
-                className="bg-white rounded-xl shadow-lg p-8 flex items-start gap-6 hover:shadow-xl transition-all duration-300"
+                className={`bg-white rounded-xl shadow-lg p-8 flex items-start gap-6 hover:shadow-xl transition-all duration-300
+                  transition-all duration-700
+                  ${showArr[i] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                style={{ transitionDelay: `${i * 180}ms` }}
               >
-                <img 
-                  src={mentor.img} 
-                  alt={mentor.name} 
-                  className="w-20 h-20 min-w-[80px] min-h-[80px] max-w-[80px] max-h-[80px] rounded-full border-4 border-accent object-cover flex-shrink-0" 
+                <img
+                  src={mentor.img}
+                  alt={mentor.name}
+                  className="w-20 h-20 min-w-[80px] min-h-[80px] max-w-[80px] max-h-[80px] rounded-full border-4 border-accent object-cover flex-shrink-0"
                 />
                 <div className="flex-1 flex items-start justify-between">
                   <div className="flex-1">
@@ -204,13 +227,15 @@ function MentorShowcase() {
               <div
                 key={mentor.name}
                 onClick={() => openModal(mentor)}
-                className="bg-white rounded-xl shadow-lg border-l-4 border-accent p-6 flex flex-col items-center text-center transition-all duration-300 cursor-pointer hover:shadow-2xl hover:scale-105"
-                style={{ minHeight: 280 }}
+                className={`bg-white rounded-xl shadow-lg border-l-4 border-accent p-6 flex flex-col items-center text-center transition-all duration-300 cursor-pointer hover:shadow-2xl hover:scale-105
+                  transition-all duration-700
+                  ${showArr[i] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                style={{ minHeight: 280, transitionDelay: `${i * 180}ms` }}
               >
-                <img 
-                  src={mentor.img} 
-                  alt={mentor.name} 
-                  className="w-30 h-30 min-w-[120px] min-h-[120px] max-w-[120px] max-h-[120px] rounded-full border-4 border-accent mb-4 object-cover" 
+                <img
+                  src={mentor.img}
+                  alt={mentor.name}
+                  className="w-30 h-30 min-w-[120px] min-h-[120px] max-w-[120px] max-h-[120px] rounded-full border-4 border-accent mb-4 object-cover"
                 />
                 <h3 className="text-2xl font-bold text-primary mb-1 font-montserrat">{mentor.name}</h3>
                 <div className="text-base text-gray-700 mb-1 font-medium">{mentor.qualification}</div>
@@ -223,10 +248,10 @@ function MentorShowcase() {
         </div>
 
         {/* Modal */}
-        <MentorModal 
-          mentor={selectedMentor} 
-          isOpen={isModalOpen} 
-          onClose={closeModal} 
+        <MentorModal
+          mentor={selectedMentor}
+          isOpen={isModalOpen}
+          onClose={closeModal}
         />
       </div>
     </section>

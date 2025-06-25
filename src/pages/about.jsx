@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import logo from '../assets/logo.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const NAV_LINKS = [
   { name: 'Home', href: '/' },
@@ -27,6 +27,7 @@ function useInView(ref, options = {}) {
 
 function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navigate = useNavigate();
   return (
     <header className="sticky top-0 z-30 bg-white shadow-sm">
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-4 py-2 md:py-3">
@@ -43,7 +44,7 @@ function Header() {
             </li>
           ))}
         </ul>
-        <button className="hidden lg:inline-block bg-accent text-primary font-bold px-5 py-2 rounded shadow hover:bg-yellow-400 transition-colors">Apply Now</button>
+        <button className="hidden lg:inline-block bg-accent text-primary font-bold px-5 py-2 rounded shadow hover:bg-yellow-400 transition-colors" onClick={() => navigate('/courses')}>Apply Now</button>
         <button className="lg:hidden ml-2" onClick={() => setMobileOpen(v => !v)} aria-label="Open menu">
           <svg width="28" height="28" fill="none" stroke="#004AAD" strokeWidth="2"><path d="M4 8h20M4 16h20M4 24h20" /></svg>
         </button>
@@ -58,7 +59,7 @@ function Header() {
                   <li key={link.name}><Link to={link.href}>{link.name}</Link></li>
                 ))}
               </ul>
-              <button className="bg-accent text-primary font-bold px-5 py-2 rounded shadow hover:bg-yellow-400 transition-colors">Apply Now</button>
+              <button className="bg-accent text-primary font-bold px-5 py-2 rounded shadow hover:bg-yellow-400 transition-colors" onClick={() => navigate('/courses')}>Apply Now</button>
             </div>
           </div>
         )}
@@ -132,8 +133,13 @@ function MessageFromSandeep() {
 }
 
 function MissionVision() {
+  const ref = useRef();
+  const inView = useInView(ref, { threshold: 0.15 });
   return (
-    <section className="py-16 bg-white">
+    <section
+      ref={ref}
+      className={`py-16 bg-white transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+    >
       <div className="max-w-5xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="border-l-4 border-accent pl-6 bg-[#FFFBEA] rounded-xl shadow p-6 flex flex-col items-start">
           <span className="text-3xl mb-2">🎯</span>
@@ -151,6 +157,8 @@ function MissionVision() {
 }
 
 function CoreValues() {
+  const ref = useRef();
+  const inView = useInView(ref, { threshold: 0.15 });
   const values = [
     { icon: '🤝', title: 'Integrity', desc: 'We uphold honesty and strong moral principles in all our actions.' },
     { icon: '💡', title: 'Innovation', desc: 'We encourage creative thinking and embrace new ideas in education.' },
@@ -160,7 +168,10 @@ function CoreValues() {
     { icon: '🌏', title: 'Community', desc: 'We build a supportive and inclusive learning environment.' },
   ];
   return (
-    <section className="py-16 bg-[#F9F9F9]">
+    <section
+      ref={ref}
+      className={`py-16 bg-[#F9F9F9] transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+    >
       <div className="max-w-5xl mx-auto px-4">
         <h2 className="text-3xl font-bold text-primary mb-10 text-center">Core Values</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
@@ -178,13 +189,18 @@ function CoreValues() {
 }
 
 function Philosophy() {
+  const ref = useRef();
+  const inView = useInView(ref, { threshold: 0.15 });
   const items = [
     { icon: '🔬', title: 'Scientific Temper', desc: 'We nurture curiosity and a spirit of inquiry in every student.' },
     { icon: '🧠', title: 'Critical Thinking', desc: 'We encourage analysis, reasoning, and problem-solving skills.' },
     { icon: '🤗', title: 'Empathy', desc: 'We value understanding and compassion in our academic community.' },
   ];
   return (
-    <section className="py-16 bg-primary">
+    <section
+      ref={ref}
+      className={`py-16 bg-primary transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+    >
       <div className="max-w-5xl mx-auto px-4">
         <h2 className="text-3xl font-bold text-accent mb-10 text-center">Educational Philosophy</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
