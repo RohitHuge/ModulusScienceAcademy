@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import logo from '../assets/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
+import sandipsir from '../assets/sandipsir.profilephoto.webp';
 
 const NAV_LINKS = [
   { name: 'Home', href: '/' },
@@ -120,7 +121,7 @@ function MessageFromSandeep() {
   return (
     <section className={`py-16 bg-[#F9F9F9] transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} ref={ref}>
       <div className="max-w-4xl mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
-        <img src="https://randomuser.me/api/portraits/men/50.jpg" alt="Sandeep Sir" className="w-36 h-36 rounded-full border-4 border-accent shadow-lg" />
+        <img src={sandipsir} alt="Sandeep Sir" className="w-36 h-36 rounded-full border-4 border-accent shadow-lg" />
         <div className="flex-1">
           <h2 className="text-2xl font-bold text-primary mb-4">Message from Sandeep Sir</h2>
           <p className="mb-4 text-text">At Modulus Science Academy, we believe every student has unique potential. Our mission is to nurture curiosity, foster critical thinking, and provide unwavering support. We focus on holistic development, not just academic excellence.</p>
