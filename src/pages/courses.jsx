@@ -277,18 +277,15 @@ function CourseCard({ course, onApply, onCardClick, animate, delay }) {
 
   return (
     <div
-      className={`bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] cursor-pointer border border-gray-100
-        transition-all duration-700
-        ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+      className={`bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] cursor-pointer border border-gray-100 flex flex-col h-full transition-all duration-700 ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
       onClick={onCardClick}
       style={{ transitionDelay: `${delay}ms` }}
     >
-      <div className="space-y-4">
+      <div className="space-y-4 flex-1 flex flex-col">
         <div>
           <h3 className="text-2xl font-bold text-primary mb-2 font-montserrat">{course.title}</h3>
           <p className="text-gray-600 font-medium">{course.classes}</p>
         </div>
-        
         <div>
           <h4 className="text-lg font-bold text-primary mb-2">Subjects Covered:</h4>
           <div className="flex flex-wrap gap-2">
@@ -299,29 +296,27 @@ function CourseCard({ course, onApply, onCardClick, animate, delay }) {
             ))}
           </div>
         </div>
-        
-        <div className="grid grid-cols-2 gap-4">
-          <div>
+        <div className="grid grid-cols-2 gap-4 mb-4">
+          {/* <div>
             <h4 className="text-lg font-bold text-primary mb-1">Fee Structure:</h4>
             <p className="text-gray-700 font-semibold">{course.fee}</p>
-          </div>
+          </div> */}
           <div>
             <h4 className="text-lg font-bold text-primary mb-1">Duration:</h4>
             <p className="text-gray-700">{course.duration}</p>
           </div>
         </div>
-        
-        <button
-          onClick={e => {
-            e.stopPropagation();
-            onApply(course);
-          }}
-          className="w-full bg-[#FFD700] text-[#004AAD] font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-[#004AAD] hover:text-[#FFD700] transition-all duration-300 transform hover:scale-105 font-montserrat"
-          style={{ marginTop: 8 }}
-        >
-          Apply Now
-        </button>
+        <div className="flex-1" />
       </div>
+      <button
+        onClick={e => {
+          e.stopPropagation();
+          onApply(course);
+        }}
+        className="w-full bg-[#FFD700] text-[#004AAD] font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-[#004AAD] hover:text-[#FFD700] transition-all duration-300 transform hover:scale-105 font-montserrat mt-4"
+      >
+        Apply Now
+      </button>
     </div>
   );
 }
