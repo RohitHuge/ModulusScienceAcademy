@@ -1,6 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import logo from '../assets/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
+import amitsir from '../assets/amitsir.profilephoto.webp';
+import sandipsir from '../assets/sandipsir.profilephoto.webp';
+import ramsir from '../assets/ramsir.profilephoto.webp';
+import pandharisir from '../assets/pandharisir.profilephoto.webp';
 
 const NAV_LINKS = [
   { name: 'Home', href: '/' },
@@ -83,7 +87,7 @@ function HeroSection() {
 const MENTORS = [
   {
     name: 'Pandhari Sir',
-    img: 'https://randomuser.me/api/portraits/men/31.jpg',
+    img: pandharisir,
     qualification: 'M.Sc Chem, SET, Ph.D Pursuing',
     subject: 'Chemistry Expert',
     exp: '12+ Years Exp.',
@@ -91,7 +95,7 @@ const MENTORS = [
   },
   {
     name: 'Amit Sir',
-    img: 'https://randomuser.me/api/portraits/men/32.jpg',
+    img: amitsir,
     qualification: 'M.Sc Physics, NET',
     subject: 'Physics Expert',
     exp: '8+ Years Exp.',
@@ -99,7 +103,7 @@ const MENTORS = [
   },
   {
     name: 'Sandip Sir',
-    img: 'https://randomuser.me/api/portraits/men/33.jpg',
+    img: sandipsir,
     qualification: 'M.Sc Maths, SET, B.Ed',
     subject: 'Mathematics Expert',
     exp: '8+ Years Exp.',
@@ -107,7 +111,7 @@ const MENTORS = [
   },
   {
     name: 'Ram Sir',
-    img: 'https://randomuser.me/api/portraits/men/34.jpg',
+    img: ramsir,
     qualification: 'M.Sc Microbiology',
     subject: 'Biology Expert',
     exp: '5+ Years Exp.',

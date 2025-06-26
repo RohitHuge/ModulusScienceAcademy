@@ -4,6 +4,10 @@ import { Button } from 'antd';
 import { PhoneOutlined } from '@ant-design/icons';
 import logo from '../assets/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
+import amitsir from '../assets/amitsir.profilephoto.webp';
+import sandipsir from '../assets/sandipsir.profilephoto.webp';
+import ramsir from '../assets/ramsir.profilephoto.webp';
+import pandharisir from '../assets/pandharisir.profilephoto.webp';
 
 // Add smooth scroll CSS globally
 if (typeof window !== 'undefined') {
@@ -54,25 +58,25 @@ const MENTORS = [
     name: 'Pandhari Sir',
     subject: 'Chemistry',
     exp: '12+ Years Exp.',
-    img: 'https://randomuser.me/api/portraits/men/31.jpg',
+    img: pandharisir,
   },
   {
     name: 'Amit Sir',
     subject: 'Physics',
     exp: '8+ Years Exp.',
-    img: 'https://randomuser.me/api/portraits/men/32.jpg',
+    img: amitsir,
   },
   {
     name: 'Sandip Sir',
     subject: 'Mathematics',
     exp: '8+ Years Exp.',
-    img: 'https://randomuser.me/api/portraits/men/33.jpg',
+    img: sandipsir,
   },
   {
     name: 'Ram Sir',
     subject: 'Biology',
     exp: '5+ Years Exp.',
-    img: 'https://randomuser.me/api/portraits/men/34.jpg',
+    img: ramsir,
   },
 ];
 
