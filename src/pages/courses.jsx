@@ -301,10 +301,10 @@ function CourseCard({ course, onApply, onCardClick, animate, delay }) {
         </div>
         
         <div className="grid grid-cols-2 gap-4">
-          <div>
+          {/* <div>
             <h4 className="text-lg font-bold text-primary mb-1">Fee Structure:</h4>
             <p className="text-gray-700 font-semibold">{course.fee}</p>
-          </div>
+          </div> */}
           <div>
             <h4 className="text-lg font-bold text-primary mb-1">Duration:</h4>
             <p className="text-gray-700">{course.duration}</p>

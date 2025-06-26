@@ -56,7 +56,7 @@ export default function Hero({ onApplyClick }) {
           <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
             <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 flex items-center justify-center">
               <div className="absolute -inset-1 rounded-full bg-yellow-400 blur-md"></div>
-              {/* <div className="absolute w-5/6 h-5/6 bg-white rounded-full z-10"></div> */}
+              <div className="absolute w-5/6 h-5/6 bg-white rounded-full z-10"></div>
               <div className="relative rounded-full overflow-hidden border-4 border-yellow-400 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 flex items-center justify-center">
                 <img
                   src={logobg}
