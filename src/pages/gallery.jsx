@@ -6,7 +6,7 @@ import { LeftOutlined, RightOutlined, CloseOutlined } from '@ant-design/icons';
 const GALLERY_IMAGES = [
   { 
     id: 1, 
-    src: 'https://images.unsplash.com/photo-1523240794102-9ebd83b17b85?w=800&h=600&fit=crop', 
+    src: 'https://williamcareyuniversity.co.in/uploads/2025/01/discovering-india-s-neet-2025-topper-journey-to-success.webp', 
     message: 'NEET Preparation Workshop 2025 - Students engaged in intensive study sessions' 
   },
   { 
@@ -36,7 +36,7 @@ const GALLERY_IMAGES = [
   },
   { 
     id: 7, 
-    src: 'https://images.unsplash.com/photo-1523050854058-8df90110c9e1?w=800&h=600&fit=crop', 
+    src: 'https://media.sciencephoto.com/image/f0094854/225sh.com/photo-1523050854058-8df90110c9e1?w=800&h=600&fit=crop', 
     message: 'Biology Practical Class - Microscopic study and specimen analysis' 
   },
   { 

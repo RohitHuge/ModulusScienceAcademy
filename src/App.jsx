@@ -7,6 +7,7 @@ import Achievements from './pages/achievements'
 import Contact from './pages/contact'
 import Gallery from './pages/gallery'
 import ModulusScienceAcademyHero from './pagesnotused/Modulus-Science-Academy-Hero'
+import Blog from './pages/blog'
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/achievements" element={<Achievements />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/blog" element={<Blog />} />
       </Routes>
     </BrowserRouter>
   )

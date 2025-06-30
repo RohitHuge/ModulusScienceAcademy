@@ -31,7 +31,7 @@ const NAV_LINKS = [
   { name: 'Achievements', href: '/achievements' },
   { name: 'Gallery', href: '/gallery' },
   { name: 'Contact', href: '/contact' },
-  { name: 'Blog' , href: '/#blog'}
+  { name: 'Blog' , href: '/blog'}
 ];
 
 const COURSES = [
@@ -581,6 +581,8 @@ function Footer() {
     </footer>
   );
 }
+
+export { Header, Footer };
 
 export default function Home() {
   const navigate = useNavigate();
