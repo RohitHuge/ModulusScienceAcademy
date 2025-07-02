@@ -6,7 +6,7 @@ import sandipsir from '../assets/sandipsir.profilephoto.webp';
 import ramsir from '../assets/ramsir.profilephoto.webp';
 import pandharisir from '../assets/pandharisir.profilephoto.webp';
 import { Header, Footer } from './home';
-
+import { Helmet } from 'react-helmet-async';
 
 // const NAV_LINKS = [
 //   { name: 'Home', href: '/' },
@@ -302,6 +302,23 @@ function MentorShowcase() {
 export default function Mentors() {
   return (
     <div className="font-poppins bg-background text-text">
+      <Helmet>
+      <title>Meet Our Mentors | Modulus Science Academy Sangvi Pune</title>
+
+<meta name="description" content="Get to know the expert faculty at Modulus Science Academy Sangvi Pune. Experienced mentors for NEET, JEE, MHT-CET, and Board coaching with personal guidance and proven track records." />
+
+<meta name="keywords" content="Modulus Science Academy Mentors, Pune coaching teachers, NEET faculty Pune, JEE faculty Sangvi, MHT-CET expert mentors, Modulus Academy faculty profiles, best coaching teachers Pune" />
+
+<meta name="author" content="Modulus Science Academy" />
+
+<meta property="og:title" content="Meet Our Mentors | Modulus Science Academy Sangvi, Pune" />
+<meta property="og:description" content="Discover the experienced and qualified teaching team at Modulus Science Academy Sangvi Pune — expert mentors for NEET, CET, JEE, and Board exams." />
+<meta property="og:url" content="https://modulusscienceacademy.in/mentor" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="src/assets/logo.png" />
+
+<link rel="canonical" href="https://modulusscienceacademy.in/mentor" />
+      </Helmet>
       <Header />
       <HeroSection />
       <MentorShowcase />

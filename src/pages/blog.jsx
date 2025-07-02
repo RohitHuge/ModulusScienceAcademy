@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Header, Footer } from './home';
 import ReactMarkdown from 'react-markdown';
+import { Helmet } from 'react-helmet-async';
 
 const BLOG_POSTS = [
   {
@@ -484,6 +485,23 @@ const Blog = () => {
 
   return (
     <>
+    <Helmet>
+    <title>Blog | Modulus Science Academy | Expert NEET, CET & JEE Tips, Study Guides, and Results</title>
+
+<meta name="description" content="Read expert articles, exam tips, study hacks, and academic advice from Modulus Science Academy Sangvi Pune. Stay updated with NEET, JEE, and MHT-CET preparation strategies." />
+
+<meta name="keywords" content="Modulus Science Academy blog, NEET study tips, MHT-CET exam advice, JEE preparation blogs, coaching tips Sangvi Pune, study hacks Pune, academic success blog" />
+
+<meta name="author" content="Modulus Science Academy" />
+
+<meta property="og:title" content="Modulus Science Academy Blog | Exam Tips, Coaching Advice & Study Guides" />
+<meta property="og:description" content="Explore expert-written blogs on NEET, MHT-CET, JEE, and SSC/CBSE board exam strategies, study hacks, and coaching tips from Modulus Science Academy Sangvi Pune." />
+<meta property="og:url" content="https://modulusscienceacademy.in/blog" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="src/assets/logo.png" />
+
+<link rel="canonical" href="https://modulusscienceacademy.in/blog" />
+    </Helmet>
       <Header />
       <main className="bg-background min-h-screen pb-16 pt-4">
         <div className="max-w-3xl mx-auto px-4 pt-10">

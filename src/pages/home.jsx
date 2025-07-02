@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Hero1 from './hero';
-import { Button } from 'antd';
-import { PhoneOutlined } from '@ant-design/icons';
+// import { Button } from 'antd';
+// import { PhoneOutlined } from '@ant-design/icons';
 import logo from '../assets/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import amitsir from '../assets/amitsir.profilephoto.webp';
 import sandipsir from '../assets/sandipsir.profilephoto.webp';
 import ramsir from '../assets/ramsir.profilephoto.webp';
 import pandharisir from '../assets/pandharisir.profilephoto.webp';
+import { Helmet } from 'react-helmet-async';
 
 // Add smooth scroll CSS globally
 if (typeof window !== 'undefined') {
@@ -592,6 +593,23 @@ export default function Home() {
   };
   return (
     <div className="font-poppins bg-background text-text">
+      <Helmet>
+      <title>Modulus Science Academy | Best Coaching for NEET, JEE, MHT-CET, SSC & CBSE in Pune</title>
+  
+  <meta name="description" content="Join Modulus Science Academy, Sangvi Pune — expert coaching for NEET, JEE Mains, MHT-CET, and SSC/CBSE board exams. Top faculty, proven results, and personal mentoring." />
+  
+  <meta name="keywords" content="Modulus Science Academy, MHT-CET Coaching Pune, NEET classes Pune, JEE classes Pune, Best Coaching Sangvi Pune, Modulus Academy Sangvi, Top coaching for board exams Pune" />
+  
+  <meta name="author" content="Modulus Science Academy" />
+  
+  <meta property="og:title" content="Modulus Science Academy | Best NEET, JEE & CET Coaching in Sangvi, Pune" />
+  <meta property="og:description" content="Modulus Science Academy in Sangvi Pune offers the best coaching for NEET, JEE Mains, MHT-CET, SSC & CBSE with expert faculty and excellent results." />
+  <meta property="og:url" content="https://modulusscienceacademy.in/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="src/assets/logo.png" />
+  
+  <link rel="canonical" href="https://modulusscienceacademy.in/" />
+      </Helmet>
       <Header onApplyClick={handleAdmissionInfo} />
       <AnchorNavigation />
       <Hero onApplyClick={handleAdmissionInfo} />

@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import logo from '../assets/logo.png';
+// import { Link, useNavigate } from 'react-router-dom';
+// import logo from '../assets/logo.png';
 import { Header, Footer } from './home';
+import { Helmet } from 'react-helmet-async';  
 
 // const NAV_LINKS = [
 //   { name: 'Home', href: '/' },
@@ -370,6 +371,23 @@ function ContactSection() {
 export default function Contact() {
   return (
     <div className="font-poppins bg-background text-text min-h-screen">
+      <Helmet>
+      <title>Contact Modulus Science Academy | Best NEET, JEE, CET Coaching in Sangvi Pune</title>
+
+<meta name="description" content="Reach out to Modulus Science Academy Sangvi Pune for NEET, MHT-CET, JEE and board exam coaching inquiries, admissions, and batch details. Call, email, or visit us today." />
+
+<meta name="keywords" content="Contact Modulus Science Academy, NEET coaching Pune contact, MHT-CET classes Sangvi Pune, JEE Mains coaching phone number, coaching enquiry Pune, Modulus Sangvi contact details" />
+
+<meta name="author" content="Modulus Science Academy" />
+
+<meta property="og:title" content="Contact Us | Modulus Science Academy Sangvi, Pune" />
+<meta property="og:description" content="Get in touch with Modulus Science Academy Sangvi Pune — for coaching enquiries, NEET/JEE admissions, MHT-CET batch details, and counselling." />
+<meta property="og:url" content="https://modulusscienceacademy.in/contact" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="src/assets/logo.png" />
+
+<link rel="canonical" href="https://modulusscienceacademy.in/contact" />
+      </Helmet>
       <Header />
       <HeroSection />
       <ContactSection />

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Button } from 'antd';
 import { LeftOutlined, RightOutlined, CloseOutlined } from '@ant-design/icons';
+import { Helmet } from 'react-helmet-async';
 
 // Sample gallery images - replace with actual coaching photos
 const GALLERY_IMAGES = [
@@ -259,6 +260,23 @@ export default function Gallery() {
 
   return (
     <div className="min-h-screen bg-gray-50 font-poppins">
+      <Helmet>
+      <title>Modulus Science Academy Gallery | Student Life & Coaching Events in Pune</title>
+
+<meta name="description" content="View the photo gallery of Modulus Science Academy Sangvi Pune — featuring NEET, MHT-CET, JEE classroom sessions, toppers, workshops, and student achievements." />
+
+<meta name="keywords" content="Modulus Science Academy Gallery, Coaching photos Pune, NEET classes Sangvi, MHT-CET gallery Pune, JEE classes Pune, Student events Sangvi Pune, Coaching event photos, classroom gallery Pune" />
+
+<meta name="author" content="Modulus Science Academy" />
+
+<meta property="og:title" content="Gallery | Modulus Science Academy Sangvi, Pune" />
+<meta property="og:description" content="Discover memorable moments from Modulus Science Academy Sangvi Pune — including academic workshops, toppers' felicitation, and coaching events." />
+<meta property="og:url" content="https://modulusscienceacademy.in/gallery" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="src/assets/logo.png" />
+
+<link rel="canonical" href="https://modulusscienceacademy.in/gallery" />
+      </Helmet>
       {/* Header */}
       <div className="bg-gradient-to-r from-primary to-blue-700 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 text-center">

@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import logo from '../assets/logo.png';
-import { Link, useNavigate } from 'react-router-dom';
+// import logo from '../assets/logo.png';
+// import { Link, useNavigate } from 'react-router-dom';
 import sandipsir from '../assets/sandipsir.profilephoto.webp';
 import { Header, Footer } from './home';
+import { Helmet } from 'react-helmet-async';
+
 const NAV_LINKS = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
@@ -308,6 +310,23 @@ function AchievementsRecognition() {
 export default function About() {
   return (
     <div className="font-poppins bg-background text-text">
+      <Helmet>
+      <title>About Modulus Science Academy | Leading NEET, CET, JEE Coaching in Sangvi Pune</title>
+
+<meta name="description" content="Learn about Modulus Science Academy, Sangvi’s trusted coaching center for NEET, MHT-CET, JEE, and Board exams. Meet our mentors, explore our vision, values, and academic achievements." />
+
+<meta name="keywords" content="About Modulus Science Academy, Coaching classes in Pune, NEET coaching Sangvi, MHT-CET coaching Sangvi, Best JEE classes Pune, Modulus Academy Pune" />
+
+<meta name="author" content="Modulus Science Academy" />
+
+<meta property="og:title" content="About Modulus Science Academy | Sangvi’s Premier Coaching Institute" />
+<meta property="og:description" content="Explore the journey, mission, and academic excellence of Modulus Science Academy, Sangvi Pune — your trusted destination for NEET, CET, JEE, and Board exam coaching." />
+<meta property="og:url" content="https://modulusscienceacademy.in/about" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="src/assets/logo.png" />
+
+<link rel="canonical" href="https://modulusscienceacademy.in/about" />
+      </Helmet>
       <Header />
       <HeroBanner />
       {/* <Journey /> */}

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import logo from '../assets/logo.png';
+// import { Link, useNavigate } from 'react-router-dom';
+// import logo from '../assets/logo.png';
 import { Header, Footer } from './home';
-
+import { Helmet } from 'react-helmet-async';
 
 // const NAV_LINKS = [
 //   { name: 'Home', href: '/' },
@@ -407,6 +407,23 @@ function CoursesSection() {
 export default function Courses() {
   return (
     <div className="font-poppins bg-background text-text min-h-screen">
+      <Helmet>
+      <title>Courses at Modulus Science Academy | NEET, MHT-CET, JEE & Foundation Coaching in Pune</title>
+
+<meta name="description" content="Explore all coaching courses offered by Modulus Science Academy, Sangvi Pune — including NEET, JEE, MHT-CET crash courses, SSC/CBSE/ICSE coaching, and foundation batches for classes 6-12." />
+
+<meta name="keywords" content="Modulus Science Academy Courses, NEET crash course Pune, MHT-CET classes Sangvi, JEE Mains coaching Pune, SSC CBSE tuition Sangvi, foundation batches Pune, coaching classes near me" />
+
+<meta name="author" content="Modulus Science Academy" />
+
+<meta property="og:title" content="Our Courses | Modulus Science Academy Sangvi, Pune" />
+<meta property="og:description" content="Check out NEET, JEE, CET, and foundation coaching courses at Modulus Science Academy Sangvi Pune. Expert faculty, affordable fees, proven results." />
+<meta property="og:url" content="https://modulusscienceacademy.in/courses" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="src/assets/logo.png" />
+
+<link rel="canonical" href="https://modulusscienceacademy.in/courses" />
+      </Helmet>
       <Header />
       <CoursesSection />
       <Footer />

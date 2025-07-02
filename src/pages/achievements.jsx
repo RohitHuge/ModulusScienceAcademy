@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import { Header, Footer } from './home';
+import { Helmet } from 'react-helmet-async';
 
 // const NAV_LINKS = [
 //   { name: 'Home', href: '/' },
@@ -457,6 +458,23 @@ function TestimonialsSection() {
 export default function Achievements() {
   return (
     <div className="font-poppins bg-background text-text min-h-screen">
+      <Helmet>
+      <title>Achievements & Student Success | Modulus Science Academy Sangvi Pune</title>
+
+<meta name="description" content="Discover the academic achievements, top results, and student success stories at Modulus Science Academy Sangvi Pune. See NEET, JEE, MHT-CET toppers and testimonials from our achievers." />
+
+<meta name="keywords" content="Modulus Science Academy Achievements, NEET toppers Pune, MHT-CET results Sangvi, JEE toppers Pune, student success stories, coaching classes results Pune, top coaching academy in Pune" />
+
+<meta name="author" content="Modulus Science Academy" />
+
+<meta property="og:title" content="Achievements & Success Stories | Modulus Science Academy Sangvi, Pune" />
+<meta property="og:description" content="Explore our outstanding student results, NEET, CET, JEE toppers, and testimonials at Modulus Science Academy Sangvi Pune." />
+<meta property="og:url" content="https://modulusscienceacademy.in/achievements" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="src/assets/logo.png" />
+
+<link rel="canonical" href="https://modulusscienceacademy.in/achievements" />
+      </Helmet>
       <Header />
       <AchievementsSection />
       <StudentAchievementsCarousel />
