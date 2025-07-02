@@ -7,14 +7,17 @@ import Achievements from './pages/achievements'
 import Contact from './pages/contact'
 import Gallery from './pages/gallery'
 import ModulusScienceAcademyHero from './pagesnotused/Modulus-Science-Academy-Hero'
+import Blog from './pages/blog'
+import {HelmetProvider} from 'react-helmet-async'
 
 
 function App() {
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
+    <HelmetProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
         <Route path="/modulus-science-academy-hero" element={<ModulusScienceAcademyHero />} />
         <Route path="/about" element={<About />} />
         <Route path="/mentor" element={<Mentor />} />
@@ -22,8 +25,10 @@ function App() {
         <Route path="/achievements" element={<Achievements />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/gallery" element={<Gallery />} />
-      </Routes>
-    </BrowserRouter>
+        <Route path="/blog" element={<Blog />} />
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
   )
 }
 
