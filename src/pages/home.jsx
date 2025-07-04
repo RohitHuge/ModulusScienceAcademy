@@ -20,6 +20,7 @@ if (typeof window !== 'undefined') {
 const ANCHOR_LINKS = [
   { name: 'Home', href: '#home', icon: '🏠' },
   { name: 'Courses', href: '#courses', icon: '📚' },
+  { name: 'Testimonials', href: '#testimonials', icon: '💬' },
   { name: 'Mentors', href: '#mentors', icon: '👨‍🏫' },
   { name: 'Achievements', href: '#achievements', icon: '🏆' },
   { name: 'Contact', href: '#contact', icon: '📞' },
@@ -398,7 +399,7 @@ function Testimonials() {
   };
 
   return (
-    <section className="py-16 bg-white" ref={ref}>
+    <section className="py-16 bg-white" ref={ref} id="testimonials">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-montserrat font-bold text-primary mb-4">What Our Students Say</h2>
