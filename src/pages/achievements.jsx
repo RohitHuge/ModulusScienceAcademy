@@ -99,13 +99,15 @@ const TESTIMONIALS = [
   }
 ];
 
+export { TESTIMONIALS };
+
 // Individual Student Achievements Data
 const STUDENT_ACHIEVEMENTS = [
-  { id: 1, name: 'Sanvi Kadam', exam: 'MHT-CET 2025', score: '93.26%', image: 'https://randomuser.me/api/portraits/women/44.jpg' },
-  { id: 2, name: 'Rohan Desai', exam: 'JEE Mains 2024', score: '99.12%', image: 'https://randomuser.me/api/portraits/men/32.jpg' },
-  { id: 3, name: 'Sneha Patil', exam: 'NEET 2024', score: '98.70%', image: 'https://randomuser.me/api/portraits/women/45.jpg' },
-  { id: 4, name: 'Amit Sharma', exam: 'Class 10 SSC 2023', score: '94.80%', image: 'https://randomuser.me/api/portraits/men/46.jpg' },
-  { id: 5, name: 'Meera Joshi', exam: 'MHT-CET 2025', score: '91.50%', image: 'https://randomuser.me/api/portraits/women/47.jpg' }
+  { id: 1, name: 'Sanvi Kadam', exam: 'MHT-CET 2025', score: '93.26%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/tffrd_1_bcugdl.jpg' },
+  { id: 2, name: 'Payal Jadhav', exam: 'JEE Mains 2024', score: '86.67%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/WhatsApp_Image_2025-07-04_at_6.43.43_PM_t19hxy.png' },
+  { id: 3, name: 'Dipali Thorbole', exam: 'MHT-CET 2025', score: '86.71%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/WhatsApp_Image_2025-07-04_at_6.43.43_PM_1_gxxpnb.png' },
+  { id: 4, name: 'Nikita Pujari', exam: 'MHT-CET 2025', score: '91.30%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751640954/IMG_6023_1_mzosyx.jpg' },
+  // { id: 5, name: 'Meera Joshi', exam: 'MHT-CET 2025', score: '91.50%', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/WhatsApp_Image_2025-07-04_at_6.43.43_PM_2_qzqz1o.png' }
 ];
 
 // Custom hook for in-view animation (play only once)
@@ -131,11 +133,15 @@ function StudentAchievementCard({ student }) {
       className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center mx-2 min-w-[260px] max-w-[280px] w-[90vw] sm:w-[260px] md:w-[260px] lg:w-[300px] transition-all duration-300"
       style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.08)' }}
     >
-      <img
-        src={student.image}
-        alt={student.name}
-        className="w-[100px] h-[100px] rounded-full object-cover border-4 border-primary mb-4"
-      />
+      <div className="w-[112px] h-[112px] rounded-full flex items-center justify-center mb-4 bg-white border-4" style={{ borderColor: '#FFD700' }}>
+        <div className="w-[104px] h-[104px] rounded-full flex items-center justify-center bg-white border-4" style={{ borderColor: '#004AAD' }}>
+          <img
+            src={student.image}
+            alt={student.name}
+            className="w-[96px] h-[96px] rounded-full object-cover"
+          />
+        </div>
+      </div>
       <div className="text-2xl font-bold text-primary mb-1 text-center" style={{ fontSize: 24 }}>{student.name}</div>
       <div className="text-base text-gray-700 mb-2 text-center" style={{ fontSize: 16 }}>{student.exam}</div>
       <div className="text-[18px] font-bold bg-[#FFD700] text-[#004AAD] px-4 py-1 rounded-full mt-1" style={{ fontSize: 18 }}>{student.score}</div>
@@ -343,7 +349,12 @@ function TestimonialModal({ testimonial, isOpen, onClose }) {
   );
 }
 
-function TestimonialCard({ testimonial, onCardClick }) {
+export function TestimonialCard({ testimonial, onCardClick }) {
+  // Safety check for undefined testimonial
+  if (!testimonial) {
+    return null;
+  }
+
   return (
     <div 
       className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] cursor-pointer border border-gray-100 hover:border-accent"

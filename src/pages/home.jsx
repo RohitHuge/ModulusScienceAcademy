@@ -9,6 +9,7 @@ import sandipsir from '../assets/sandipsir.profilephoto.webp';
 import ramsir from '../assets/ramsir.profilephoto.webp';
 import pandharisir from '../assets/pandharisir.profilephoto.webp';
 import { Helmet } from 'react-helmet-async';
+import { TestimonialCard, TESTIMONIALS } from './achievements';
 
 // Add smooth scroll CSS globally
 if (typeof window !== 'undefined') {
@@ -318,6 +319,7 @@ function Hero({ onApplyClick }) {
 function Courses() {
   const ref = useRef();
   const inView = useInView(ref, { threshold: 0.2 });
+  const navigate = useNavigate();
   return (
     <section id="courses" className="py-16 bg-background">
       <div className="max-w-7xl mx-auto px-4">
@@ -327,7 +329,7 @@ function Courses() {
             <div key={course.title} className={`bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center border-t-4 border-accent transition-all duration-700 ${inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`} style={{ transitionDelay: `${i * 100}ms` }}>
               <h3 className="text-xl font-bold mb-2 text-primary">{course.title}</h3>
               <p className="text-base text-text mb-4">{course.desc}</p>
-              <button className="mt-auto bg-accent text-primary font-bold px-4 py-2 rounded hover:bg-yellow-400 transition-colors">Learn More</button>
+              <button onClick={() => navigate(`/courses`)} className="mt-auto bg-accent text-primary font-bold px-4 py-2 rounded hover:bg-yellow-400 transition-colors">Learn More</button>
             </div>
           ))}
         </div>
@@ -374,6 +376,83 @@ function Achievements() {
             </div>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+function Testimonials() {
+  const ref = useRef();
+  const inView = useInView(ref, { threshold: 0.1 });
+  const [selectedTestimonial, setSelectedTestimonial] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = (testimonial) => {
+    setSelectedTestimonial(testimonial);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedTestimonial(null);
+  };
+
+  return (
+    <section className="py-16 bg-white" ref={ref}>
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-montserrat font-bold text-primary mb-4">What Our Students Say</h2>
+          <div className="w-24 h-1 bg-accent mx-auto rounded-full"></div>
+        </div>
+        
+        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-6 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          {TESTIMONIALS.map(testimonial => (
+            <TestimonialCard 
+              key={testimonial.id} 
+              testimonial={testimonial} 
+              onCardClick={() => openModal(testimonial)} 
+            />
+          ))}
+        </div>
+        
+        {/* Modal */}
+        {isModalOpen && selectedTestimonial && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4" onClick={closeModal}>
+            <div className="bg-white rounded-2xl p-8 max-w-md w-full mx-4 relative" onClick={e => e.stopPropagation()}>
+              <button 
+                onClick={closeModal}
+                className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors"
+                aria-label="Close modal"
+              >
+                <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M6 6l12 12M6 18L18 6" />
+                </svg>
+              </button>
+              
+              <div className="flex flex-col items-center text-center">
+                <img 
+                  src={selectedTestimonial.image} 
+                  alt={selectedTestimonial.name} 
+                  className="w-32 h-32 min-w-[128px] min-h-[128px] max-w-[128px] max-h-[128px] rounded-full border-4 border-accent mb-4 object-cover" 
+                />
+                <h3 className="text-2xl font-bold text-primary mb-2 font-montserrat">{selectedTestimonial.name}</h3>
+                <div className="text-base text-gray-700 mb-1 font-medium">{selectedTestimonial.course}</div>
+                <div className="flex gap-1 mt-1 mb-4">
+                  {[...Array(selectedTestimonial.rating)].map((_, i) => (
+                    <svg key={i} width="16" height="16" fill="#FFD700" viewBox="0 0 24 24">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                    </svg>
+                  ))}
+                </div>
+                
+                <div className="w-full">
+                  <h4 className="text-lg font-bold text-primary mb-2 text-left">Student Testimonial:</h4>
+                  <p className="text-text text-left leading-relaxed">"{selectedTestimonial.message}"</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
@@ -429,7 +508,7 @@ function Contact() {
                   </div>
                   <div>
                     <p className="font-semibold text-primary">Email</p>
-                    <p className="text-gray-600">info@modulusacademy.com</p>
+                    <p className="text-gray-600">msasangvi@gmail.com</p>
                   </div>
                 </div>
               </div>
@@ -559,7 +638,7 @@ function Footer() {
           <h3 className="font-bold text-lg mb-2">Contact Us</h3>
           <p>Modulus Science Academy<br />Saraswati Park, Vinayak Nagar<br />Mayur Nagari Road, Katepuram Chowk<br />New Sangvi, Pune, Maharashtra</p>
           <p className="mt-2">Phone: {PHONES.join(', ')}</p>
-          <p>Email: info@modulusacademy.com</p>
+          <p>Email: msasangvi@gmail.com</p>
         </div>
         <div>
           <h3 className="font-bold text-lg mb-2">Quick Links</h3>
@@ -614,6 +693,7 @@ export default function Home() {
       <AnchorNavigation />
       <Hero onApplyClick={handleAdmissionInfo} />
       <Courses />
+      <Testimonials />
       <Mentors />
       <Achievements />
       <Contact />

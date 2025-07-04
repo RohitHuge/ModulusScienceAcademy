@@ -7,18 +7,18 @@ import { Helmet } from 'react-helmet-async';
 const GALLERY_IMAGES = [
   { 
     id: 1, 
-    src: 'https://williamcareyuniversity.co.in/uploads/2025/01/discovering-india-s-neet-2025-topper-journey-to-success.webp', 
-    message: 'NEET Preparation Workshop 2025 - Students engaged in intensive study sessions' 
+    src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/IMG_20250630_211456_jfisjp.jpg', 
+    message: 'Personalized Guidance - Students engaged in intensive study sessions' 
   },
   { 
     id: 2, 
-    src: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=600&fit=crop', 
-    message: 'Topper Felicitation Ceremony - Celebrating academic excellence' 
+    src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/IMG-20250704-WA0026_he6vgj.jpg', 
+    message: 'Regular Interaction with Parents - Every Parent is a Teacher' 
   },
   { 
     id: 3, 
-    src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop', 
-    message: '11th & 12th Science Live Classroom - Interactive learning environment' 
+    src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/IMG-20250704-WA0022_guojah.jpg', 
+    message: 'Felicitation Ceremony - Celebrating academic excellence' 
   },
   { 
     id: 4, 

@@ -141,7 +141,7 @@ function MentorModal({ mentor, isOpen, onClose }) {
           <img 
             src={mentor.img} 
             alt={mentor.name} 
-            className="w-25 h-25 min-w-[100px] min-h-[100px] max-w-[100px] max-h-[100px] rounded-full border-4 border-accent mb-4 object-cover" 
+            className="w-32 h-32 min-w-[128px] min-h-[128px] max-w-[128px] max-h-[128px] rounded-full border-4 border-accent mb-4 object-cover" 
           />
           <h3 className="text-2xl font-bold text-primary mb-2 font-montserrat">{mentor.name}</h3>
           <div className="text-base text-gray-700 mb-1 font-medium">{mentor.qualification}</div>
@@ -208,7 +208,7 @@ function MentorShowcase() {
                 <img
                   src={mentor.img}
                   alt={mentor.name}
-                  className="w-20 h-20 min-w-[80px] min-h-[80px] max-w-[80px] max-h-[80px] rounded-full border-4 border-accent object-cover flex-shrink-0"
+                  className="w-30 h-30 min-w-[120px] min-h-[120px] max-w-[120px] max-h-[120px] rounded-full border-4 border-accent object-cover flex-shrink-0"
                 />
                 <div className="flex-1 flex items-start justify-between">
                   <div className="flex-1">
@@ -242,7 +242,7 @@ function MentorShowcase() {
                 <img
                   src={mentor.img}
                   alt={mentor.name}
-                  className="w-30 h-30 min-w-[120px] min-h-[120px] max-w-[120px] max-h-[120px] rounded-full border-4 border-accent mb-4 object-cover"
+                  className="w-45 h-45 min-w-[180px] min-h-[180px] max-w-[180px] max-h-[180px] rounded-full border-4 border-accent mb-4 object-cover"
                 />
                 <h3 className="text-2xl font-bold text-primary mb-1 font-montserrat">{mentor.name}</h3>
                 <div className="text-base text-gray-700 mb-1 font-medium">{mentor.qualification}</div>

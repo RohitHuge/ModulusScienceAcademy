@@ -69,6 +69,15 @@ const COURSES = [
     fee: '₹20,000/year',
     duration: 'April to March',
     description: 'Early foundation building for young students. Develops strong basics in core subjects through interactive learning methods.'
+  },
+  {
+    id: 7,
+    title: 'Engineering Mathematics(M1 , M2 and M3)',
+    classes: '1st and 2nd year',
+    subjects: ['Mathematics'],
+    fee: '₹10,000/year',
+    duration: 'September to March',
+    description: 'Engineering Mathematics is a subject that is taught in the first and second year of engineering. It is a subject that is taught in the first and second year of engineering. It is a subject that is taught in the first and second year of engineering.'
   }
 ];
 
