@@ -99,6 +99,8 @@ const TESTIMONIALS = [
   }
 ];
 
+export { TESTIMONIALS };
+
 // Individual Student Achievements Data
 const STUDENT_ACHIEVEMENTS = [
   { id: 1, name: 'Sanvi Kadam', exam: 'MHT-CET 2025', score: '93.26%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/tffrd_1_bcugdl.jpg' },
@@ -348,6 +350,11 @@ function TestimonialModal({ testimonial, isOpen, onClose }) {
 }
 
 export function TestimonialCard({ testimonial, onCardClick }) {
+  // Safety check for undefined testimonial
+  if (!testimonial) {
+    return null;
+  }
+
   return (
     <div 
       className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] cursor-pointer border border-gray-100 hover:border-accent"
