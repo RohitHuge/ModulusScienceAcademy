@@ -1,7 +1,7 @@
 import { Button } from 'antd';
 import { PhoneOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-import logobg from '../assets/logobg.png';
+// import logobg from '../assets/logobg.png';
 
 export default function Hero({ onApplyClick }) {
   const navigate = useNavigate();
@@ -59,7 +59,7 @@ export default function Hero({ onApplyClick }) {
               <div className="absolute w-5/6 h-5/6 bg-white rounded-full z-10"></div>
               <div className="relative rounded-full overflow-hidden border-4 border-yellow-400 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 flex items-center justify-center">
                 <img
-                  src={logobg}
+                  src="https://res.cloudinary.com/dapdhzjzc/image/upload/IMG-20250704-WA0000_1_yt4wz6.png"
                   alt="Modulus Academy Logo"
                   className="w-4/5 h-4/5 object-contain relative z-20"
                 />

@@ -9,6 +9,7 @@ import sandipsir from '../assets/sandipsir.profilephoto.webp';
 import ramsir from '../assets/ramsir.profilephoto.webp';
 import pandharisir from '../assets/pandharisir.profilephoto.webp';
 import { Helmet } from 'react-helmet-async';
+import { TestimonialCard } from './achievements';
 
 // Add smooth scroll CSS globally
 if (typeof window !== 'undefined') {
@@ -318,6 +319,7 @@ function Hero({ onApplyClick }) {
 function Courses() {
   const ref = useRef();
   const inView = useInView(ref, { threshold: 0.2 });
+  const navigate = useNavigate();
   return (
     <section id="courses" className="py-16 bg-background">
       <div className="max-w-7xl mx-auto px-4">
@@ -327,7 +329,7 @@ function Courses() {
             <div key={course.title} className={`bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center border-t-4 border-accent transition-all duration-700 ${inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`} style={{ transitionDelay: `${i * 100}ms` }}>
               <h3 className="text-xl font-bold mb-2 text-primary">{course.title}</h3>
               <p className="text-base text-text mb-4">{course.desc}</p>
-              <button className="mt-auto bg-accent text-primary font-bold px-4 py-2 rounded hover:bg-yellow-400 transition-colors">Learn More</button>
+              <button onClick={() => navigate(`/courses`)} className="mt-auto bg-accent text-primary font-bold px-4 py-2 rounded hover:bg-yellow-400 transition-colors">Learn More</button>
             </div>
           ))}
         </div>
@@ -429,7 +431,7 @@ function Contact() {
                   </div>
                   <div>
                     <p className="font-semibold text-primary">Email</p>
-                    <p className="text-gray-600">info@modulusacademy.com</p>
+                    <p className="text-gray-600">msasangvi@gmail.com</p>
                   </div>
                 </div>
               </div>
@@ -559,7 +561,7 @@ function Footer() {
           <h3 className="font-bold text-lg mb-2">Contact Us</h3>
           <p>Modulus Science Academy<br />Saraswati Park, Vinayak Nagar<br />Mayur Nagari Road, Katepuram Chowk<br />New Sangvi, Pune, Maharashtra</p>
           <p className="mt-2">Phone: {PHONES.join(', ')}</p>
-          <p>Email: info@modulusacademy.com</p>
+          <p>Email: msasangvi@gmail.com</p>
         </div>
         <div>
           <h3 className="font-bold text-lg mb-2">Quick Links</h3>
@@ -614,6 +616,7 @@ export default function Home() {
       <AnchorNavigation />
       <Hero onApplyClick={handleAdmissionInfo} />
       <Courses />
+      {/* <TestimonialCard /> */}
       <Mentors />
       <Achievements />
       <Contact />

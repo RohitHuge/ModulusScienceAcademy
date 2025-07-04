@@ -145,8 +145,8 @@ function ContactDetails() {
           </div>
           <div>
             <h3 className="text-lg font-bold text-primary mb-2">Email</h3>
-            <a href="mailto:info@modulusacademy.com" className="text-gray-700 hover:text-primary transition-colors">
-              info@modulusacademy.com
+            <a href="mailto:msasangvi@gmail.com" className="text-gray-700 hover:text-primary transition-colors">
+              msasangvi@gmail.com
             </a>
           </div>
         </div>

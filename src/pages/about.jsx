@@ -78,7 +78,7 @@ function HeroBanner() {
       <div className="absolute inset-0 bg-primary opacity-70"></div>
       <div className="relative z-10 flex flex-col items-center text-center text-white w-full">
         <h1 className="text-4xl md:text-5xl font-montserrat font-bold mb-4 drop-shadow-lg mt-12">About Modulus Science Academy</h1>
-        <p className="text-lg md:text-2xl font-medium">Every Topper Has a Teacher — Meet Yours!</p>
+        <p className="text-lg md:text-2xl font-medium">Building Future - Through Quality Education</p>
       </div>
     </section>
   );
@@ -121,15 +121,78 @@ function MessageFromSandeep() {
   const ref = useRef();
   const inView = useInView(ref, { threshold: 0.2 });
   return (
-    <section className={`py-16 bg-[#F9F9F9] transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} ref={ref}>
-      <div className="max-w-4xl mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
-        <img src={sandipsir} alt="Sandeep Sir" className="w-36 h-36 rounded-full border-4 border-accent shadow-lg" />
-        <div className="flex-1">
-          <h2 className="text-2xl font-bold text-primary mb-4">Message from Sandeep Sir</h2>
-          <p className="mb-4 text-text">At Modulus Science Academy, we believe every student has unique potential. Our mission is to nurture curiosity, foster critical thinking, and provide unwavering support. We focus on holistic development, not just academic excellence.</p>
-          <p className="mb-4 text-text">Our faculty is dedicated to guiding students through every challenge, celebrating every success, and instilling a lifelong love for learning. We are proud of our toppers, but prouder still of the values and confidence our students carry forward.</p>
-          <p className="mb-2 text-text">Join us and experience a community where teachers are mentors, and every student is family.</p>
-          <div className="mt-6 text-primary font-montserrat font-bold text-lg">— Sandeep Sir</div>
+    <section className={`py-20 bg-gradient-to-br from-blue-50 to-yellow-50 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} ref={ref}>
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-montserrat font-bold text-primary mb-4">Message from Sandip Sir</h2>
+          <div className="w-24 h-1 bg-accent mx-auto rounded-full"></div>
+        </div>
+        
+        <div className="flex flex-col lg:flex-row items-center gap-12">
+          {/* Enhanced Photo Section */}
+          <div className="relative flex-shrink-0">
+            <div className="relative">
+              {/* Decorative elements */}
+              <div className="absolute -top-4 -left-4 w-8 h-8 bg-accent rounded-full opacity-60"></div>
+              <div className="absolute -bottom-4 -right-4 w-6 h-6 bg-primary rounded-full opacity-40"></div>
+              <div className="absolute top-1/2 -right-6 w-4 h-4 bg-accent rounded-full opacity-50 transform -translate-y-1/2"></div>
+              
+              {/* Main photo with enhanced styling */}
+              <div className="relative">
+                <img 
+                  src={sandipsir} 
+                  alt="Sandeep Sir" 
+                  className="w-56 h-56 md:w-64 md:h-64 rounded-full object-cover border-8 border-white shadow-2xl transform hover:scale-105 transition-all duration-300" 
+                  style={{ boxShadow: '0 20px 40px rgba(0,0,0,0.15)' }}
+                />
+                {/* Glow effect */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-accent to-primary opacity-20 blur-xl transform scale-110"></div>
+              </div>
+            </div>
+            
+            {/* Floating badge */}
+            <div className="absolute -bottom-2 -right-2 bg-white rounded-full px-4 py-2 shadow-lg border-2 border-accent">
+              <span className="text-sm font-bold text-primary">Founder & Director</span>
+            </div>
+          </div>
+          
+          {/* Enhanced Content Section */}
+          <div className="flex-1 space-y-6">
+            <div className="bg-white rounded-2xl p-8 shadow-xl border-l-4 border-accent relative overflow-hidden">
+              {/* Background pattern */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-accent/10 to-primary/10 rounded-full transform translate-x-16 -translate-y-16"></div>
+              
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-1 bg-accent rounded-full"></div>
+                  <span className="text-accent font-semibold text-lg">Our Vision</span>
+                </div>
+                
+                <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                  At <span className="font-bold text-primary">Modulus Science Academy</span>, we believe every student has unique potential waiting to be unlocked. Our mission is to nurture curiosity, foster critical thinking, and provide unwavering support throughout their academic journey.
+                </p>
+                
+                <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                  We focus on <span className="font-semibold text-primary">holistic development</span>, not just academic excellence. Our dedicated faculty is committed to guiding students through every challenge, celebrating every success, and instilling a lifelong love for learning.
+                </p>
+                
+                <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                  We are proud of our toppers, but prouder still of the <span className="font-semibold text-primary">values and confidence</span> our students carry forward into their future endeavors.
+                </p>
+                
+                <div className="bg-gradient-to-r from-accent/20 to-primary/20 rounded-xl p-4 border-l-4 border-accent">
+                  <p className="text-lg text-gray-800 font-medium italic">
+                    "Join us and experience a community where teachers are mentors, and every student is family."
+                  </p>
+                </div>
+                
+                <div className="mt-6 flex items-center gap-3">
+                  <div className="w-8 h-1 bg-primary rounded-full"></div>
+                  <span className="text-xl font-montserrat font-bold text-primary">Sandip Sir</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -313,13 +376,13 @@ export default function About() {
       <Helmet>
       <title>About Modulus Science Academy | Leading NEET, CET, JEE Coaching in Sangvi Pune</title>
 
-<meta name="description" content="Learn about Modulus Science Academy, Sangvi’s trusted coaching center for NEET, MHT-CET, JEE, and Board exams. Meet our mentors, explore our vision, values, and academic achievements." />
+<meta name="description" content="Learn about Modulus Science Academy, Sangvi's trusted coaching center for NEET, MHT-CET, JEE, and Board exams. Meet our mentors, explore our vision, values, and academic achievements." />
 
 <meta name="keywords" content="About Modulus Science Academy, Coaching classes in Pune, NEET coaching Sangvi, MHT-CET coaching Sangvi, Best JEE classes Pune, Modulus Academy Pune" />
 
 <meta name="author" content="Modulus Science Academy" />
 
-<meta property="og:title" content="About Modulus Science Academy | Sangvi’s Premier Coaching Institute" />
+<meta property="og:title" content="About Modulus Science Academy | Sangvi's Premier Coaching Institute" />
 <meta property="og:description" content="Explore the journey, mission, and academic excellence of Modulus Science Academy, Sangvi Pune — your trusted destination for NEET, CET, JEE, and Board exam coaching." />
 <meta property="og:url" content="https://modulusscienceacademy.in/about" />
 <meta property="og:type" content="website" />
@@ -334,7 +397,7 @@ export default function About() {
       <MissionVision />
       <CoreValues />
       <Philosophy />
-      <FacilitiesGallery />
+      {/* <FacilitiesGallery /> */}
       <AchievementsRecognition />
       <Footer />
     </div>
