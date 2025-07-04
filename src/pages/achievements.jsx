@@ -110,6 +110,8 @@ const STUDENT_ACHIEVEMENTS = [
   // { id: 5, name: 'Meera Joshi', exam: 'MHT-CET 2025', score: '91.50%', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/WhatsApp_Image_2025-07-04_at_6.43.43_PM_2_qzqz1o.png' }
 ];
 
+export { STUDENT_ACHIEVEMENTS };
+
 // Custom hook for in-view animation (play only once)
 function useInViewOnce(ref, options = {}) {
   const [hasBeenInView, setHasBeenInView] = useState(false);

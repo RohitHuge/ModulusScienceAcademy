@@ -9,7 +9,7 @@ import sandipsir from '../assets/sandipsir.profilephoto.webp';
 import ramsir from '../assets/ramsir.profilephoto.webp';
 import pandharisir from '../assets/pandharisir.profilephoto.webp';
 import { Helmet } from 'react-helmet-async';
-import { TestimonialCard, TESTIMONIALS } from './achievements';
+import { TestimonialCard, TESTIMONIALS, STUDENT_ACHIEVEMENTS } from './achievements';
 
 // Add smooth scroll CSS globally
 if (typeof window !== 'undefined') {
@@ -83,12 +83,7 @@ const MENTORS = [
   },
 ];
 
-const ACHIEVEMENTS = [
-  { name: 'Aarav Mehta', result: 'JEE Adv 2023', percent: '99.2%' },
-  { name: 'Sneha Patil', result: 'NEET 2023', percent: '98.7%' },
-  { name: 'Rohan Desai', result: 'MHT-CET 2023', percent: '99.0%' },
-  { name: 'Priya Nair', result: 'SSC 2023', percent: '97.5%' },
-];
+const ACHIEVEMENTS = STUDENT_ACHIEVEMENTS;
 
 const PHONES = [
   '+91 89999 30804',
@@ -371,9 +366,9 @@ function Achievements() {
         <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {ACHIEVEMENTS.map((ach, i) => (
             <div key={ach.name} className={`bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center border-b-4 border-accent transition-all duration-700 ${inView ? 'scale-100 opacity-100' : 'scale-90 opacity-0'}`} style={{ transitionDelay: `${i * 120}ms` }}>
-              <span className="text-4xl font-bold text-primary mb-2">{ach.percent}</span>
+              <span className="text-4xl font-bold text-primary mb-2">{ach.score}</span>
               <h3 className="text-lg font-bold text-primary mb-1">{ach.name}</h3>
-              <p className="text-base text-text mb-1">{ach.result}</p>
+              <p className="text-base text-text mb-1">{ach.exam}</p>
             </div>
           ))}
         </div>
