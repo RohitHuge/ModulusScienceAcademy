@@ -382,6 +382,33 @@ function Testimonials() {
   const inView = useInView(ref, { threshold: 0.1 });
   const [selectedTestimonial, setSelectedTestimonial] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentGroupIndex, setCurrentGroupIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  // Calculate how many groups of 4 testimonials we have
+  const testimonialsPerGroup = 4;
+  const totalGroups = Math.ceil(TESTIMONIALS.length / testimonialsPerGroup);
+
+  // Get current group of testimonials
+  const getCurrentTestimonials = () => {
+    const startIndex = currentGroupIndex * testimonialsPerGroup;
+    return TESTIMONIALS.slice(startIndex, startIndex + testimonialsPerGroup);
+  };
+
+  // Auto-rotate testimonials every 5 seconds
+  useEffect(() => {
+    if (!inView) return;
+    
+    const interval = setInterval(() => {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentGroupIndex((prev) => (prev + 1) % totalGroups);
+        setIsTransitioning(false);
+      }, 300); // Half of transition duration
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [inView, totalGroups]);
 
   const openModal = (testimonial) => {
     setSelectedTestimonial(testimonial);
@@ -393,16 +420,88 @@ function Testimonials() {
     setSelectedTestimonial(null);
   };
 
+  // Manual navigation functions
+  const goToNextGroup = () => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentGroupIndex((prev) => (prev + 1) % totalGroups);
+      setIsTransitioning(false);
+    }, 300);
+  };
+
+  const goToPrevGroup = () => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentGroupIndex((prev) => (prev - 1 + totalGroups) % totalGroups);
+      setIsTransitioning(false);
+    }, 300);
+  };
+
   return (
     <section className="py-16 bg-white" ref={ref} id="testimonials">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-montserrat font-bold text-primary mb-4">What Our Students Say</h2>
-          <div className="w-24 h-1 bg-accent mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-accent mx-auto rounded-full mb-4"></div>
+          <p className="text-gray-600">Hear from our successful students</p>
         </div>
         
-        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-6 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          {TESTIMONIALS.map(testimonial => (
+        {/* Navigation dots */}
+        <div className="flex justify-center gap-2 mb-8">
+          {Array.from({ length: totalGroups }, (_, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                setIsTransitioning(true);
+                setTimeout(() => {
+                  setCurrentGroupIndex(index);
+                  setIsTransitioning(false);
+                }, 300);
+              }}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentGroupIndex 
+                  ? 'bg-primary scale-125' 
+                  : 'bg-gray-300 hover:bg-gray-400'
+              }`}
+              aria-label={`Go to testimonial group ${index + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* Navigation arrows */}
+        <div className="flex justify-between items-center mb-6">
+          <button
+            onClick={goToPrevGroup}
+            className="bg-white shadow-lg p-3 rounded-full border border-gray-200 hover:bg-accent hover:text-primary transition-colors"
+            aria-label="Previous testimonials"
+          >
+            <svg width="24" height="24" fill="none" stroke="#004AAD" strokeWidth="2">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+          
+          <div className="text-sm text-gray-500">
+            {currentGroupIndex + 1} of {totalGroups}
+          </div>
+          
+          <button
+            onClick={goToNextGroup}
+            className="bg-white shadow-lg p-3 rounded-full border border-gray-200 hover:bg-accent hover:text-primary transition-colors"
+            aria-label="Next testimonials"
+          >
+            <svg width="24" height="24" fill="none" stroke="#004AAD" strokeWidth="2">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+        
+        {/* Testimonials Grid */}
+        <div 
+          className={`grid grid-cols-1 lg:grid-cols-2 gap-6 transition-opacity duration-600 ${
+            isTransitioning ? 'opacity-0' : 'opacity-100'
+          }`}
+        >
+          {getCurrentTestimonials().map(testimonial => (
             <TestimonialCard 
               key={testimonial.id} 
               testimonial={testimonial} 
@@ -504,7 +603,7 @@ function Contact() {
                   </div>
                   <div>
                     <p className="font-semibold text-primary">Email</p>
-                    <p className="text-gray-600">msasangvi@gmail.com</p>
+                    <p className="text-gray-600">msasangvi25@gmail.com</p>
                   </div>
                 </div>
               </div>
@@ -634,7 +733,7 @@ function Footer() {
           <h3 className="font-bold text-lg mb-2">Contact Us</h3>
           <p>Modulus Science Academy<br />Saraswati Park, Vinayak Nagar<br />Mayur Nagari Road, Katepuram Chowk<br />New Sangvi, Pune, Maharashtra</p>
           <p className="mt-2">Phone: {PHONES.join(', ')}</p>
-          <p>Email: msasangvi@gmail.com</p>
+          <p>Email: msasangvi25@gmail.com</p>
         </div>
         <div>
           <h3 className="font-bold text-lg mb-2">Quick Links</h3>

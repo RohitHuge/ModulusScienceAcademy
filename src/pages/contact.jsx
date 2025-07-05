@@ -145,8 +145,8 @@ function ContactDetails() {
           </div>
           <div>
             <h3 className="text-lg font-bold text-primary mb-2">Email</h3>
-            <a href="mailto:msasangvi@gmail.com" className="text-gray-700 hover:text-primary transition-colors">
-              msasangvi@gmail.com
+            <a href="mailto:msasangvi25@gmail.com" className="text-gray-700 hover:text-primary transition-colors">
+              msasangvi25@gmail.com
             </a>
           </div>
         </div>
@@ -194,7 +194,7 @@ function ContactForm() {
     // For now, we'll just open the email client
     const subject = 'Contact Form Submission from Modulus Science Academy';
     const body = `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nMessage: ${formData.message}`;
-    window.location.href = `mailto:info@modulusacademy.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:msasangvi25@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
   return (
