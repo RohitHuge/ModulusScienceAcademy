@@ -37,22 +37,22 @@ const ACHIEVEMENTS = [
     year: '2023',
     icon: '🎓'
   },
+  // {
+  //   id: 4,
+  //   title: '15+ NEET Qualifiers 2024',
+  //   description: 'Multiple students successfully qualified for medical entrance examination.',
+  //   year: '2024',
+  //   icon: '🏥'
+  // },
+  // {
+  //   id: 5,
+  //   title: '95% Average in Class 12 Science',
+  //   description: 'Exceptional academic performance across all science stream subjects.',
+  //   year: '2024',
+  //   icon: '📊'
+  // },
   {
     id: 4,
-    title: '15+ NEET Qualifiers 2024',
-    description: 'Multiple students successfully qualified for medical entrance examination.',
-    year: '2024',
-    icon: '🏥'
-  },
-  {
-    id: 5,
-    title: '95% Average in Class 12 Science',
-    description: 'Exceptional academic performance across all science stream subjects.',
-    year: '2024',
-    icon: '📊'
-  },
-  {
-    id: 6,
     title: 'Regional Science Olympiad Winners',
     description: 'Students won multiple awards in regional science competitions and olympiads.',
     year: '2024',
@@ -60,44 +60,119 @@ const ACHIEVEMENTS = [
   }
 ];
 
+// const TESTIMONIALS = [
+//   {
+//     id: 1,
+//     name: 'Aarav Mehta',
+//     course: 'JEE Advanced 2023',
+//     image: 'https://randomuser.me/api/portraits/men/32.jpg',
+//     rating: 5,
+//     message: 'Modulus Science Academy transformed my approach to JEE preparation. The mentors here are exceptional and the structured approach helped me secure 99.2 percentile. The doubt clearing sessions were game-changing!',
+//     shortMessage: 'The mentors here are exceptional and the structured approach helped me secure 99.2 percentile.'
+//   },
+//   {
+//     id: 2,
+//     name: 'Sneha Patil',
+//     course: 'NEET 2023',
+//     image: 'https://randomuser.me/api/portraits/women/44.jpg',
+//     rating: 5,
+//     message: 'I joined MSA for NEET preparation and it was the best decision. The biology faculty is outstanding and the regular mock tests prepared me perfectly. I scored 98.7% and got into my dream medical college!',
+//     shortMessage: 'The biology faculty is outstanding and the regular mock tests prepared me perfectly.'
+//   },
+//   {
+//     id: 3,
+//     name: 'Rohan Desai',
+//     course: 'MHT-CET 2023',
+//     image: 'https://randomuser.me/api/portraits/men/65.jpg',
+//     rating: 5,
+//     message: 'The personalized attention and small batch sizes at MSA made all the difference. My physics concepts improved dramatically and I scored 99.0 percentile in MHT-CET. Highly recommended!',
+//     shortMessage: 'The personalized attention and small batch sizes made all the difference.'
+//   },
+//   {
+//     id: 4,
+//     name: 'Priya Nair',
+//     course: 'SSC Board 2023',
+//     image: 'https://randomuser.me/api/portraits/women/68.jpg',
+//     rating: 5,
+//     message: 'MSA helped me build a strong foundation in science and mathematics. The teachers are very supportive and the study material is excellent. I scored 97.5% in my SSC board exams!',
+//     shortMessage: 'MSA helped me build a strong foundation in science and mathematics.'
+//   }
+// ];
 const TESTIMONIALS = [
   {
     id: 1,
-    name: 'Aarav Mehta',
-    course: 'JEE Advanced 2023',
-    image: 'https://randomuser.me/api/portraits/men/32.jpg',
+    name: 'Sanvi Kadam',
+    course: 'MHT-CET 2025 (PCM)',
+    image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/tffrd_1_bcugdl.jpg',
     rating: 5,
-    message: 'Modulus Science Academy transformed my approach to JEE preparation. The mentors here are exceptional and the structured approach helped me secure 99.2 percentile. The doubt clearing sessions were game-changing!',
-    shortMessage: 'The mentors here are exceptional and the structured approach helped me secure 99.2 percentile.'
+    message: 'Scoring 93.26 percentile in MHT-CET would not have been possible without Modulus Science Academy. The personal guidance, regular tests, and focused mentorship helped me improve tremendously.',
+    shortMessage: 'Scoring 93.26 percentile was possible only because of Modulus Science Academy’s support and regular tests.'
   },
   {
     id: 2,
-    name: 'Sneha Patil',
-    course: 'NEET 2023',
-    image: 'https://randomuser.me/api/portraits/women/44.jpg',
+    name: 'Nikita Pujari',
+    course: 'MHT-CET 2025 (PCM)',
+    image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751640954/IMG_6023_1_mzosyx.jpg',
     rating: 5,
-    message: 'I joined MSA for NEET preparation and it was the best decision. The biology faculty is outstanding and the regular mock tests prepared me perfectly. I scored 98.7% and got into my dream medical college!',
-    shortMessage: 'The biology faculty is outstanding and the regular mock tests prepared me perfectly.'
+    message: 'I was able to score 91.30 percentile thanks to the well-planned study materials and consistent support from the teachers at Modulus. They always encouraged me and helped clear all my doubts.',
+    shortMessage: 'The teachers at Modulus were very supportive throughout my MHT-CET journey.'
   },
   {
     id: 3,
-    name: 'Rohan Desai',
-    course: 'MHT-CET 2023',
-    image: 'https://randomuser.me/api/portraits/men/65.jpg',
+    name: 'Gauri Mane',
+    course: 'MHT-CET 2025 (PCB)',
+    image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689333/Screenshot_2025-07-05_093826_iqvu2s_43156b.png',
     rating: 5,
-    message: 'The personalized attention and small batch sizes at MSA made all the difference. My physics concepts improved dramatically and I scored 99.0 percentile in MHT-CET. Highly recommended!',
-    shortMessage: 'The personalized attention and small batch sizes made all the difference.'
+    message: 'Modulus Science Academy helped me secure 87.89 percentile in PCB. The classroom teaching and one-on-one mentoring gave me the confidence to do my best in the exam.',
+    shortMessage: 'The personal attention I received really boosted my confidence.'
   },
   {
     id: 4,
-    name: 'Priya Nair',
-    course: 'SSC Board 2023',
-    image: 'https://randomuser.me/api/portraits/women/68.jpg',
+    name: 'Payal Jadhav',
+    course: 'MHT-CET 2025 (PCM)',
+    image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/WhatsApp_Image_2025-07-04_at_6.43.43_PM_t19hxy.png',
     rating: 5,
-    message: 'MSA helped me build a strong foundation in science and mathematics. The teachers are very supportive and the study material is excellent. I scored 97.5% in my SSC board exams!',
-    shortMessage: 'MSA helped me build a strong foundation in science and mathematics.'
+    message: 'I am thankful to Modulus Science Academy for helping me score 86.67 percentile. Their mock tests and consistent evaluation really made a big difference.',
+    shortMessage: 'Mock tests at Modulus helped me improve my accuracy and confidence.'
+  },
+  {
+    id: 5,
+    name: 'Dipali Thorbole',
+    course: 'MHT-CET 2025 (PCM)',
+    image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/WhatsApp_Image_2025-07-04_at_6.43.43_PM_1_gxxpnb.png',
+    rating: 5,
+    message: 'Modulus Science Academy’s test series and mentoring were key to my success. Scoring 86.71 percentile gave me a huge confidence boost.',
+    shortMessage: 'Thanks to the team at Modulus for guiding me toward 86.71 percentile!'
+  },
+  {
+    id: 6,
+    name: 'Veer Sonde',
+    course: 'MHT-CET 2025 (PCM)',
+    image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689358/Screenshot_2025-07-05_093826_iqvu2s_96434e.png',
+    rating: 5,
+    message: 'The discipline and structure at Modulus helped me achieve 86.67 percentile in MHT-CET. The environment was very motivating.',
+    shortMessage: 'A motivating environment and great teachers made this result possible.'
+  },
+  {
+    id: 7,
+    name: 'Harshada Kharade',
+    course: 'MHT-CET 2025 (PCM)',
+    image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689074/Screenshot_2025-07-05_093757_tl2vnn.png',
+    rating: 5,
+    message: 'With the help of Modulus, I scored 83.76 percentile. Their clear concept explanations and regular doubt sessions were excellent.',
+    shortMessage: 'Great teaching and doubt clearing sessions helped me score 83.76 percentile.'
+  },
+  {
+    id: 8,
+    name: 'Gauri Mane',
+    course: 'MHT-CET 2025 (PCM)',
+    image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689333/Screenshot_2025-07-05_093826_iqvu2s_43156b.png',
+    rating: 5,
+    message: 'I’m grateful to the mentors at Modulus for helping me score 82.88 percentile. Their constant guidance and support made all the difference.',
+    shortMessage: 'Supportive mentors and detailed notes helped me succeed in MHT-CET.'
   }
 ];
+
 
 export { TESTIMONIALS };
 
@@ -412,7 +487,7 @@ function AchievementsSection() {
           <div className="w-24 h-1 bg-accent mx-auto rounded-full"></div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
           {ACHIEVEMENTS.map(achievement => (
             <AchievementCard key={achievement.id} achievement={achievement} />
           ))}

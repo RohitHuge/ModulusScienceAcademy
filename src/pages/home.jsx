@@ -504,7 +504,7 @@ function Contact() {
                   </div>
                   <div>
                     <p className="font-semibold text-primary">Email</p>
-                    <p className="text-gray-600">msasangvi@gmail.com</p>
+                    <p className="text-gray-600">msasangvi25@gmail.com</p>
                   </div>
                 </div>
               </div>
@@ -634,7 +634,7 @@ function Footer() {
           <h3 className="font-bold text-lg mb-2">Contact Us</h3>
           <p>Modulus Science Academy<br />Saraswati Park, Vinayak Nagar<br />Mayur Nagari Road, Katepuram Chowk<br />New Sangvi, Pune, Maharashtra</p>
           <p className="mt-2">Phone: {PHONES.join(', ')}</p>
-          <p>Email: msasangvi@gmail.com</p>
+          <p>Email: msasangvi25@gmail.com</p>
         </div>
         <div>
           <h3 className="font-bold text-lg mb-2">Quick Links</h3>
