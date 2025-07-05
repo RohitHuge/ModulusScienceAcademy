@@ -106,7 +106,7 @@ const TESTIMONIALS = [
     image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/tffrd_1_bcugdl.jpg',
     rating: 5,
     message: 'Scoring 93.26 percentile in MHT-CET would not have been possible without Modulus Science Academy. The personal guidance, regular tests, and focused mentorship helped me improve tremendously.',
-    shortMessage: 'Scoring 93.26 percentile was possible only because of Modulus Science Academy’s support and regular tests.'
+    shortMessage: 'Scoring 93.26 percentile was possible only because of Modulus Science Academy support and regular tests.'
   },
   {
     id: 2,
@@ -141,7 +141,7 @@ const TESTIMONIALS = [
     course: 'MHT-CET 2025 (PCM)',
     image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/WhatsApp_Image_2025-07-04_at_6.43.43_PM_1_gxxpnb.png',
     rating: 5,
-    message: 'Modulus Science Academy’s test series and mentoring were key to my success. Scoring 86.71 percentile gave me a huge confidence boost.',
+    message: 'Modulus Science Academy test series and mentoring were key to my success. Scoring 86.71 percentile gave me a huge confidence boost.',
     shortMessage: 'Thanks to the team at Modulus for guiding me toward 86.71 percentile!'
   },
   {
@@ -168,9 +168,9 @@ const TESTIMONIALS = [
     course: 'MHT-CET 2025 (PCM)',
     image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689333/Screenshot_2025-07-05_093826_iqvu2s_43156b.png',
     rating: 5,
-    message: 'I’m grateful to the mentors at Modulus for helping me score 82.88 percentile. Their constant guidance and support made all the difference.',
+    message: 'I am grateful to the mentors at Modulus for helping me score 82.88 percentile. Their constant guidance and support made all the difference.',
     shortMessage: 'Supportive mentors and detailed notes helped me succeed in MHT-CET.'
-  }
+  },
 ];
 
 
@@ -502,6 +502,33 @@ function TestimonialsSection() {
   const inView = useInViewOnce(sectionRef, { threshold: 0.1 });
   const [selectedTestimonial, setSelectedTestimonial] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentGroupIndex, setCurrentGroupIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  // Calculate how many groups of 4 testimonials we have
+  const testimonialsPerGroup = 4;
+  const totalGroups = Math.ceil(TESTIMONIALS.length / testimonialsPerGroup);
+
+  // Get current group of testimonials
+  const getCurrentTestimonials = () => {
+    const startIndex = currentGroupIndex * testimonialsPerGroup;
+    return TESTIMONIALS.slice(startIndex, startIndex + testimonialsPerGroup);
+  };
+
+  // Auto-rotate testimonials every 5 seconds
+  useEffect(() => {
+    if (!inView) return;
+    
+    const interval = setInterval(() => {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentGroupIndex((prev) => (prev + 1) % totalGroups);
+        setIsTransitioning(false);
+      }, 300); // Half of transition duration
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [inView, totalGroups]);
 
   const openModal = (testimonial) => {
     setSelectedTestimonial(testimonial);
@@ -513,6 +540,23 @@ function TestimonialsSection() {
     setSelectedTestimonial(null);
   };
 
+  // Manual navigation functions
+  const goToNextGroup = () => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentGroupIndex((prev) => (prev + 1) % totalGroups);
+      setIsTransitioning(false);
+    }, 300);
+  };
+
+  const goToPrevGroup = () => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentGroupIndex((prev) => (prev - 1 + totalGroups) % totalGroups);
+      setIsTransitioning(false);
+    }, 300);
+  };
+
   return (
     <section
       ref={sectionRef}
@@ -521,11 +565,66 @@ function TestimonialsSection() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-montserrat font-bold text-primary mb-4">What Our Students Say</h2>
-          <div className="w-24 h-1 bg-accent mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-accent mx-auto rounded-full mb-4"></div>
+          <p className="text-gray-600">Hear from our successful students</p>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {TESTIMONIALS.map(testimonial => (
+        {/* Navigation dots */}
+        <div className="flex justify-center gap-2 mb-8">
+          {Array.from({ length: totalGroups }, (_, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                setIsTransitioning(true);
+                setTimeout(() => {
+                  setCurrentGroupIndex(index);
+                  setIsTransitioning(false);
+                }, 300);
+              }}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentGroupIndex 
+                  ? 'bg-primary scale-125' 
+                  : 'bg-gray-300 hover:bg-gray-400'
+              }`}
+              aria-label={`Go to testimonial group ${index + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* Navigation arrows */}
+        <div className="flex justify-between items-center mb-6">
+          <button
+            onClick={goToPrevGroup}
+            className="bg-white shadow-lg p-3 rounded-full border border-gray-200 hover:bg-accent hover:text-primary transition-colors"
+            aria-label="Previous testimonials"
+          >
+            <svg width="24" height="24" fill="none" stroke="#004AAD" strokeWidth="2">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+          
+          <div className="text-sm text-gray-500">
+            {currentGroupIndex + 1} of {totalGroups}
+          </div>
+          
+          <button
+            onClick={goToNextGroup}
+            className="bg-white shadow-lg p-3 rounded-full border border-gray-200 hover:bg-accent hover:text-primary transition-colors"
+            aria-label="Next testimonials"
+          >
+            <svg width="24" height="24" fill="none" stroke="#004AAD" strokeWidth="2">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+        
+        {/* Testimonials Grid */}
+        <div 
+          className={`grid grid-cols-1 md:grid-cols-2 gap-6 transition-opacity duration-600 ${
+            isTransitioning ? 'opacity-0' : 'opacity-100'
+          }`}
+        >
+          {getCurrentTestimonials().map(testimonial => (
             <TestimonialCard 
               key={testimonial.id} 
               testimonial={testimonial} 
