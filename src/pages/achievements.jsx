@@ -185,7 +185,7 @@ const STUDENT_ACHIEVEMENTS = [
   { id: 5, name: 'Dipali Thorbole', exam: 'MHT-CET 2025(PCM)', score: '86.71%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/WhatsApp_Image_2025-07-04_at_6.43.43_PM_1_gxxpnb.png' },
   { id: 6, name: 'Veer Sonde', exam: 'MHT-CET 2025(PCM)', score: '86.67%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689358/Screenshot_2025-07-05_093826_iqvu2s_96434e.png' },
   { id: 7, name: 'Harshada Kharade', exam: 'MHT-CET 2025(PCM)', score: '83.76%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689074/Screenshot_2025-07-05_093757_tl2vnn.png' },
-  { id: 8, name: 'Gauri Mane', exam: 'MHT-CET 2025(PCM)', score: '82.88%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689333/Screenshot_2025-07-05_093826_iqvu2s_43156b.png' },
+  { id: 8, name: 'Gauri Mane (PCM)', exam: 'MHT-CET 2025(PCM)', score: '82.88%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689333/Screenshot_2025-07-05_093826_iqvu2s_43156b.png' },
 ];
 
 export { STUDENT_ACHIEVEMENTS };

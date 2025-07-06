@@ -22,28 +22,28 @@ const GALLERY_IMAGES = [
   },
   { 
     id: 4, 
-    src: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&h=600&fit=crop', 
-    message: 'Chemistry Practical Session - Hands-on laboratory experience' 
+    src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/IMG-20250705-WA0045_ocbiu4.jpg', 
+    message: 'Regular Mock Tests - To test your knowledge and improve your performance, Giving you a feel of the exam' 
   },
   { 
     id: 5, 
-    src: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop', 
-    message: 'Physics Lab Demonstration - Understanding concepts through experiments' 
+    src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/IMG-20250705-WA0036_z3fvgd.jpg', 
+    message: 'Making peer group - Enabling students to learn from each other' 
   },
   { 
     id: 6, 
-    src: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&h=600&fit=crop', 
-    message: 'Mathematics Problem Solving - Group study and collaborative learning' 
+    src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/IMG-20250705-WA0038_yjywjb.jpg', 
+    message: 'Interactive Sessions - To make learning more engaging and effective' 
   },
   { 
     id: 7, 
-    src: 'https://media.sciencephoto.com/image/f0094854/225sh.com/photo-1523050854058-8df90110c9e1?w=800&h=600&fit=crop', 
-    message: 'Biology Practical Class - Microscopic study and specimen analysis' 
+    src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/IMG-20250705-WA0042_aqrlvf.jpg', 
+    message: 'Guidance sessions from alumni- Enabling understanding from other success and failures' 
   },
   { 
     id: 8, 
-    src: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=600&fit=crop', 
-    message: 'JEE Advanced Preparation - Specialized coaching for engineering aspirants' 
+    src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/IMG-20250705-WA0036_gaje4v.jpg', 
+    message: 'Daily practice session and doubt clearing sessions- Enabling students to clear their doubts and improve their performance' 
   },
   { 
     id: 9, 

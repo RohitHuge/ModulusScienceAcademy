@@ -78,7 +78,7 @@ function HeroBanner() {
       <div className="absolute inset-0 bg-primary opacity-70"></div>
       <div className="relative z-10 flex flex-col items-center text-center text-white w-full">
         <h1 className="text-4xl md:text-5xl font-montserrat font-bold mb-4 drop-shadow-lg mt-12">About Modulus Science Academy</h1>
-        <p className="text-lg md:text-2xl font-medium">Building Future - Through Quality Education</p>
+        <p className="text-lg md:text-2xl font-medium">Engineering MINDS & Medicating SOULS</p>
       </div>
     </section>
   );
