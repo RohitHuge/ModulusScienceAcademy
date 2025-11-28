@@ -171,6 +171,42 @@ const TESTIMONIALS = [
     message: 'I am grateful to the mentors at Modulus for helping me score 82.88 percentile. Their constant guidance and support made all the difference.',
     shortMessage: 'Supportive mentors and detailed notes helped me succeed in MHT-CET.'
   },
+  {
+  id: 9,
+  name: 'Hridhika Patil',
+  course: '9th ICSE (Podar Int. School)',
+  image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1764334689/Screenshot_2025-11-28_182653_ai41ba.png',
+  rating: 5,
+  message: 'Securing 83% in 9th ICSE became achievable because of the guidance I received at Modulus Science Academy. The concepts were taught in a simple manner, and the regular revision made a huge difference.',
+  shortMessage: 'Clear teaching and regular revision at Modulus helped me score 83% confidently.'
+},
+{
+  id: 10,
+  name: 'Aishani Harde',
+  course: '9th ICSE (Podar Int. School)',
+  image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1764335365/Screenshot_2025-11-28_183730_lbakph.png',
+  rating: 5,
+  message: 'Scoring 90% in ICSE wouldn’t have been possible without the structured study plan and continuous support I received. The tests and feedback truly helped me improve steadily.',
+  shortMessage: 'The structured study plan at Modulus played a big role in helping me score 90%.'
+},
+{
+  id: 11,
+  name: 'Aalina Mulla',
+  course: '9th ICSE (Podar Int. School)',
+  image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1764335365/Screenshot_2025-11-28_183722_nejlld.png',
+  rating: 5,
+  message: 'Achieving 93.44% felt great, and Modulus Science Academy supported me at every step. The teachers explained topics clearly and always encouraged me to push my limits.',
+  shortMessage: 'Great teachers and consistent encouragement helped me score 93.44%.'
+},
+{
+  id: 12,
+  name: 'Sejal Mane',
+  course: '11th SSC (Phy, Chem, Eng)',
+  image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1764335365/Screenshot_2025-11-28_183734_sxquvi.png',
+  rating: 5,
+  message: 'Scoring 93.33% in 11th was possible because of the detailed explanations and constant guidance I received. The learning environment at Modulus kept me focused and motivated.',
+  shortMessage: 'The focused learning environment at Modulus helped me reach 93.33%.'
+}
 ];
 
 
@@ -186,6 +222,11 @@ const STUDENT_ACHIEVEMENTS = [
   { id: 6, name: 'Veer Sonde', exam: 'MHT-CET 2025(PCM)', score: '86.67%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689358/Screenshot_2025-07-05_093826_iqvu2s_96434e.png' },
   { id: 7, name: 'Harshada Kharade', exam: 'MHT-CET 2025(PCM)', score: '83.76%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689074/Screenshot_2025-07-05_093757_tl2vnn.png' },
   { id: 8, name: 'Gauri Mane (PCM)', exam: 'MHT-CET 2025(PCM)', score: '82.88%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689333/Screenshot_2025-07-05_093826_iqvu2s_43156b.png' },
+  { id: 9, name: 'Hridhika Patil', exam: '9th ICSE (Podar Int. School)', score: '83.0%', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1764334689/Screenshot_2025-11-28_182653_ai41ba.png' },
+  { id: 10, name: 'Aishani Harde', exam: '9th ICSE (Podar Int. School)', score: '90.0%', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1764335365/Screenshot_2025-11-28_183730_lbakph.png' },
+  { id: 11, name: 'Aalina Mulla', exam: '9th ICSE (Podar Int. School)', score: '93.44%', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1764335365/Screenshot_2025-11-28_183722_nejlld.png' },
+  { id: 12, name: 'Sejal Mane', exam: '11th SSC(Phy, Chem, Eng)', score: '93.33%', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1764335365/Screenshot_2025-11-28_183734_sxquvi.png' },
+
 ];
 
 export { STUDENT_ACHIEVEMENTS };

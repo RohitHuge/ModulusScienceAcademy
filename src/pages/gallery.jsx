@@ -47,23 +47,23 @@ const GALLERY_IMAGES = [
   },
   { 
     id: 9, 
-    src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop', 
-    message: 'Student Counseling Session - Personalized guidance for career planning' 
+    src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1764333890/WhatsApp_Image_2025-11-27_at_12.52.42_PM_huyto2.jpg', 
+    message: 'Tree Plantation Drive - Promoting environmental awareness' 
   },
   { 
     id: 10, 
-    src: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop', 
-    message: 'Science Exhibition - Students showcasing their innovative projects' 
+    src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1764334095/WhatsApp_Image_2025-11-27_at_1.48.43_PM_nkhkwe.jpg', 
+    message: 'Diwali Celebration - Promoting cultural awareness' 
   },
   { 
     id: 11, 
-    src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop', 
-    message: 'Group Study Session - Collaborative learning and peer support' 
+    src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1764334095/WhatsApp_Image_2025-11-27_at_12.54.49_PM_wlyvqi.jpg', 
+    message: 'Visit to historic sites - Motivating students to learn about history and culture' 
   },
   { 
     id: 12, 
-    src: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=600&fit=crop', 
-    message: 'Annual Day Celebration - Recognizing achievements and fostering community' 
+    src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1764334265/WhatsApp_Image_2025-11-27_at_12.54.42_PM_jvuqav.jpg', 
+    message: 'Exiciting visit to Refresh student and study in calmness' 
   }
 ];
 

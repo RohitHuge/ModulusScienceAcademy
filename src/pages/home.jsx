@@ -711,7 +711,7 @@ function AdmissionsCTA() {
     <section className="py-10">
       <div ref={ref} className={`max-w-5xl mx-auto px-4 bg-primary rounded-xl flex flex-col md:flex-row items-center justify-between gap-6 md:gap-0 text-white shadow-lg transition-all duration-700 ${inView ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}` }>
         <div className="py-8 md:py-12">
-          <h2 className="text-2xl md:text-3xl font-montserrat font-bold mb-2">Admissions Open for 2024-25!</h2>
+          <h2 className="text-2xl md:text-3xl font-montserrat font-bold mb-2">Admissions Open for 2025-26!</h2>
           <p className="text-lg mb-2">Secure your seat now. Call us:</p>
           <div className="flex flex-col md:flex-row gap-2 md:gap-6">
             {PHONES.map(phone => <span key={phone} className="bg-white/20 px-4 py-1 rounded-full border border-white/30">{phone}</span>)}
