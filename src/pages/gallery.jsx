@@ -64,6 +64,21 @@ const GALLERY_IMAGES = [
     id: 12, 
     src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1764334265/WhatsApp_Image_2025-11-27_at_12.54.42_PM_jvuqav.jpg', 
     message: 'Exiciting visit to Refresh student and study in calmness' 
+  },
+  { 
+    id: 13, 
+    src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1764351940/WhatsApp_Image_2025-11-27_at_12.54.50_PM_hrejrk.jpg', 
+    message: 'Test Series - To students to prepare for their exams' 
+  },
+  { 
+    id: 14, 
+    src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1764351940/WhatsApp_Image_2025-11-27_at_12.54.35_PM_bkurjc.jpg', 
+    message: 'Result Imporvement Programme - To students to prepare for upcoming Challenges' 
+  },
+  { 
+    id: 15, 
+    src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1764351940/WhatsApp_Image_2025-11-27_at_12.54.53_PM_mvatxx.jpg', 
+    message: 'Our Results Our Pride' 
   }
 ];
 
