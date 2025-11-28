@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { STUDENT_ACHIEVEMENTS } from './achievements';
+import CETCrashCoursePopup from './CETCrashCoursePopup';
 // import logobg from '../assets/logobg.png';
 
 export default function Hero({ onApplyClick }) {
@@ -22,7 +23,7 @@ export default function Hero({ onApplyClick }) {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
     }
-    
+
     intervalRef.current = setInterval(() => {
       setIsTransitioning(true);
       setTimeout(() => {
@@ -33,7 +34,7 @@ export default function Hero({ onApplyClick }) {
         } else {
           // If showing a student, check if we need to show logo after 2 students
           const nextStudentCount = visibleStudentCount + 1;
-          
+
           if (nextStudentCount > 2) {
             // Show logo/tagline after every 2 students
             setCurrentIndex(-1);
@@ -79,7 +80,7 @@ export default function Hero({ onApplyClick }) {
 
   const handlePrevious = () => {
     if (currentIndex === -1) return; // Disable on logo view
-    
+
     setIsTransitioning(true);
     setTimeout(() => {
       if (currentIndex === 0) {
@@ -111,7 +112,7 @@ export default function Hero({ onApplyClick }) {
         // Go to next student
         const nextIndex = (currentIndex + 1) % STUDENT_ACHIEVEMENTS.length;
         const nextStudentCount = visibleStudentCount + 1;
-        
+
         if (nextStudentCount > 2) {
           // Show logo/tagline after every 2 students
           setCurrentIndex(-1);
@@ -131,9 +132,12 @@ export default function Hero({ onApplyClick }) {
   return (
     // <div className="relative overflow-hidden overflow-x-hidden min-h-screen w-full flex items-center justify-center" style={{ minHeight: '100vh' }}>
     <div className="bg-gradient-to-br from-primary to-blue-700 rounded-xl shadow-lg p-8 text-white relative overflow-hidden flex-1">
-                    {/* Background Pattern */}
-                    <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
-              <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-accent/20 rounded-full translate-y-12 -translate-x-12"></div>
+      {/* CET Crash Course Popup - Always Visible */}
+      <CETCrashCoursePopup />
+
+      {/* Background Pattern */}
+      <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
+      <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-accent/20 rounded-full translate-y-12 -translate-x-12"></div>
       {/* <div
         className="absolute inset-0 z-0"
         style={{
@@ -143,21 +147,20 @@ export default function Hero({ onApplyClick }) {
         }}
       ></div> */}
       <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-blue-800/70 z-10"></div>
-      
+
       {/* Navigation Buttons */}
       <button
         onClick={handlePrevious}
         disabled={currentIndex === -1}
-        className={`absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full border border-white/30 transition-all duration-300 ${
-          currentIndex === -1 ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110'
-        }`}
+        className={`absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full border border-white/30 transition-all duration-300 ${currentIndex === -1 ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110'
+          }`}
         aria-label="Previous student"
       >
         <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M15 18l-6-6 6-6" />
         </svg>
       </button>
-      
+
       <button
         onClick={handleNext}
         className="absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full border border-white/30 transition-all duration-300 hover:scale-110"
@@ -178,7 +181,7 @@ export default function Hero({ onApplyClick }) {
             <p className="text-xl md:text-2xl text-yellow-400 font-medium mb-6">
               "By The Students, For The Students"
             </p>
-            
+
             {/* Dynamic Content Area */}
             <AnimatePresence mode="wait">
               {currentIndex === -1 ? (
