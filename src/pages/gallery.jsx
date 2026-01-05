@@ -17,8 +17,8 @@ const GALLERY_IMAGES = [
   },
   { 
     id: 3, 
-    src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/IMG-20250704-WA0022_guojah.jpg', 
-    message: 'Felicitation Ceremony - Celebrating academic excellence' 
+    src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1767581773/WhatsApp_Image_2026-01-04_at_5.50.24_PM_oqjone.jpg', 
+    message: 'Personized Doubt Solving with guidance for the best results' 
   },
   { 
     id: 4, 
@@ -37,8 +37,8 @@ const GALLERY_IMAGES = [
   },
   { 
     id: 7, 
-    src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/IMG-20250705-WA0042_aqrlvf.jpg', 
-    message: 'Guidance sessions from alumni- Enabling understanding from other success and failures' 
+    src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1767581773/WhatsApp_Image_2026-01-04_at_5.50.23_PM_kc0rvh.jpg', 
+    message: 'Group discussion on the topic for better understanding and knowledge' 
   },
   { 
     id: 8, 
@@ -47,39 +47,57 @@ const GALLERY_IMAGES = [
   },
   { 
     id: 9, 
+    src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/IMG-20250704-WA0022_guojah.jpg', 
+    message: 'Felicitation Ceremony - Celebrating academic excellence' 
+  },
+  { 
+    id: 10, 
     src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1764333890/WhatsApp_Image_2025-11-27_at_12.52.42_PM_huyto2.jpg', 
     message: 'Tree Plantation Drive - Promoting environmental awareness' 
   },
   { 
-    id: 10, 
+    id: 11, 
     src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1764334095/WhatsApp_Image_2025-11-27_at_1.48.43_PM_nkhkwe.jpg', 
     message: 'Diwali Celebration - Promoting cultural awareness' 
   },
   { 
-    id: 11, 
+    id: 12, 
     src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1764334095/WhatsApp_Image_2025-11-27_at_12.54.49_PM_wlyvqi.jpg', 
     message: 'Visit to historic sites - Motivating students to learn about history and culture' 
   },
   { 
-    id: 12, 
+    id: 13, 
     src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1764334265/WhatsApp_Image_2025-11-27_at_12.54.42_PM_jvuqav.jpg', 
     message: 'Exiciting visit to Refresh student and study in calmness' 
   },
   { 
-    id: 13, 
+    id: 14, 
+    src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/IMG-20250705-WA0042_aqrlvf.jpg', 
+    message: 'Guidance sessions from alumni- Enabling understanding from other success and failures' 
+  },
+   { 
+    id: 15, 
+    src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1767581773/WhatsApp_Image_2026-01-04_at_5.50.21_PM_arsrxy.jpg', 
+    message: 'Regular Interaction with Alumni - To take experience guidance and to prepare for their exams' 
+  },
+  { 
+    id: 16, 
     src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1764351940/WhatsApp_Image_2025-11-27_at_12.54.50_PM_hrejrk.jpg', 
     message: 'Test Series - To students to prepare for their exams' 
   },
   { 
-    id: 14, 
+    id: 17, 
     src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1764351940/WhatsApp_Image_2025-11-27_at_12.54.35_PM_bkurjc.jpg', 
     message: 'Result Imporvement Programme - To students to prepare for upcoming Challenges' 
   },
   { 
-    id: 15, 
+    id: 18, 
     src: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1764351940/WhatsApp_Image_2025-11-27_at_12.54.53_PM_mvatxx.jpg', 
     message: 'Our Results Our Pride' 
-  }
+  },
+  
+  
+ 
 ];
 
 // Auto-scrolling slideshow component
