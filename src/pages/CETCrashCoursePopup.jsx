@@ -25,7 +25,7 @@ export default function CETCrashCoursePopup() {
     };
 
     return (
-        <div className="fixed top-14 right-1 md:top-6 md:right-6 z-50 scale-[0.8] origin-top-right md:scale-100 lg:top-24 lg:right-1">
+        <div className="fixed top-2 scale-[0.8] md:top-6 md:right-6 z-50 scale-[0.8] origin-top-right md:scale-100 lg:top-24 lg:right-1 ">
             <AnimatePresence mode="wait">
                 {!isExpanded ? (
                     // Collapsed State
