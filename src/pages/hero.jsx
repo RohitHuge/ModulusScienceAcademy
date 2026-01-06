@@ -1,160 +1,115 @@
 import { Button } from 'antd';
-import { PhoneOutlined } from '@ant-design/icons';
+import { PhoneOutlined, WhatsAppOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { STUDENT_ACHIEVEMENTS } from './achievements';
 import CETCrashCoursePopup from './CETCrashCoursePopup';
-// import logobg from '../assets/logobg.png';
 
 export default function Hero({ onApplyClick }) {
   const navigate = useNavigate();
-  const [currentIndex, setCurrentIndex] = useState(-1); // -1 means showing logo/tagline
+
+  // View states: 'logo', 'course', 'student'
+  const [currentView, setCurrentView] = useState('logo');
+  const [studentIndex, setStudentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [visibleStudentCount, setVisibleStudentCount] = useState(0);
-  const [nextStudentIndex, setNextStudentIndex] = useState(0); // Track which student to show next
   const intervalRef = useRef(null);
+
+  const COURSE_FEATURES = [
+    { icon: '📚', text: 'Complete CET Syllabus Revision' },
+    { icon: '⚡', text: 'Speed & Accuracy Training' },
+    { icon: '📝', text: 'Full-Length Mock Tests' },
+    { icon: '🎯', text: 'PYQ + Expected Questions' },
+  ];
 
   const handleAdmissionInfo = () => {
     navigate('/contact');
   };
 
-  const resetInterval = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
+  const startInterval = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
 
     intervalRef.current = setInterval(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        if (currentIndex === -1) {
-          // If showing logo/tagline, move to next student in sequence
-          setCurrentIndex(nextStudentIndex);
-          setVisibleStudentCount(1);
-        } else {
-          // If showing a student, check if we need to show logo after 2 students
-          const nextStudentCount = visibleStudentCount + 1;
-
-          if (nextStudentCount > 2) {
-            // Show logo/tagline after every 2 students
-            setCurrentIndex(-1);
-            setVisibleStudentCount(0);
-            // Update next student index for when we resume
-            setNextStudentIndex((nextStudentIndex + 2) % STUDENT_ACHIEVEMENTS.length);
-          } else {
-            // Continue to next student
-            const nextIndex = (currentIndex + 1) % STUDENT_ACHIEVEMENTS.length;
-            setCurrentIndex(nextIndex);
-            setVisibleStudentCount(nextStudentCount);
-          }
-        }
-        setIsTransitioning(false);
-      }, 300);
+      handleNext();
     }, 5000);
   };
 
   useEffect(() => {
-    // Initial delay of 3 seconds before showing first student
-    const initialTimer = setTimeout(() => {
-      setCurrentIndex(0);
-      setVisibleStudentCount(1);
-      setNextStudentIndex(2); // Next student after the first pair
-      resetInterval();
+    // Initial delay before starting the cycle
+    const timer = setTimeout(() => {
+      startInterval();
     }, 3000);
 
     return () => {
-      clearTimeout(initialTimer);
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
+      clearTimeout(timer);
+      if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, []);
+  }, []); // Only run on mount
 
-  // Reset interval when currentIndex or visibleStudentCount changes
-  useEffect(() => {
-    // Always reset interval, regardless of currentIndex
-    resetInterval();
-  }, [currentIndex, visibleStudentCount]);
-
-  const currentStudent = currentIndex >= 0 ? STUDENT_ACHIEVEMENTS[currentIndex] : null;
-
-  const handlePrevious = () => {
-    if (currentIndex === -1) return; // Disable on logo view
-
-    setIsTransitioning(true);
-    setTimeout(() => {
-      if (currentIndex === 0) {
-        // If at first student, go to last student
-        setCurrentIndex(STUDENT_ACHIEVEMENTS.length - 1);
-        setVisibleStudentCount(2);
-        setNextStudentIndex(0); // Update next student index
-      } else {
-        // Go to previous student
-        setCurrentIndex(currentIndex - 1);
-        setVisibleStudentCount(Math.max(1, visibleStudentCount - 1));
-        // Update next student index if needed
-        if (visibleStudentCount === 1) {
-          setNextStudentIndex(currentIndex);
-        }
-      }
-      setIsTransitioning(false);
-    }, 300);
+  // Reset interval on user interaction
+  const resetInterval = () => {
+    startInterval();
   };
 
   const handleNext = () => {
+    if (isTransitioning) return;
     setIsTransitioning(true);
-    setTimeout(() => {
-      if (currentIndex === -1) {
-        // If showing logo/tagline, go to next student in sequence
-        setCurrentIndex(nextStudentIndex);
-        setVisibleStudentCount(1);
-      } else {
-        // Go to next student
-        const nextIndex = (currentIndex + 1) % STUDENT_ACHIEVEMENTS.length;
-        const nextStudentCount = visibleStudentCount + 1;
 
-        if (nextStudentCount > 2) {
-          // Show logo/tagline after every 2 students
-          setCurrentIndex(-1);
-          setVisibleStudentCount(0);
-          // Update next student index for when we resume
-          setNextStudentIndex((nextStudentIndex + 2) % STUDENT_ACHIEVEMENTS.length);
-        } else {
-          // Continue to next student
-          setCurrentIndex(nextIndex);
-          setVisibleStudentCount(nextStudentCount);
+    setTimeout(() => {
+      setCurrentView(prev => {
+        if (prev === 'logo') return 'course';
+        if (prev === 'course') return 'student';
+        if (prev === 'student') {
+          // Move to next student for the next cycle
+          setStudentIndex(current => (current + 1) % STUDENT_ACHIEVEMENTS.length);
+          return 'logo';
         }
-      }
+        return 'logo';
+      });
       setIsTransitioning(false);
     }, 300);
+
+    resetInterval();
   };
 
+  const handlePrevious = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+
+    setTimeout(() => {
+      setCurrentView(prev => {
+        if (prev === 'logo') {
+          // Going back from logo means going to student view (previous student)
+          setStudentIndex(current => (current - 1 + STUDENT_ACHIEVEMENTS.length) % STUDENT_ACHIEVEMENTS.length);
+          return 'student';
+        }
+        if (prev === 'course') return 'logo';
+        if (prev === 'student') return 'course';
+        return 'logo';
+      });
+      setIsTransitioning(false);
+    }, 300);
+
+    resetInterval();
+  };
+
+  const currentStudent = STUDENT_ACHIEVEMENTS[studentIndex];
+
   return (
-    // <div className="relative overflow-hidden overflow-x-hidden min-h-screen w-full flex items-center justify-center" style={{ minHeight: '100vh' }}>
     <div className="bg-gradient-to-br from-primary to-blue-700 rounded-xl shadow-lg p-8 text-white relative overflow-hidden flex-1">
-      {/* CET Crash Course Popup - Always Visible */}
+      {/* CET Crash Course Popup - Always Visible as overlay */}
       <CETCrashCoursePopup />
 
-      {/* Background Pattern */}
+      {/* Background Elements */}
       <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
       <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-accent/20 rounded-full translate-y-12 -translate-x-12"></div>
-      {/* <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `url('https://readdy.ai/api/search-image?query=abstract%20educational%20background%20with%20subtle%20science%20elements%20like%20molecules%2C%20formulas%2C%20and%20books%20in%20blue%20and%20yellow%20gradient%2C%20professional%20modern%20design%20for%20education%20website&width=1440&height=600&seq=1&orientation=landscape')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      ></div> */}
       <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-blue-800/70 z-10"></div>
 
       {/* Navigation Buttons */}
       <button
         onClick={handlePrevious}
-        disabled={currentIndex === -1}
-        className={`absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full border border-white/30 transition-all duration-300 ${currentIndex === -1 ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110'
-          }`}
-        aria-label="Previous student"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full border border-white/30 transition-all duration-300 hover:scale-110"
+        aria-label="Previous"
       >
         <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M15 18l-6-6 6-6" />
@@ -164,7 +119,7 @@ export default function Hero({ onApplyClick }) {
       <button
         onClick={handleNext}
         className="absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full border border-white/30 transition-all duration-300 hover:scale-110"
-        aria-label="Next student"
+        aria-label="Next"
       >
         <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M9 18l6-6-6-6" />
@@ -173,59 +128,100 @@ export default function Hero({ onApplyClick }) {
 
       <div className="relative z-20 w-full flex flex-col items-center justify-center min-h-screen">
         <div className="flex flex-col-reverse md:flex-row items-center justify-center w-full max-w-5xl mx-auto px-2 sm:px-4 md:px-6 py-16 gap-6 md:gap-10 overflow-x-hidden">
-          {/* Text */}
-          <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
-              MODULUS SCIENCE ACADEMY
-            </h1>
-            <p className="text-xl md:text-2xl text-yellow-400 font-medium mb-6">
-              "By The Students, For The Students"
-            </p>
 
-            {/* Dynamic Content Area */}
+          {/* Text Content Area */}
+          <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left">
             <AnimatePresence mode="wait">
-              {currentIndex === -1 ? (
-                // Logo/Tagline View
+              {currentView === 'logo' && (
                 <motion.div
-                  key="tagline"
-                  initial={{ opacity: 0, x: 100 }}
+                  key="logo-text"
+                  initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -100 }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
-                  className="text-white text-lg mb-8 max-w-lg"
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.5 }}
+                  className="w-full"
                 >
-                  Empowering students to excel in science subjects with expert mentors and proven teaching methodologies. Join us to transform your academic journey.
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
+                    MODULUS SCIENCE ACADEMY
+                  </h1>
+                  <p className="text-xl md:text-2xl text-yellow-400 font-medium mb-6">
+                    "By The Students, For The Students"
+                  </p>
+                  <div className="text-white text-lg mb-8 max-w-lg mx-auto md:mx-0">
+                    Empowering students to excel in science subjects with expert mentors and proven teaching methodologies.
+                  </div>
                 </motion.div>
-              ) : (
-                // Student Achievement View
+              )}
+
+              {currentView === 'course' && (
                 <motion.div
-                  key={`student-${currentIndex}`}
-                  initial={{ opacity: 0, x: 100 }}
+                  key="course-text"
+                  initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -100 }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
-                  className="text-white text-lg mb-8 max-w-lg"
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.5 }}
+                  className="w-full"
                 >
-                  <div className="space-y-2">
-                    <div className="text-2xl font-bold text-yellow-400">
-                      🎓 {currentStudent.name}
+                  <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
+                    <span className="text-3xl">🚀</span>
+                    <h2 className="text-3xl md:text-4xl font-bold text-yellow-400">CET CRASH COURSE</h2>
+                  </div>
+                  <div className="inline-block bg-accent text-primary font-bold px-4 py-1 rounded-full mb-6">
+                    Starts: 23rd February 2026
+                  </div>
+
+                  <div className="grid grid-cols-1 gap-3 mb-8 text-left max-w-md mx-auto md:mx-0">
+                    {COURSE_FEATURES.map((feature, idx) => (
+                      <div key={idx} className="flex items-center gap-3">
+                        <span className="text-xl">{feature.icon}</span>
+                        <span className="text-white text-lg">{feature.text}</span>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+
+              {currentView === 'student' && (
+                <motion.div
+                  key={`student-text-${studentIndex}`}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.5 }}
+                  className="w-full"
+                >
+                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
+                    Star Pupil
+                  </h2>
+                  <div className="text-xl text-yellow-400 font-medium mb-6">
+                    Join our Hall of Fame
+                  </div>
+
+                  <div className="space-y-4 mb-8">
+                    <div>
+                      <div className="text-3xl font-bold text-yellow-400">
+                        🎓 {currentStudent.name}
+                      </div>
                     </div>
-                    <div className="text-lg text-white">
-                      📘 {currentStudent.exam}
-                    </div>
-                    <div className="text-xl font-bold text-yellow-400">
-                      🏆 {currentStudent.score}
+                    <div>
+                      <div className="text-xl text-white opacity-90">
+                        📘 {currentStudent.exam}
+                      </div>
+                      <div className="text-2xl font-bold text-white mt-1">
+                        🏆 Score: {currentStudent.score}
+                      </div>
                     </div>
                   </div>
                 </motion.div>
               )}
             </AnimatePresence>
 
-            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
+            {/* Static Action Buttons */}
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 mt-2">
               <Button
                 type="primary"
                 size="large"
-                className="!rounded-button whitespace-nowrap cursor-pointer"
+                className="!rounded-button whitespace-nowrap cursor-pointer hover:!scale-105 transition-transform"
                 style={{ backgroundColor: '#FFD700', borderColor: '#FFD700', color: '#004AAD', fontWeight: 'bold' }}
                 onClick={handleAdmissionInfo}
               >
@@ -237,42 +233,69 @@ export default function Hero({ onApplyClick }) {
               </div>
             </div>
           </div>
-          {/* Image */}
+
+          {/* Image/Visual Content Area */}
           <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-            <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 flex items-center justify-center">
-              <div className="absolute -inset-1 rounded-full bg-yellow-400 blur-md"></div>
-              <div className="absolute w-5/6 h-5/6 bg-white rounded-full z-10"></div>
-              <div className="relative rounded-full overflow-hidden border-4 border-yellow-400 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 flex items-center justify-center">
-                <AnimatePresence mode="wait">
-                  {currentIndex === -1 ? (
-                    // Logo View
-                    <motion.img
-                      key="logo"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.8 }}
-                      transition={{ duration: 0.6, ease: "easeInOut" }}
-                      src="https://res.cloudinary.com/dapdhzjzc/image/upload/IMG-20250704-WA0000_1_yt4wz6.png"
-                      alt="Modulus Academy Logo"
-                      className="w-4/5 h-4/5 object-contain relative z-20"
-                    />
-                  ) : (
-                    // Student Image View
-                    <motion.img
-                      key={`student-image-${currentIndex}`}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.8 }}
-                      transition={{ duration: 0.6, ease: "easeInOut" }}
+            <AnimatePresence mode="wait">
+              {currentView === 'logo' && (
+                <motion.div
+                  key="logo-img"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.5 }}
+                  className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 flex items-center justify-center p-4 bg-white rounded-full border-4 border-yellow-400"
+                >
+                  <img
+                    src="https://res.cloudinary.com/dapdhzjzc/image/upload/IMG-20250704-WA0000_1_yt4wz6.png"
+                    alt="Modulus Logo"
+                    className="w-full h-full object-contain drop-shadow-2xl"
+                  />
+                </motion.div>
+              )}
+
+              {currentView === 'course' && (
+                <motion.div
+                  key="course-img"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.5 }}
+                  className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-white text-primary rounded-2xl p-0.5 shadow-2xl rotate-3 border-4 border-yellow-400"
+                >
+                  <div className="absolute -top-6 -right-6 z-50 bg-red-600 text-white font-bold py-2 px-4 rounded-lg shadow-xl animate-bounce scale-[1.2]">
+                    ⚠️ Limited Seats!
+                  </div>
+                  <img
+                    src="https://res.cloudinary.com/dapdhzjzc/image/upload/v1767698311/ChatGPT_Image_Jan_6_2026_04_47_23_PM_dhdbms.png"
+                    alt="CET Crash Course"
+                    className="w-full h-full object-cover rounded-xl"
+                  />
+                </motion.div>
+              )}
+
+              {currentView === 'student' && (
+                <motion.div
+                  key={`student-img-${studentIndex}`}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.5 }}
+                  className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96"
+                >
+                  <div className="absolute -inset-1 rounded-full bg-yellow-400 blur-md opacity-70"></div>
+                  <div className="relative w-full h-full rounded-full border-4 border-yellow-400 overflow-hidden bg-white">
+                    <img
                       src={currentStudent.image}
                       alt={currentStudent.name}
-                      className="w-4/5 h-4/5 object-cover relative z-20 rounded-full"
+                      className="w-full h-full object-cover"
                     />
-                  )}
-                </AnimatePresence>
-              </div>
-            </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
+
         </div>
       </div>
     </div>
