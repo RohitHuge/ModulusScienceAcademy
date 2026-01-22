@@ -238,8 +238,8 @@ function AnchorNavigation() {
                     href={link.href}
                     onClick={e => handleNavClick(e, link.href)}
                     className={`group relative flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300 ${isActive
-                        ? 'bg-[#003f8a] text-white shadow-lg scale-110'
-                        : 'bg-gray-50 text-gray-600 hover:bg-[#f2c300] hover:text-[#003f8a] hover:scale-105'
+                      ? 'bg-[#003f8a] text-white shadow-lg scale-110'
+                      : 'bg-gray-50 text-gray-600 hover:bg-[#f2c300] hover:text-[#003f8a] hover:scale-105'
                       }`}
                     title={link.name}
                   >
@@ -277,8 +277,8 @@ function AnchorNavigation() {
                     href={link.href}
                     onClick={e => handleNavClick(e, link.href)}
                     className={`group relative flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 ${isActive
-                        ? 'bg-[#003f8a] text-white shadow-lg scale-110'
-                        : 'bg-gray-50 text-gray-600 hover:bg-[#f2c300] hover:text-[#003f8a] hover:scale-105'
+                      ? 'bg-[#003f8a] text-white shadow-lg scale-110'
+                      : 'bg-gray-50 text-gray-600 hover:bg-[#f2c300] hover:text-[#003f8a] hover:scale-105'
                       }`}
                     title={link.name}
                   >
@@ -353,26 +353,128 @@ function Mentors() {
   );
 }
 
+function StudentAchievementCard({ student }) {
+  return (
+    <div
+      className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center mx-2 min-w-[260px] max-w-[280px] w-[90vw] sm:w-[260px] md:w-[260px] lg:w-[300px] transition-all duration-300"
+      style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.08)' }}
+    >
+      <div className="w-[112px] h-[112px] rounded-full flex items-center justify-center mb-4 bg-white border-4" style={{ borderColor: '#FFD700' }}>
+        <div className="w-[104px] h-[104px] rounded-full flex items-center justify-center bg-white border-4" style={{ borderColor: '#004AAD' }}>
+          <img
+            src={student.image}
+            alt={student.name}
+            className="w-[96px] h-[96px] rounded-full object-cover"
+          />
+        </div>
+      </div>
+      <div className="text-2xl font-bold text-primary mb-1 text-center" style={{ fontSize: 24 }}>{student.name}</div>
+      <div className="text-base text-gray-700 mb-2 text-center" style={{ fontSize: 16 }}>{student.exam}</div>
+      <div className="text-[18px] font-bold bg-[#FFD700] text-[#004AAD] px-4 py-1 rounded-full mt-1" style={{ fontSize: 18 }}>{student.score}</div>
+    </div>
+  );
+}
+
 function Achievements() {
+  const containerRef = useRef();
+  const [isPaused, setIsPaused] = useState(false);
+  const [cardWidth, setCardWidth] = useState(300);
+  const [visibleCards, setVisibleCards] = useState(3);
   const ref = useRef();
   const inView = useInView(ref, { threshold: 0.1 });
+
+  // Responsive visible cards
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 640) {
+        setVisibleCards(1);
+        setCardWidth(260);
+      } else if (window.innerWidth < 1024) {
+        setVisibleCards(2);
+        setCardWidth(260);
+      } else {
+        setVisibleCards(3);
+        setCardWidth(300);
+      }
+    }
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Auto-scroll logic
+  useEffect(() => {
+    if (!inView || isPaused) return;
+    const interval = setInterval(() => {
+      if (!containerRef.current) return;
+      const totalWidth = cardWidth * ACHIEVEMENTS.length;
+      let nextScroll = containerRef.current.scrollLeft + 1.5;
+      if (nextScroll >= totalWidth) {
+        nextScroll = 0;
+      }
+      containerRef.current.scrollLeft = nextScroll;
+    }, 16);
+    return () => clearInterval(interval);
+  }, [isPaused, inView, cardWidth]);
+
+  // Pause on hover
+  const pause = () => setIsPaused(true);
+  const resume = () => setIsPaused(false);
+
+  // Manual scroll
+  const scrollBy = (dir) => {
+    if (!containerRef.current) return;
+    const amount = cardWidth * (visibleCards === 1 ? 1 : visibleCards - 1);
+    containerRef.current.scrollBy({ left: dir * amount, behavior: 'smooth' });
+  };
+
+  // Duplicate cards for seamless looping
+  const cards = [...ACHIEVEMENTS, ...ACHIEVEMENTS];
+
   return (
-    <section id="achievements" className="py-16 bg-background">
+    <section id="achievements" className="py-16 bg-background" ref={ref}>
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-montserrat font-bold text-primary mb-10 text-center">Achievements & Toppers</h2>
-        <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-          {ACHIEVEMENTS.map((ach, i) => (
-            <div key={ach.name} className={`bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center border-b-4 border-accent transition-all duration-700 ${inView ? 'scale-100 opacity-100' : 'scale-90 opacity-0'}`} style={{ transitionDelay: `${i * 120}ms` }}>
-              <span className="text-4xl font-bold text-primary mb-2">{ach.score}</span>
-              <h3 className="text-lg font-bold text-primary mb-1">{ach.name}</h3>
-              <p className="text-base text-text mb-1">{ach.exam}</p>
-            </div>
-          ))}
+
+        <div className="relative group">
+          {/* Left Arrow */}
+          <button
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow p-2 rounded-full border border-gray-200 hover:bg-accent hover:text-primary transition-colors hidden sm:flex opacity-0 group-hover:opacity-100 duration-300"
+            onClick={() => scrollBy(-1)}
+            aria-label="Scroll left"
+          >
+            <svg width="28" height="28" fill="none" stroke="#004AAD" strokeWidth="2"><path d="M18 6l-8 8 8 8" /></svg>
+          </button>
+
+          {/* Carousel */}
+          <div
+            ref={containerRef}
+            className="flex overflow-x-auto no-scrollbar py-4"
+            style={{ scrollBehavior: 'smooth', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            onMouseEnter={pause}
+            onMouseLeave={resume}
+            onTouchStart={pause}
+            onTouchEnd={resume}
+          >
+            {cards.map((ach, i) => (
+              <StudentAchievementCard key={`${ach.id}-${i}`} student={ach} />
+            ))}
+          </div>
+
+          {/* Right Arrow */}
+          <button
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow p-2 rounded-full border border-gray-200 hover:bg-accent hover:text-primary transition-colors hidden sm:flex opacity-0 group-hover:opacity-100 duration-300"
+            onClick={() => scrollBy(1)}
+            aria-label="Scroll right"
+          >
+            <svg width="28" height="28" fill="none" stroke="#004AAD" strokeWidth="2"><path d="M10 6l8 8-8 8" /></svg>
+          </button>
         </div>
       </div>
     </section>
   );
 }
+
 
 function Testimonials() {
   const ref = useRef();
@@ -456,8 +558,8 @@ function Testimonials() {
                 }, 300);
               }}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentGroupIndex
-                  ? 'bg-primary scale-125'
-                  : 'bg-gray-300 hover:bg-gray-400'
+                ? 'bg-primary scale-125'
+                : 'bg-gray-300 hover:bg-gray-400'
                 }`}
               aria-label={`Go to testimonial group ${index + 1}`}
             />
