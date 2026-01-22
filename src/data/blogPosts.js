@@ -98,7 +98,7 @@ export const BLOG_POSTS = [
     id: 'neet-vs-mht-cet-comparison',
     title: 'Difference Between NEET and MHT-CET – Which Is Right for You?',
     date: 'April 20, 2024',
-    image: 'https://cdn-ginkf.nitrocdn.com/XDPVXDvZHEdvxVEWyArPEDwSYjHlIaQK/assets/images/optimized/rev-e0684c1/oswalpublishers.com/wp-content/uploads/2023/01/jee-vs-neet.webp',
+    image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1769103649/Gemini_Generated_Image_8munpl8munpl8mun_rtmhvg.png',
     imageAlt: 'Students comparing NEET and MHT-CET exams',
     showOnHome: true,
     shortDescription: 'Choosing between NEET and MHT-CET is a crucial decision for students in Maharashtra. Here is a detailed, expert comparison to help you decide which path is right for you.',
