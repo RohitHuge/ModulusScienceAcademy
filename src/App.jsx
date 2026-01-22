@@ -8,7 +8,8 @@ import Contact from './pages/contact'
 import Gallery from './pages/gallery'
 import ModulusScienceAcademyHero from './pagesnotused/Modulus-Science-Academy-Hero'
 import Blog from './pages/blog'
-import {HelmetProvider} from 'react-helmet-async'
+import BlogPost from './pages/BlogPost'
+import { HelmetProvider } from 'react-helmet-async'
 import { Helmet } from 'react-helmet-async'
 
 
@@ -111,14 +112,15 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-        <Route path="/modulus-science-academy-hero" element={<ModulusScienceAcademyHero />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/mentor" element={<Mentor />} />
-        <Route path="/courses" element={<Courses />} />
-        <Route path="/achievements" element={<Achievements />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/blog" element={<Blog />} />
+          <Route path="/modulus-science-academy-hero" element={<ModulusScienceAcademyHero />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/mentor" element={<Mentor />} />
+          <Route path="/courses" element={<Courses />} />
+          <Route path="/achievements" element={<Achievements />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
         </Routes>
       </BrowserRouter>
     </HelmetProvider>

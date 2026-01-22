@@ -10,6 +10,7 @@ import ramsir from '../assets/ramsir.profilephoto.webp';
 import pandharisir from '../assets/pandharisir.profilephoto.webp';
 import { Helmet } from 'react-helmet-async';
 import { TestimonialCard, TESTIMONIALS, STUDENT_ACHIEVEMENTS } from './achievements';
+import { BLOG_POSTS } from '../data/blogPosts';
 
 // Add smooth scroll CSS globally
 if (typeof window !== 'undefined') {
@@ -34,7 +35,7 @@ const NAV_LINKS = [
   { name: 'Achievements', href: '/achievements' },
   { name: 'Gallery', href: '/gallery' },
   { name: 'Contact', href: '/contact' },
-  { name: 'Blog' , href: '/blog'}
+  { name: 'Blog', href: '/blog' }
 ];
 
 const COURSES = [
@@ -191,7 +192,7 @@ function AnchorNavigation() {
         if (element) {
           const offsetTop = element.offsetTop;
           const offsetHeight = element.offsetHeight;
-          
+
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
             setActiveSection(section);
             break;
@@ -224,9 +225,8 @@ function AnchorNavigation() {
   return (
     <>
       {/* Desktop Vertical Navigation */}
-      <div className={`fixed right-6 top-1/2 transform -translate-y-1/2 z-40 transition-all duration-500 ${
-        isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
-      } hidden lg:block`}>
+      <div className={`fixed right-6 top-1/2 transform -translate-y-1/2 z-40 transition-all duration-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+        } hidden lg:block`}>
         <div className="bg-white rounded-full shadow-lg border border-gray-200 p-2">
           <ul className="flex flex-col gap-2">
             {ANCHOR_LINKS.map(link => {
@@ -237,21 +237,20 @@ function AnchorNavigation() {
                   <a
                     href={link.href}
                     onClick={e => handleNavClick(e, link.href)}
-                    className={`group relative flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300 ${
-                      isActive 
-                        ? 'bg-[#003f8a] text-white shadow-lg scale-110' 
+                    className={`group relative flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300 ${isActive
+                        ? 'bg-[#003f8a] text-white shadow-lg scale-110'
                         : 'bg-gray-50 text-gray-600 hover:bg-[#f2c300] hover:text-[#003f8a] hover:scale-105'
-                    }`}
+                      }`}
                     title={link.name}
                   >
                     <span className="text-lg">{link.icon}</span>
-                    
+
                     {/* Tooltip */}
                     <div className="absolute right-full mr-3 px-3 py-1 bg-[#003f8a] text-white text-sm font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
                       {link.name}
                       <div className="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-[#003f8a] border-t-2 border-t-transparent border-b-2 border-b-transparent"></div>
                     </div>
-                    
+
                     {/* Active indicator */}
                     {isActive && (
                       <div className="absolute -right-1 -top-1 w-3 h-3 bg-[#f2c300] rounded-full border-2 border-white"></div>
@@ -265,9 +264,8 @@ function AnchorNavigation() {
       </div>
 
       {/* Mobile Horizontal Navigation */}
-      <div className={`fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40 transition-all duration-500 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-      } lg:hidden`}>
+      <div className={`fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40 transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        } lg:hidden`}>
         <div className="bg-white rounded-full shadow-lg border border-gray-200 px-4 py-2">
           <ul className="flex gap-1">
             {ANCHOR_LINKS.map(link => {
@@ -278,15 +276,14 @@ function AnchorNavigation() {
                   <a
                     href={link.href}
                     onClick={e => handleNavClick(e, link.href)}
-                    className={`group relative flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 ${
-                      isActive 
-                        ? 'bg-[#003f8a] text-white shadow-lg scale-110' 
+                    className={`group relative flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 ${isActive
+                        ? 'bg-[#003f8a] text-white shadow-lg scale-110'
                         : 'bg-gray-50 text-gray-600 hover:bg-[#f2c300] hover:text-[#003f8a] hover:scale-105'
-                    }`}
+                      }`}
                     title={link.name}
                   >
                     <span className="text-sm">{link.icon}</span>
-                    
+
                     {/* Active indicator */}
                     {isActive && (
                       <div className="absolute -top-1 -right-1 w-2 h-2 bg-[#f2c300] rounded-full border border-white"></div>
@@ -398,7 +395,7 @@ function Testimonials() {
   // Auto-rotate testimonials every 5 seconds
   useEffect(() => {
     if (!inView) return;
-    
+
     const interval = setInterval(() => {
       setIsTransitioning(true);
       setTimeout(() => {
@@ -445,7 +442,7 @@ function Testimonials() {
           <div className="w-24 h-1 bg-accent mx-auto rounded-full mb-4"></div>
           <p className="text-gray-600">Hear from our successful students</p>
         </div>
-        
+
         {/* Navigation dots */}
         <div className="flex justify-center gap-2 mb-8">
           {Array.from({ length: totalGroups }, (_, index) => (
@@ -458,11 +455,10 @@ function Testimonials() {
                   setIsTransitioning(false);
                 }, 300);
               }}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentGroupIndex 
-                  ? 'bg-primary scale-125' 
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentGroupIndex
+                  ? 'bg-primary scale-125'
                   : 'bg-gray-300 hover:bg-gray-400'
-              }`}
+                }`}
               aria-label={`Go to testimonial group ${index + 1}`}
             />
           ))}
@@ -479,11 +475,11 @@ function Testimonials() {
               <path d="M15 18l-6-6 6-6" />
             </svg>
           </button>
-          
+
           <div className="text-sm text-gray-500">
             {currentGroupIndex + 1} of {totalGroups}
           </div>
-          
+
           <button
             onClick={goToNextGroup}
             className="bg-white shadow-lg p-3 rounded-full border border-gray-200 hover:bg-accent hover:text-primary transition-colors"
@@ -494,27 +490,26 @@ function Testimonials() {
             </svg>
           </button>
         </div>
-        
+
         {/* Testimonials Grid */}
-        <div 
-          className={`grid grid-cols-1 lg:grid-cols-2 gap-6 transition-opacity duration-600 ${
-            isTransitioning ? 'opacity-0' : 'opacity-100'
-          }`}
+        <div
+          className={`grid grid-cols-1 lg:grid-cols-2 gap-6 transition-opacity duration-600 ${isTransitioning ? 'opacity-0' : 'opacity-100'
+            }`}
         >
           {getCurrentTestimonials().map(testimonial => (
-            <TestimonialCard 
-              key={testimonial.id} 
-              testimonial={testimonial} 
-              onCardClick={() => openModal(testimonial)} 
+            <TestimonialCard
+              key={testimonial.id}
+              testimonial={testimonial}
+              onCardClick={() => openModal(testimonial)}
             />
           ))}
         </div>
-        
+
         {/* Modal */}
         {isModalOpen && selectedTestimonial && (
           <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4" onClick={closeModal}>
             <div className="bg-white rounded-2xl p-8 max-w-md w-full mx-4 relative" onClick={e => e.stopPropagation()}>
-              <button 
+              <button
                 onClick={closeModal}
                 className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors"
                 aria-label="Close modal"
@@ -523,12 +518,12 @@ function Testimonials() {
                   <path d="M6 6l12 12M6 18L18 6" />
                 </svg>
               </button>
-              
+
               <div className="flex flex-col items-center text-center">
-                <img 
-                  src={selectedTestimonial.image} 
-                  alt={selectedTestimonial.name} 
-                  className="w-32 h-32 min-w-[128px] min-h-[128px] max-w-[128px] max-h-[128px] rounded-full border-4 border-accent mb-4 object-cover" 
+                <img
+                  src={selectedTestimonial.image}
+                  alt={selectedTestimonial.name}
+                  className="w-32 h-32 min-w-[128px] min-h-[128px] max-w-[128px] max-h-[128px] rounded-full border-4 border-accent mb-4 object-cover"
                 />
                 <h3 className="text-2xl font-bold text-primary mb-2 font-montserrat">{selectedTestimonial.name}</h3>
                 <div className="text-base text-gray-700 mb-1 font-medium">{selectedTestimonial.course}</div>
@@ -539,7 +534,7 @@ function Testimonials() {
                     </svg>
                   ))}
                 </div>
-                
+
                 <div className="w-full">
                   <h4 className="text-lg font-bold text-primary mb-2 text-left">Student Testimonial:</h4>
                   <p className="text-text text-left leading-relaxed">"{selectedTestimonial.message}"</p>
@@ -570,7 +565,7 @@ function Contact() {
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center">
                     <svg width="20" height="20" fill="currentColor" className="text-primary">
-                      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                     </svg>
                   </div>
                   <div>
@@ -578,11 +573,11 @@ function Contact() {
                     <p className="text-gray-600">Saraswati Park, Vinayak Nagar<br />Mayur Nagari Road, Katepuram Chowk<br />New Sangvi, Pune, Maharashtra</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center">
                     <svg width="20" height="20" fill="currentColor" className="text-primary">
-                      <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                      <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
                     </svg>
                   </div>
                   <div>
@@ -594,11 +589,11 @@ function Contact() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center">
                     <svg width="20" height="20" fill="currentColor" className="text-primary">
-                      <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                      <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
                     </svg>
                   </div>
                   <div>
@@ -608,26 +603,26 @@ function Contact() {
                 </div>
               </div>
             </div>
-            
+
             {/* Quote Card */}
             <div className="bg-gradient-to-br from-primary to-blue-700 rounded-xl shadow-lg p-8 text-white relative overflow-hidden flex-1">
               {/* Background Pattern */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-accent/20 rounded-full translate-y-12 -translate-x-12"></div>
-              
+
               <div className="relative z-10 flex flex-col h-full">
                 <div className="flex items-start gap-4 mb-4">
                   <div className="text-4xl">💬</div>
                   <div>
                     <h4 className="text-xl font-bold mb-2">Why Choose Modulus Science Academy?</h4>
                     <p className="text-blue-100 leading-relaxed">
-                      "Education is not preparation for life; education is life itself. At Modulus Science Academy, 
-                      we believe in nurturing not just academic excellence, but also character, creativity, and 
+                      "Education is not preparation for life; education is life itself. At Modulus Science Academy,
+                      we believe in nurturing not just academic excellence, but also character, creativity, and
                       the courage to dream big."
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/20">
                   <div>
                     <p className="font-semibold text-accent">Our Promise</p>
@@ -641,47 +636,47 @@ function Contact() {
               </div>
             </div>
           </div>
-          
+
           {/* Contact Form */}
           <div className={`transition-all duration-700 ${inView ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
             <div className="bg-white rounded-xl shadow-lg p-8 border-r-4 border-accent h-full">
               <h3 className="text-2xl font-bold text-primary mb-6">Send us a Message</h3>
               <form className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <input 
-                    type="text" 
-                    placeholder="First Name" 
+                  <input
+                    type="text"
+                    placeholder="First Name"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
                   />
-                  <input 
-                    type="text" 
-                    placeholder="Last Name" 
+                  <input
+                    type="text"
+                    placeholder="Last Name"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
                   />
                 </div>
-                <input 
-                  type="email" 
-                  placeholder="Email Address" 
+                <input
+                  type="email"
+                  placeholder="Email Address"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
                 />
-                <input 
-                  type="tel" 
-                  placeholder="Phone Number" 
+                <input
+                  type="tel"
+                  placeholder="Phone Number"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
                 />
-                <textarea 
-                  placeholder="Your Message" 
+                <textarea
+                  placeholder="Your Message"
                   rows="4"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent resize-none"
                 ></textarea>
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   className="w-full bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105"
                 >
                   Send Message
                 </button>
               </form>
-              
+
               {/* Helpful Message */}
               <div className="mt-6 p-4 bg-blue-50 rounded-lg border-l-4 border-accent">
                 <div className="flex items-start gap-3">
@@ -689,7 +684,7 @@ function Contact() {
                   <div>
                     <h4 className="font-semibold text-primary text-sm mb-1">What happens next?</h4>
                     <p className="text-gray-600 text-sm leading-relaxed">
-                      Our team will review your message and get back to you within 24 hours. 
+                      Our team will review your message and get back to you within 24 hours.
                       We're here to help with all your academic queries and enrollment questions.
                     </p>
                   </div>
@@ -709,7 +704,7 @@ function AdmissionsCTA() {
   const inView = useInView(ref, { threshold: 0.1 });
   return (
     <section className="py-10">
-      <div ref={ref} className={`max-w-5xl mx-auto px-4 bg-primary rounded-xl flex flex-col md:flex-row items-center justify-between gap-6 md:gap-0 text-white shadow-lg transition-all duration-700 ${inView ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}` }>
+      <div ref={ref} className={`max-w-5xl mx-auto px-4 bg-primary rounded-xl flex flex-col md:flex-row items-center justify-between gap-6 md:gap-0 text-white shadow-lg transition-all duration-700 ${inView ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
         <div className="py-8 md:py-12">
           <h2 className="text-2xl md:text-3xl font-montserrat font-bold mb-2">Admissions Open for 2025-26!</h2>
           <p className="text-lg mb-2">Secure your seat now. Call us:</p>
@@ -723,9 +718,61 @@ function AdmissionsCTA() {
   );
 }
 
+function FeaturedBlogs() {
+  const navigate = useNavigate();
+  const ref = useRef();
+  const inView = useInView(ref, { threshold: 0.1 });
+  const featuredPosts = BLOG_POSTS.filter(post => post.showOnHome).slice(0, 3);
+
+  if (featuredPosts.length === 0) return null;
+
+  return (
+    <section className="py-16 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4">
+        <h2 className="text-3xl md:text-4xl font-montserrat font-bold text-primary mb-10 text-center">Latest Insights</h2>
+        <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {featuredPosts.map((post, i) => (
+            <div
+              key={post.id}
+              className={`bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-700 overflow-hidden group cursor-pointer ${inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+              style={{ transitionDelay: `${i * 100}ms` }}
+              onClick={() => navigate(`/blog/${post.id}`)}
+            >
+              <div className="relative h-48 overflow-hidden">
+                <img
+                  src={post.image}
+                  alt={post.imageAlt}
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-primary shadow-sm">
+                  {post.date}
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-primary mb-3 line-clamp-2 group-hover:text-accent transition-colors">
+                  {post.title}
+                </h3>
+                <p className="text-gray-600 mb-4 line-clamp-3 text-sm">
+                  {post.shortDescription}
+                </p>
+                <span className="inline-block text-accent font-bold text-sm group-hover:underline">Read Article &rarr;</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="text-center mt-10">
+          <button onClick={() => navigate('/blog')} className="bg-primary text-white font-bold px-6 py-3 rounded-full hover:bg-blue-700 transition-colors shadow-md">
+            View All Blogs
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Footer() {
   const PHONES = ['+91 89999 30804', '+91 77989 02221'];
-  
+
   return (
     <footer className="bg-[#004AAD] text-white py-10">
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -768,21 +815,21 @@ export default function Home() {
   return (
     <div className="font-poppins bg-background text-text">
       <Helmet>
-      <title>Modulus Science Academy | Best Coaching for NEET, JEE, MHT-CET, SSC & CBSE in Pune</title>
-  
-  <meta name="description" content="Join Modulus Science Academy, Sangvi Pune — expert coaching for NEET, JEE Mains, MHT-CET, and SSC/CBSE board exams. Top faculty, proven results, and personal mentoring." />
-  
-  <meta name="keywords" content="Modulus Science Academy, MHT-CET Coaching Pune, NEET classes Pune, JEE classes Pune, Best Coaching Sangvi Pune, Modulus Academy Sangvi, Top coaching for board exams Pune" />
-  
-  <meta name="author" content="Modulus Science Academy" />
-  
-  <meta property="og:title" content="Modulus Science Academy | Best NEET, JEE & CET Coaching in Sangvi, Pune" />
-  <meta property="og:description" content="Modulus Science Academy in Sangvi Pune offers the best coaching for NEET, JEE Mains, MHT-CET, SSC & CBSE with expert faculty and excellent results." />
-  <meta property="og:url" content="https://modulusscienceacademy.in/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="src/assets/logo.png" />
-  
-  <link rel="canonical" href="https://modulusscienceacademy.in/" />
+        <title>Modulus Science Academy | Best Coaching for NEET, JEE, MHT-CET, SSC & CBSE in Pune</title>
+
+        <meta name="description" content="Join Modulus Science Academy, Sangvi Pune — expert coaching for NEET, JEE Mains, MHT-CET, and SSC/CBSE board exams. Top faculty, proven results, and personal mentoring." />
+
+        <meta name="keywords" content="Modulus Science Academy, MHT-CET Coaching Pune, NEET classes Pune, JEE classes Pune, Best Coaching Sangvi Pune, Modulus Academy Sangvi, Top coaching for board exams Pune" />
+
+        <meta name="author" content="Modulus Science Academy" />
+
+        <meta property="og:title" content="Modulus Science Academy | Best NEET, JEE & CET Coaching in Sangvi, Pune" />
+        <meta property="og:description" content="Modulus Science Academy in Sangvi Pune offers the best coaching for NEET, JEE Mains, MHT-CET, SSC & CBSE with expert faculty and excellent results." />
+        <meta property="og:url" content="https://modulusscienceacademy.in/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="src/assets/logo.png" />
+
+        <link rel="canonical" href="https://modulusscienceacademy.in/" />
       </Helmet>
       <Header onApplyClick={handleAdmissionInfo} />
       <AnchorNavigation />
@@ -791,6 +838,7 @@ export default function Home() {
       <Testimonials />
       <Mentors />
       <Achievements />
+      <FeaturedBlogs />
       <Contact />
       <AdmissionsCTA />
       <Footer />
