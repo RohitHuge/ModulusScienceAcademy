@@ -291,14 +291,14 @@ export const BLOG_POSTS = [
   {
     id: 'score-above-90-class-10-board-exams',
     title: 'How to Score Above 90% in Class 10 SSC/CBSE Board Exams – Proven Techniques',
-    date: 'April 6, 2024',
+    date: 'January 17, 2026',
     image: 'https://akm-img-a-in.tosshub.com/indiatoday/images/story/202405/chbse-class-10-and-12-results-2024-are-out-ai-generated-image-093405448-16x9_0.jpg?VersionId=1GLXTkjg3tQoSBqtvHYaJeeM_G940tNj&size=690:388',
     imageAlt: 'Class 10 students celebrating board exam success',
     shortDescription: 'Scoring above 90% in Class 10 board exams is achievable with the right plan. Here is a proven, expert-backed roadmap to help you secure that top score.',
     content: `
   ## 📖 How to Score Above 90% in Class 10 SSC/CBSE Board Exams – Proven Techniques
   
-  📅 **April 6, 2024**
+  📅 **January 17, 2026**
   
   ---
   
