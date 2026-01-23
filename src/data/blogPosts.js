@@ -1,26 +1,26 @@
 export const BLOG_POSTS = [
   {
-    id: 'how-to-prepare-for-mht-cet-2025',
-    title: 'How to Prepare for MHT-CET 2025 – Expert Tips from Modulus Science Academy',
-    date: 'April 27, 2024',
+    id: 'how-to-prepare-for-mht-cet-2026',
+    title: 'How to Prepare for MHT-CET 2026 – Expert Tips from Modulus Science Academy',
+    date: 'January 3, 2026',
     image: 'https://thumbs.dreamstime.com/b/young-cartoon-boy-reading-books-student-study-teens-education-concept-teenager-read-book-look-answers-exam-preparation-vector-337569775.jpg',
     imageAlt: 'Students preparing for MHT-CET exam with books',
     showOnHome: true,
     shortDescription: 'Preparing for MHT-CET 2025 can feel overwhelming — but with the right guidance and smart strategy, you can absolutely ace it! Here is your expert-backed preparation guide.',
     content: `
-  ## 📖 How to Prepare for MHT-CET 2025 – Expert Tips from Modulus Science Academy Pune
+  ## 📖 How to Prepare for MHT-CET 2026 – Expert Tips from Modulus Science Academy Pune
   
-  📅 **April 27, 2024**
-  
-  ---
-  
-  🎯 Preparing for **MHT-CET 2025** can feel overwhelming — but with the right guidance and smart strategy, you can absolutely ace it! If you’re searching for the **best coaching classes for MHT-CET in Pune**, look no further than **Modulus Science Academy Sangvi**. Here’s your expert-backed preparation guide:
+  📅 **January 3, 2026**
   
   ---
   
-  ### 📌 MHT-CET 2025 Exam Pattern & Syllabus 📚
+  🎯 Preparing for **MHT-CET 2026** can feel overwhelming — but with the right guidance and smart strategy, you can absolutely ace it! If you’re searching for the **best coaching classes for MHT-CET in Pune**, look no further than **Modulus Science Academy Sangvi**. Here’s your expert-backed preparation guide:
   
-  ✅ Familiarize yourself with the latest **MHT-CET syllabus 2025** based on **Maharashtra State Board + NCERT**.
+  ---
+  
+  ### 📌 MHT-CET 2026 Exam Pattern & Syllabus 📚
+  
+  ✅ Familiarize yourself with the latest **MHT-CET syllabus 2026** based on **Maharashtra State Board + NCERT**.
   
   ✅ The exam covers **Physics, Chemistry, and Mathematics/Biology**.
   
@@ -97,7 +97,7 @@ export const BLOG_POSTS = [
   {
     id: 'neet-vs-mht-cet-comparison',
     title: 'Difference Between NEET and MHT-CET – Which Is Right for You?',
-    date: 'April 20, 2024',
+    date: 'January 15, 2026',
     image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1769103649/Gemini_Generated_Image_8munpl8munpl8mun_rtmhvg.png',
     imageAlt: 'Students comparing NEET and MHT-CET exams',
     showOnHome: true,
@@ -105,7 +105,7 @@ export const BLOG_POSTS = [
     content: `
   ## 📖 Difference Between NEET and MHT-CET – Which Is Right for You?
   
-  📅 **April 20, 2024**
+  📅 **January 15, 2026**
   
   ---
   
@@ -204,7 +204,7 @@ export const BLOG_POSTS = [
   {
     id: 'top-5-study-hacks-jee-neet-2025',
     title: 'Top 5 Study Hacks for JEE Mains and NEET Students in 2025',
-    date: 'April 13, 2024',
+    date: 'January 15, 2026',
     image: 'https://netschools.in/uploads/2025/05/iit-syllabus-explained-the-clarity-you-need-for-jee-prep.webp',
     imageAlt: 'Students using study hacks for JEE and NEET',
     showOnHome: true,
@@ -212,7 +212,7 @@ export const BLOG_POSTS = [
     content: `
   ## 📖 Top 5 Study Hacks for JEE Mains and NEET Students in 2025
   
-  📅 **April 13, 2024**
+  📅 **January 15, 2026**
   
   ---
   
@@ -374,14 +374,14 @@ export const BLOG_POSTS = [
   {
     id: 'why-offline-classroom-coaching-matters',
     title: 'Why Offline Classroom Coaching Still Matters in the Digital Era',
-    date: 'March 30, 2024',
+    date: 'January 17, 2026',
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToYy-Sw6Qoc6oZArN3s3u-Y3bl9toqeSMVFQ&s',
     imageAlt: 'Teacher conducting offline classroom coaching',
     shortDescription: 'In a digital world, offline classroom coaching remains unmatched. Discover why in-person classes make a real difference for top ranks in MHT-CET, NEET, and JEE.',
     content: `
   ## 📖 Why Offline Classroom Coaching Still Matters in the Digital Era
   
-  📅 **March 30, 2024**
+  📅 **January 17, 2026**
   
   ---
   
