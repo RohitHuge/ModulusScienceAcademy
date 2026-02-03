@@ -1,4 +1,72 @@
 export const BLOG_POSTS = [
+   {
+    id: 'career-guidance-session-2026',
+    title: 'Career Guidance Session Successfully Conducted for 11th & 12th Students',
+    date: 'February 3, 2026',
+    image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1770122481/Gemini_Generated_Image_7x9h247x9h247x9h_f3fnkc.png',
+    imageAlt: 'Career guidance session in progress',
+    showOnHome: true,
+    shortDescription: 'Modulus Science Academy conducted a successful Career Guidance Session for 11th & 12th Science students, providing clarity on career options, exam strategies, and future planning.',
+    content: `
+## 🎓 Career Guidance Session Successfully Conducted for 11th & 12th Students
+
+📅 **February 3, 2026**
+
+---
+
+🚀 **Modulus Science Academy** successfully conducted a comprehensive **Career Guidance Session** for 11th and 12th Science students. The event was specifically designed to help students navigate the complex landscape of post-12th career options, demystify entrance exams, and build a concrete roadmap for their future academic success.
+
+---
+
+### 📌 Key Highlights of the Session 💡
+
+The session went beyond general advice, offering deep-dives into specific verticals:
+
+✅ **Unlocking Career Choices after 12th Science**
+We provided a detailed breakdown of traditional and emerging career paths.
+*   **Engineering**: Beyond just CS and IT, we explored opportunities in AI/ML, Robotics, Civil, and Mechanical engineering.
+*   **Medical & Allied Sciences**: Insights into MBBS, BDS, BAMS, and alternative fields like Pharmacy, Biotechnology, and Forensic Science.
+*   **Pure Sciences & Research**: Guidance for students interested in IISER, NISER, and research-oriented careers.
+
+✅ **Expert Exam Strategies (JEE, NEET, MHT-CET)**
+*   **JEE Mains & Advanced**: We discussed the shifting trends in question patterns and the importance of accuracy over attempt rate.
+*   **NEET**: A special focus on mastering NCERT Biology and strategies to tackle Physics numericals effectively.
+*   **MHT-CET**: Tips on speed and time management to maximize scores in the state entrance exam.
+
+✅ **Aptitude & Analysis**
+We emphasized that "one size does not fit all." The session highlighted the importance of identifying individual strengths—whether analytical, theoretical, or creative—to choose a career that aligns with a student's natural aptitude.
+
+✅ **Demystifying the College Admission Process**
+From the CAP rounds in Maharashtra to JOSAA counseling for IITs/NITs, we walked students through the step-by-step process of securing seats in top colleges, including document preparation and option form filling.
+
+---
+
+### 📌 Strategic Insights Shared 📝
+
+To transform hard work into results, students learned about:
+
+*   **Smart Exam Strategy**: The art of question selection—knowing which questions to skip is often more important than knowing which to solve.
+*   **Goal Setting Framework**: How to break down the massive syllabus into daily, weekly, and monthly achievable targets to prevent burnout.
+*   **Avoiding Common Mistakes**: We highlighted common pitfalls like ignoring class 11th concepts, over-reliance on multiple reference books, and neglecting health/sleep, which often derail preparation.
+
+---
+
+### 🗣️ Interactive Q&A and Feedback
+
+The highlight of the event was the interactive Q&A session where personalized queries were addressed.
+
+*   **Student Takeaway**: Many students reported feeling significantly less confused and more "in control" of their preparation after understanding the clear roadmap.
+*   **Parent Perspective**: Parents appreciated the transparency regarding the competition levels and the structured guidance on how they can support their children during this stressful phase.
+
+---
+
+### 🌟 Our Commitment
+
+At **Modulus Science Academy**, we believe our responsibility extends beyond the classroom walls. We are committed to supporting students not only in academics but also in making the **right career decisions at the right time**. Mentorship is the bridge between potential and performance.
+
+**Start your success journey with us today! 💪🎓**
+`,
+  },
   {
     id: 'how-to-prepare-for-mht-cet-2026',
     title: 'How to Prepare for MHT-CET 2026 – Expert Tips from Modulus Science Academy',
@@ -444,4 +512,5 @@ export const BLOG_POSTS = [
   **Ready to experience the classroom advantage? Join Modulus Science Academy and secure your future! 💪📚**
   `,
   },
+ 
 ];
