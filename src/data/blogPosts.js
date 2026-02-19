@@ -1,5 +1,50 @@
 export const BLOG_POSTS = [
-   {
+  {
+    id: 'acharya-pratibha-award-2026',
+    title: 'Modulus Science Academy Honored with "Acharya Pratibha" Award',
+    date: 'February 19, 2026',
+    image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1771503341/Gemini_Generated_Image_217pp0217pp0217p_dabmgk.png',
+    imageAlt: 'Acharya Pratibha Award',
+    showOnHome: true,
+    shortDescription: 'Modulus Science Academy received the prestigious "Acharya Pratibha" Award from MIT-ADT University Pune for excellence in education and student development.',
+    content: `
+## 🏆 Modulus Science Academy Honored with 'Acharya Pratibha' Award
+
+📅 **February 19, 2026**
+
+---
+
+🌟 We are immensely proud to announce that **Modulus Science Academy** has been bestowed with the prestigious **"Acharya Pratibha" Award** by **MIT-ADT University, Pune**.
+
+This recognition celebrates our outstanding contribution to the field of education and our unwavering commitment to student success.
+
+---
+
+### 🎖️ More Than Just an Award
+
+This honor is not merely a trophy; it is a recognition of the **dedicated efforts** we invest every day to shape the bright futures of our students. It stands as a testament to:
+
+✅ **Quality in Education**: Our relentless pursuit of academic excellence.
+
+✅ **Honesty in Guidance**: Providing transparent, realistic, and personalized career advice.
+
+✅ **Commitment to Students**: Our promise to stand by every student throughout their academic journey.
+
+---
+
+### 🙏 A Heartfelt Thank You
+
+We dedicate this award to:
+*   Our **hardworking students**, whose success is our greatest reward.
+*   **Supportive parents**, for their trust and faith in us.
+*   Our **exceptional faculty**, for their passion and dedication.
+
+Thank you for being part of the Modulus family! 🚀
+
+**#ModulusScienceAcademy #AcharyaPratibha #EducationExcellence #MITADT #ProudMoment**
+`,
+  },
+  {
     id: 'career-guidance-session-2026',
     title: 'Career Guidance Session Successfully Conducted for 11th & 12th Students',
     date: 'February 3, 2026',
@@ -512,5 +557,5 @@ At **Modulus Science Academy**, we believe our responsibility extends beyond the
   **Ready to experience the classroom advantage? Join Modulus Science Academy and secure your future! 💪📚**
   `,
   },
- 
+
 ];
