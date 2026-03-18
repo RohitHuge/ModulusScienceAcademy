@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { STUDENT_ACHIEVEMENTS } from './achievements';
 import CETCrashCoursePopup from './CETCrashCoursePopup';
-import AwardPopup from './AwardPopup';
+import AdmissionsPopup from './AdmissionsPopup';
 
 export default function Hero({ onApplyClick }) {
   const navigate = useNavigate();
@@ -100,8 +100,8 @@ export default function Hero({ onApplyClick }) {
     <div className="bg-gradient-to-br from-primary to-blue-700 rounded-xl shadow-lg p-8 text-white relative overflow-hidden flex-1">
       {/* CET Crash Course Popup - Always Visible as overlay */}
       <CETCrashCoursePopup />
-      {/* Award Popup - Small hint on top left */}
-      <AwardPopup />
+      {/* Admissions Popup - Small sliding card on top left */}
+      <AdmissionsPopup />
 
       {/* Background Elements */}
       <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>

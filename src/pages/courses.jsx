@@ -71,6 +71,15 @@ const COURSES = [
     description: 'Early foundation building for young students. Develops strong basics in core subjects through interactive learning methods.'
   },
   {
+    id : 8, 
+    title: 'XI & XII (SCIENCE) INTEGRATED PROGRAM',
+    classes: '11th and 12th Standard',
+    subjects: ['Mathematics','Physics','Chemistry','Biology','Board Exams'],
+    fee: '₹10,000/year',
+    duration: '2 Years ',
+    description: 'This program is designed for students who want to pursue a career in science and engineering. It is a comprehensive program that covers all the important topics in mathematics, physics, chemistry, and biology.'
+  },
+  {
     id: 7,
     title: 'Engineering Mathematics(M1 , M2 and M3)',
     classes: '1st and 2nd year',
