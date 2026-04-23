@@ -226,7 +226,7 @@ const STUDENT_ACHIEVEMENTS = [
   { id: 10, name: 'Aishani Harde', exam: '9th ICSE (Podar Int. School)', score: '90.0%', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1764335365/Screenshot_2025-11-28_183730_lbakph.png' },
   { id: 11, name: 'Aalina Mulla', exam: '9th ICSE (Podar Int. School)', score: '93.44%', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1764335365/Screenshot_2025-11-28_183722_nejlld.png' },
   { id: 12, name: 'Sejal Mane', exam: '11th SSC(Phy, Chem, Eng)', score: '93.33%', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1764335365/Screenshot_2025-11-28_183734_sxquvi.png' },
-
+  { id: 13, name: 'Advik Mane', exam: '10th CBSE', score: '97.2%', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1776872843/Screenshot_2026-04-22_211535_j9yitg.png' },
 ];
 
 export { STUDENT_ACHIEVEMENTS };
