@@ -4,23 +4,23 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { STUDENT_ACHIEVEMENTS } from './achievements';
-import CETCrashCoursePopup from './CETCrashCoursePopup';
+import AdvikAchievementPopup from './AdvikAchievementPopup';
 import AdmissionsPopup from './AdmissionsPopup';
 
 export default function Hero({ onApplyClick }) {
   const navigate = useNavigate();
 
-  // View states: 'logo', 'course', 'student'
+  // View states: 'logo', 'achievement', 'student'
   const [currentView, setCurrentView] = useState('logo');
   const [studentIndex, setStudentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const intervalRef = useRef(null);
 
-  const COURSE_FEATURES = [
-    { icon: '📚', text: 'Complete CET Syllabus Revision' },
-    { icon: '⚡', text: 'Speed & Accuracy Training' },
-    { icon: '📝', text: 'Full-Length Mock Tests' },
-    { icon: '🎯', text: 'PYQ + Expected Questions' },
+  const ACHIEVEMENT_FEATURES = [
+    { icon: '🏆', text: 'Score: 97.2%' },
+    { icon: '📘', text: 'Exam: 10th CBSE' },
+    { icon: '🌟', text: 'Outstanding Performance' },
+    { icon: '👨‍🏫', text: 'Guided by Modulus Mentors' },
   ];
 
   const handleAdmissionInfo = () => {
@@ -58,8 +58,8 @@ export default function Hero({ onApplyClick }) {
 
     setTimeout(() => {
       setCurrentView(prev => {
-        if (prev === 'logo') return 'course';
-        if (prev === 'course') return 'student';
+        if (prev === 'logo') return 'achievement';
+        if (prev === 'achievement') return 'student';
         if (prev === 'student') {
           // Move to next student for the next cycle
           setStudentIndex(current => (current + 1) % STUDENT_ACHIEVEMENTS.length);
@@ -84,8 +84,8 @@ export default function Hero({ onApplyClick }) {
           setStudentIndex(current => (current - 1 + STUDENT_ACHIEVEMENTS.length) % STUDENT_ACHIEVEMENTS.length);
           return 'student';
         }
-        if (prev === 'course') return 'logo';
-        if (prev === 'student') return 'course';
+        if (prev === 'achievement') return 'logo';
+        if (prev === 'student') return 'achievement';
         return 'logo';
       });
       setIsTransitioning(false);
@@ -98,8 +98,8 @@ export default function Hero({ onApplyClick }) {
 
   return (
     <div className="bg-gradient-to-br from-primary to-blue-700 rounded-xl shadow-lg p-8 text-white relative overflow-hidden flex-1">
-      {/* CET Crash Course Popup - Always Visible as overlay */}
-      <CETCrashCoursePopup />
+      {/* Advik Mane Achievement Popup */}
+      <AdvikAchievementPopup />
       {/* Admissions Popup - Small sliding card on top left */}
       <AdmissionsPopup />
 
@@ -156,9 +156,9 @@ export default function Hero({ onApplyClick }) {
                 </motion.div>
               )}
 
-              {currentView === 'course' && (
+              {currentView === 'achievement' && (
                 <motion.div
-                  key="course-text"
+                  key="achievement-text"
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -50 }}
@@ -166,15 +166,15 @@ export default function Hero({ onApplyClick }) {
                   className="w-full"
                 >
                   <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
-                    <span className="text-3xl">🚀</span>
-                    <h2 className="text-3xl md:text-4xl font-bold text-yellow-400">CET CRASH COURSE</h2>
+                    <span className="text-3xl">🥇</span>
+                    <h2 className="text-3xl md:text-4xl font-bold text-yellow-400">PROUD ACHIEVEMENT</h2>
                   </div>
                   <div className="inline-block bg-accent text-primary font-bold px-4 py-1 rounded-full mb-6">
-                    Starts: 23rd February 2026
+                    Advik Mane
                   </div>
 
                   <div className="grid grid-cols-1 gap-3 mb-8 text-left max-w-md mx-auto md:mx-0">
-                    {COURSE_FEATURES.map((feature, idx) => (
+                    {ACHIEVEMENT_FEATURES.map((feature, idx) => (
                       <div key={idx} className="flex items-center gap-3">
                         <span className="text-xl">{feature.icon}</span>
                         <span className="text-white text-lg">{feature.text}</span>
@@ -257,23 +257,26 @@ export default function Hero({ onApplyClick }) {
                 </motion.div>
               )}
 
-              {currentView === 'course' && (
+              {currentView === 'achievement' && (
                 <motion.div
-                  key="course-img"
+                  key="achievement-img"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.5 }}
-                  className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-white text-primary rounded-2xl p-0.5 shadow-2xl rotate-3 border-4 border-yellow-400"
+                  className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96"
                 >
+                  <div className="absolute -inset-1 rounded-full bg-yellow-400 blur-md opacity-70"></div>
                   <div className="absolute -top-6 -right-6 z-50 bg-red-600 text-white font-bold py-2 px-4 rounded-lg shadow-xl animate-bounce scale-[1.2]">
-                    ⚠️ Limited Seats!
+                    🏆 97.2%
                   </div>
-                  <img
-                    src="https://res.cloudinary.com/dapdhzjzc/image/upload/v1767698311/ChatGPT_Image_Jan_6_2026_04_47_23_PM_dhdbms.png"
-                    alt="CET Crash Course"
-                    className="w-full h-full object-cover rounded-xl"
-                  />
+                  <div className="relative w-full h-full rounded-full border-4 border-yellow-400 overflow-hidden bg-white">
+                    <img
+                      src="https://res.cloudinary.com/dapdhzjzc/image/upload/v1776872843/Screenshot_2026-04-22_211535_j9yitg.png"
+                      alt="Advik Mane"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 </motion.div>
               )}
 
