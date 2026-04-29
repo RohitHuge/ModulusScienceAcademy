@@ -214,6 +214,7 @@ export { TESTIMONIALS };
 
 // Individual Student Achievements Data
 const STUDENT_ACHIEVEMENTS = [
+  { id: 13, name: 'Advik Mane', exam: '10th CBSE', score: '97.2%', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1776872843/Screenshot_2026-04-22_211535_j9yitg.png' },
   { id: 1, name: 'Sanvi Kadam', exam: 'MHT-CET 2025(PCM)', score: '93.26%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/tffrd_1_bcugdl.jpg' },
   { id: 2, name: 'Nikita Pujari', exam: 'MHT-CET 2025(PCM)', score: '91.30%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751640954/IMG_6023_1_mzosyx.jpg' },
   { id: 3, name: 'Gauri Mane', exam: 'MHT-CET 2025(PCB)', score: '87.89%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689333/Screenshot_2025-07-05_093826_iqvu2s_43156b.png' },
@@ -226,7 +227,6 @@ const STUDENT_ACHIEVEMENTS = [
   { id: 10, name: 'Aishani Harde', exam: '9th ICSE (Podar Int. School)', score: '90.0%', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1764335365/Screenshot_2025-11-28_183730_lbakph.png' },
   { id: 11, name: 'Aalina Mulla', exam: '9th ICSE (Podar Int. School)', score: '93.44%', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1764335365/Screenshot_2025-11-28_183722_nejlld.png' },
   { id: 12, name: 'Sejal Mane', exam: '11th SSC(Phy, Chem, Eng)', score: '93.33%', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1764335365/Screenshot_2025-11-28_183734_sxquvi.png' },
-  { id: 13, name: 'Advik Mane', exam: '10th CBSE', score: '97.2%', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1776872843/Screenshot_2026-04-22_211535_j9yitg.png' },
 ];
 
 export { STUDENT_ACHIEVEMENTS };
