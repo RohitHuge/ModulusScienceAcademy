@@ -1,27 +1,20 @@
 import { Button } from 'antd';
-import { PhoneOutlined, WhatsAppOutlined } from '@ant-design/icons';
+import { PhoneOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { STUDENT_ACHIEVEMENTS } from './achievements';
-import AdvikAchievementPopup from './AdvikAchievementPopup';
+import MHTCETTopperCard from './MHTCETTopperCard';
 import AdmissionsPopup from './AdmissionsPopup';
 
 export default function Hero({ onApplyClick }) {
   const navigate = useNavigate();
 
-  // View states: 'logo', 'achievement', 'student'
+  // View states: 'logo', 'student'
   const [currentView, setCurrentView] = useState('logo');
   const [studentIndex, setStudentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const intervalRef = useRef(null);
-
-  const ACHIEVEMENT_FEATURES = [
-    { icon: '🏆', text: 'Score: 97.2%' },
-    { icon: '📘', text: 'Exam: 10th CBSE' },
-    { icon: '🌟', text: 'Outstanding Performance' },
-    { icon: '👨‍🏫', text: 'Guided by Modulus Mentors' },
-  ];
 
   const handleAdmissionInfo = () => {
     navigate('/contact');
@@ -29,39 +22,28 @@ export default function Hero({ onApplyClick }) {
 
   const startInterval = () => {
     if (intervalRef.current) clearInterval(intervalRef.current);
-
     intervalRef.current = setInterval(() => {
       handleNext();
     }, 5000);
   };
 
   useEffect(() => {
-    // Initial delay before starting the cycle
     const timer = setTimeout(() => {
       startInterval();
     }, 3000);
-
     return () => {
       clearTimeout(timer);
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, []); // Only run on mount
-
-  // Reset interval on user interaction
-  const resetInterval = () => {
-    startInterval();
-  };
+  }, []);
 
   const handleNext = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
-
     setTimeout(() => {
       setCurrentView(prev => {
-        if (prev === 'logo') return 'achievement';
-        if (prev === 'achievement') return 'student';
+        if (prev === 'logo') return 'student';
         if (prev === 'student') {
-          // Move to next student for the next cycle
           setStudentIndex(current => (current + 1) % STUDENT_ACHIEVEMENTS.length);
           return 'logo';
         }
@@ -69,38 +51,33 @@ export default function Hero({ onApplyClick }) {
       });
       setIsTransitioning(false);
     }, 300);
-
-    resetInterval();
+    startInterval();
   };
 
   const handlePrevious = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
-
     setTimeout(() => {
       setCurrentView(prev => {
         if (prev === 'logo') {
-          // Going back from logo means going to student view (previous student)
           setStudentIndex(current => (current - 1 + STUDENT_ACHIEVEMENTS.length) % STUDENT_ACHIEVEMENTS.length);
           return 'student';
         }
-        if (prev === 'achievement') return 'logo';
-        if (prev === 'student') return 'achievement';
+        if (prev === 'student') return 'logo';
         return 'logo';
       });
       setIsTransitioning(false);
     }, 300);
-
-    resetInterval();
+    startInterval();
   };
 
   const currentStudent = STUDENT_ACHIEVEMENTS[studentIndex];
 
   return (
     <div className="bg-gradient-to-br from-primary to-blue-700 rounded-xl shadow-lg p-8 text-white relative overflow-hidden flex-1">
-      {/* Advik Mane Achievement Popup */}
-      <AdvikAchievementPopup />
-      {/* Admissions Popup - Small sliding card on top left */}
+      {/* MHT-CET Topper Card */}
+      <MHTCETTopperCard />
+      {/* Admissions Popup */}
       <AdmissionsPopup />
 
       {/* Background Elements */}
@@ -108,10 +85,10 @@ export default function Hero({ onApplyClick }) {
       <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-accent/20 rounded-full translate-y-12 -translate-x-12"></div>
       <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-blue-800/70 z-10"></div>
 
-      {/* Navigation Buttons */}
+      {/* Navigation Buttons — hidden on mobile (use swipe), visible on md+ */}
       <button
         onClick={handlePrevious}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full border border-white/30 transition-all duration-300 hover:scale-110"
+        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full border border-white/30 transition-all duration-300 hover:scale-110"
         aria-label="Previous"
       >
         <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -121,7 +98,7 @@ export default function Hero({ onApplyClick }) {
 
       <button
         onClick={handleNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full border border-white/30 transition-all duration-300 hover:scale-110"
+        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full border border-white/30 transition-all duration-300 hover:scale-110"
         aria-label="Next"
       >
         <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -130,7 +107,7 @@ export default function Hero({ onApplyClick }) {
       </button>
 
       <div className="relative z-20 w-full flex flex-col items-center justify-center min-h-screen">
-        <div className="flex flex-col-reverse md:flex-row items-center justify-center w-full max-w-5xl mx-auto px-2 sm:px-4 md:px-6 py-16 gap-6 md:gap-10 overflow-x-hidden">
+        <div className="flex flex-col-reverse md:flex-row items-center justify-center w-full max-w-5xl mx-auto px-4 sm:px-4 md:px-6 py-8 md:py-16 gap-6 md:gap-10 overflow-x-hidden">
 
           {/* Text Content Area */}
           <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left">
@@ -156,34 +133,6 @@ export default function Hero({ onApplyClick }) {
                 </motion.div>
               )}
 
-              {currentView === 'achievement' && (
-                <motion.div
-                  key="achievement-text"
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -50 }}
-                  transition={{ duration: 0.5 }}
-                  className="w-full"
-                >
-                  <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
-                    <span className="text-3xl">🥇</span>
-                    <h2 className="text-3xl md:text-4xl font-bold text-yellow-400">PROUD ACHIEVEMENT</h2>
-                  </div>
-                  <div className="inline-block bg-accent text-primary font-bold px-4 py-1 rounded-full mb-6">
-                    Advik Mane
-                  </div>
-
-                  <div className="grid grid-cols-1 gap-3 mb-8 text-left max-w-md mx-auto md:mx-0">
-                    {ACHIEVEMENT_FEATURES.map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-3">
-                        <span className="text-xl">{feature.icon}</span>
-                        <span className="text-white text-lg">{feature.text}</span>
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-
               {currentView === 'student' && (
                 <motion.div
                   key={`student-text-${studentIndex}`}
@@ -201,10 +150,8 @@ export default function Hero({ onApplyClick }) {
                   </div>
 
                   <div className="space-y-4 mb-8">
-                    <div>
-                      <div className="text-3xl font-bold text-yellow-400">
-                        🎓 {currentStudent.name}
-                      </div>
+                    <div className="text-3xl font-bold text-yellow-400">
+                      🎓 {currentStudent.name}
                     </div>
                     <div>
                       <div className="text-xl text-white opacity-90">
@@ -257,29 +204,6 @@ export default function Hero({ onApplyClick }) {
                 </motion.div>
               )}
 
-              {currentView === 'achievement' && (
-                <motion.div
-                  key="achievement-img"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.5 }}
-                  className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96"
-                >
-                  <div className="absolute -inset-1 rounded-full bg-yellow-400 blur-md opacity-70"></div>
-                  <div className="absolute -top-6 -right-6 z-50 bg-red-600 text-white font-bold py-2 px-4 rounded-lg shadow-xl animate-bounce scale-[1.2]">
-                    🏆 97.2%
-                  </div>
-                  <div className="relative w-full h-full rounded-full border-4 border-yellow-400 overflow-hidden bg-white">
-                    <img
-                      src="https://res.cloudinary.com/dapdhzjzc/image/upload/v1776872843/Screenshot_2026-04-22_211535_j9yitg.png"
-                      alt="Advik Mane"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </motion.div>
-              )}
-
               {currentView === 'student' && (
                 <motion.div
                   key={`student-img-${studentIndex}`}
@@ -290,6 +214,9 @@ export default function Hero({ onApplyClick }) {
                   className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96"
                 >
                   <div className="absolute -inset-1 rounded-full bg-yellow-400 blur-md opacity-70"></div>
+                  <div className="absolute -top-6 -right-6 z-50 bg-yellow-400 text-[#003f8a] font-black py-2 px-4 rounded-xl shadow-xl text-sm">
+                    🏆 {currentStudent.score}
+                  </div>
                   <div className="relative w-full h-full rounded-full border-4 border-yellow-400 overflow-hidden bg-white">
                     <img
                       src={currentStudent.image}
@@ -305,5 +232,5 @@ export default function Hero({ onApplyClick }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
