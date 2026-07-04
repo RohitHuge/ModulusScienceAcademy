@@ -80,7 +80,7 @@ export default function AdmissionsPopup() {
     const currentBatch = ADMISSION_DETAILS[currentIndex];
 
     return (
-        <div className="fixed sm:bottom-20 right-1 z-50 w-[320px] md:w-[380px]">
+        <div className="fixed bottom-2 sm:bottom-4 right-1 sm:right-auto sm:left-4 z-50 w-auto sm:w-[320px] md:w-[380px]">
             <AnimatePresence mode="wait">
                 {isMobile && !isExpanded ? (
                     // Flashing Label for Mobile

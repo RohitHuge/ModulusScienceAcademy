@@ -309,6 +309,89 @@ function Hero({ onApplyClick }) {
   );
 }
 
+const MHT_CET_TOPPERS = STUDENT_ACHIEVEMENTS.filter(s => s.exam.includes('MHT-CET 2026'));
+
+function MHTCETResultsSection() {
+  const ref = useRef();
+  const inView = useInView(ref, { threshold: 0.1 });
+  const navigate = useNavigate();
+
+  return (
+    <section className="py-14 bg-gradient-to-br from-[#001f5c] to-[#004AAD] relative overflow-hidden">
+      {/* Decorative blobs */}
+      <div className="absolute top-0 right-0 w-72 h-72 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-56 h-56 bg-yellow-400/10 rounded-full translate-y-1/2 -translate-x-1/4 pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        {/* Header */}
+        <div className="text-center mb-10">
+          <span className="inline-block bg-yellow-400 text-[#003f8a] font-black text-xs sm:text-sm px-4 py-1.5 rounded-full uppercase tracking-widest mb-4">
+            🏆 MHT-CET 2026 Results
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3">
+            Our Star Performers
+          </h2>
+          <p className="text-white/70 text-base sm:text-lg max-w-xl mx-auto">
+            Modulus students shine in the Maharashtra Common Entrance Test
+          </p>
+        </div>
+
+        {/* Stats row */}
+        <div className="flex flex-wrap justify-center gap-8 sm:gap-16 mb-12">
+          {[
+            { value: `${MHT_CET_TOPPERS.length}+`, label: 'MHT-CET Toppers' },
+            { value: '94.20%tile', label: 'Top Percentile' },
+            { value: '100%', label: 'Pass Rate' },
+          ].map(stat => (
+            <div key={stat.label} className="text-center">
+              <div className="text-3xl sm:text-4xl font-black text-yellow-400">{stat.value}</div>
+              <div className="text-white/60 text-xs sm:text-sm mt-1 uppercase tracking-wide">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Student grid */}
+        <div
+          ref={ref}
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-5"
+        >
+          {MHT_CET_TOPPERS.map((student, i) => (
+            <div
+              key={student.id}
+              className={`bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-4 flex flex-col items-center text-center transition-all duration-700 hover:bg-white/20 hover:scale-[1.03] hover:shadow-xl ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              style={{ transitionDelay: `${i * 80}ms` }}
+            >
+              <div className="relative mb-3">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-yellow-400 overflow-hidden bg-white shadow-lg">
+                  <img src={student.image} alt={student.name} className="w-full h-full object-cover" />
+                </div>
+                {i === 0 && (
+                  <span className="absolute -top-2 left-1/2 -translate-x-1/2 text-base">👑</span>
+                )}
+              </div>
+              <p className="text-white font-bold text-sm sm:text-base leading-tight mb-1">{student.name}</p>
+              <p className="text-yellow-300 text-[11px] sm:text-sm font-semibold mb-2 leading-tight">{student.exam}</p>
+              <span className="bg-yellow-400 text-[#003f8a] font-black text-xs sm:text-sm px-3 py-1 rounded-full shadow">
+                {student.score}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="text-center mt-10">
+          <button
+            onClick={() => navigate('/achievements')}
+            className="bg-yellow-400 hover:bg-yellow-300 text-[#003f8a] font-extrabold px-8 py-3 rounded-full text-sm sm:text-base shadow-lg transition-all hover:scale-105"
+          >
+            View All Achievements →
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Courses() {
   const ref = useRef();
   const inView = useInView(ref, { threshold: 0.2 });
@@ -936,6 +1019,7 @@ export default function Home() {
       <Header onApplyClick={handleAdmissionInfo} />
       <AnchorNavigation />
       <Hero onApplyClick={handleAdmissionInfo} />
+      <MHTCETResultsSection />
       <Courses />
       <Testimonials />
       <Mentors />

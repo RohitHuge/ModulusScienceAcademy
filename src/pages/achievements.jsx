@@ -214,7 +214,11 @@ export { TESTIMONIALS };
 
 // Individual Student Achievements Data
 const STUDENT_ACHIEVEMENTS = [
-  { id: 13, name: 'Advik Mane', exam: '10th CBSE', score: '97.2%', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1776872843/Screenshot_2026-04-22_211535_j9yitg.png' },
+  // MHT-CET 2026 — shown first in hero slideshow
+  { id: 15, name: 'Rakesh Kataware', exam: 'MHT-CET 2026 (PCM)', score: '94.20%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/t_NikitaPujari/f_auto/q_auto/Screenshot_2026-07-04_075241_e3zwdb.png' },
+  { id: 14, name: 'Renuka Kamaji', exam: 'MHT-CET 2026 (PCM)', score: '92.20%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/t_Final%20Image/f_auto/q_auto/Screenshot_2026-07-04_074900_j0iitk.png' },
+  { id: 13, name: 'Sarthak Wandekar', exam: 'MHT-CET 2026 (PCM)', score: '88.75%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/t_NikitaPujari/f_auto/q_auto/Screenshot_2026-07-04_074852_tcwia0.png' },
+  // MHT-CET 2025
   { id: 1, name: 'Sanvi Kadam', exam: 'MHT-CET 2025(PCM)', score: '93.26%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/tffrd_1_bcugdl.jpg' },
   { id: 2, name: 'Nikita Pujari', exam: 'MHT-CET 2025(PCM)', score: '91.30%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751640954/IMG_6023_1_mzosyx.jpg' },
   { id: 3, name: 'Gauri Mane', exam: 'MHT-CET 2025(PCB)', score: '87.89%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689333/Screenshot_2025-07-05_093826_iqvu2s_43156b.png' },
@@ -223,6 +227,7 @@ const STUDENT_ACHIEVEMENTS = [
   { id: 6, name: 'Veer Sonde', exam: 'MHT-CET 2025(PCM)', score: '86.67%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689358/Screenshot_2025-07-05_093826_iqvu2s_96434e.png' },
   { id: 7, name: 'Harshada Kharade', exam: 'MHT-CET 2025(PCM)', score: '83.76%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689074/Screenshot_2025-07-05_093757_tl2vnn.png' },
   { id: 8, name: 'Gauri Mane (PCM)', exam: 'MHT-CET 2025(PCM)', score: '82.88%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689333/Screenshot_2025-07-05_093826_iqvu2s_43156b.png' },
+  // Other results
   { id: 9, name: 'Hridhika Patil', exam: '9th ICSE (Podar Int. School)', score: '83.0%', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1764334689/Screenshot_2025-11-28_182653_ai41ba.png' },
   { id: 10, name: 'Aishani Harde', exam: '9th ICSE (Podar Int. School)', score: '90.0%', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1764335365/Screenshot_2025-11-28_183730_lbakph.png' },
   { id: 11, name: 'Aalina Mulla', exam: '9th ICSE (Podar Int. School)', score: '93.44%', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1764335365/Screenshot_2025-11-28_183722_nejlld.png' },
@@ -513,6 +518,78 @@ export function TestimonialCard({ testimonial, onCardClick }) {
   );
 }
 
+const MHT_CET_TOPPERS_ACH = STUDENT_ACHIEVEMENTS.filter(s => s.exam.includes('MHT-CET'));
+
+function MHTCETResultsSection() {
+  const sectionRef = useRef();
+  const inView = useInViewOnce(sectionRef, { threshold: 0.1 });
+  const navigate = useNavigate();
+
+  return (
+    <section className="py-16 bg-gradient-to-br from-[#001f5c] to-[#004AAD] relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full -translate-y-1/3 translate-x-1/4 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-yellow-400/10 rounded-full translate-y-1/3 -translate-x-1/4 pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <span className="inline-block bg-yellow-400 text-[#003f8a] font-black text-xs sm:text-sm px-5 py-1.5 rounded-full uppercase tracking-widest mb-4">
+            🏆 MHT-CET 2026
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-montserrat font-bold text-white mb-3">
+            MHT-CET 2026 Results
+          </h2>
+          <p className="text-white/70 text-base sm:text-lg max-w-2xl mx-auto">
+            Our students have consistently achieved outstanding results in the Maharashtra Common Entrance Test
+          </p>
+          <div className="w-24 h-1 bg-yellow-400 mx-auto rounded-full mt-6" />
+        </div>
+
+        {/* Stats */}
+        <div className="flex flex-wrap justify-center gap-6 sm:gap-12 mb-12">
+          {[
+            { value: `${MHT_CET_TOPPERS_ACH.length}`, label: 'Students Featured' },
+            { value: '93.26%tile', label: 'Top Score (PCM)' },
+            { value: '87.89%tile', label: 'Top Score (PCB)' },
+          ].map(stat => (
+            <div key={stat.label} className="text-center px-4 py-3 bg-white/10 rounded-2xl border border-white/20 min-w-[120px]">
+              <div className="text-2xl sm:text-3xl font-black text-yellow-400">{stat.value}</div>
+              <div className="text-white/60 text-xs sm:text-sm mt-1">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Student grid */}
+        <div
+          ref={sectionRef}
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6"
+        >
+          {MHT_CET_TOPPERS_ACH.map((student, i) => (
+            <div
+              key={student.id}
+              className={`bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-5 flex flex-col items-center text-center group transition-all duration-700 hover:bg-white/20 hover:scale-[1.03] hover:shadow-2xl ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              style={{ transitionDelay: `${i * 70}ms` }}
+            >
+              <div className="relative mb-4">
+                {i === 0 && <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-xl z-10">👑</span>}
+                <div className="absolute inset-0 rounded-full bg-yellow-400/30 blur-lg scale-110 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full border-3 border-yellow-400 overflow-hidden bg-white shadow-xl" style={{ borderWidth: 3 }}>
+                  <img src={student.image} alt={student.name} className="w-full h-full object-cover" />
+                </div>
+              </div>
+              <p className="text-white font-bold text-sm sm:text-base leading-tight mb-1">{student.name}</p>
+              <p className="text-yellow-300 text-xs sm:text-sm font-semibold mb-3 leading-tight">{student.exam}</p>
+              <span className="bg-gradient-to-r from-yellow-300 to-yellow-500 text-[#003f8a] font-black text-sm sm:text-base px-4 py-1.5 rounded-full shadow-lg">
+                {student.score}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function AchievementsSection() {
   const sectionRef = useRef();
   const inView = useInViewOnce(sectionRef, { threshold: 0.1 });
@@ -708,6 +785,7 @@ export default function Achievements() {
       </Helmet>
       <Header />
       <AchievementsSection />
+      <MHTCETResultsSection />
       <StudentAchievementsCarousel />
       <TestimonialsSection />
       <Footer />
