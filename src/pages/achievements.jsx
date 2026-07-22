@@ -18,41 +18,34 @@ import { Helmet } from 'react-helmet-async';
 const ACHIEVEMENTS = [
   {
     id: 1,
-    title: '93.26% Topper in MHT-CET 2025',
-    description: 'Our student secured the highest percentile in Maharashtra CET engineering entrance exam.',
-    year: '2025',
-    icon: '🏆'
+    title: '10th CBSE Regional Topper — 97.2%',
+    description: 'Advik Mane secured 97.2% in 10th CBSE, earning the title of Regional Topper — a proud milestone for Modulus Science Academy.',
+    year: '2026',
+    icon: '🏅'
   },
   {
     id: 2,
-    title: '20+ Students Selected for JEE Mains 2024',
-    description: 'Outstanding performance with multiple students qualifying for IIT-JEE Mains examination.',
-    year: '2024',
-    icon: '⭐'
+    title: '94.20%tile Topper in MHT-CET 2026',
+    description: 'Rakesh Kataware secured the highest percentile among our students in the Maharashtra CET 2026 engineering entrance exam.',
+    year: '2026',
+    icon: '🏆'
   },
   {
     id: 3,
-    title: '100% Result in Class 10 Board 2023',
-    description: 'Perfect success rate with all students passing their SSC/CBSE board examinations.',
-    year: '2023',
-    icon: '🎓'
+    title: '93.26% Topper in MHT-CET 2025',
+    description: 'Sanvi Kadam secured the highest percentile in Maharashtra CET 2025 engineering entrance exam.',
+    year: '2025',
+    icon: '⭐'
   },
-  // {
-  //   id: 4,
-  //   title: '15+ NEET Qualifiers 2024',
-  //   description: 'Multiple students successfully qualified for medical entrance examination.',
-  //   year: '2024',
-  //   icon: '🏥'
-  // },
-  // {
-  //   id: 5,
-  //   title: '95% Average in Class 12 Science',
-  //   description: 'Exceptional academic performance across all science stream subjects.',
-  //   year: '2024',
-  //   icon: '📊'
-  // },
   {
     id: 4,
+    title: '20+ Students Selected for JEE Mains 2024',
+    description: 'Outstanding performance with multiple students qualifying for IIT-JEE Mains examination.',
+    year: '2024',
+    icon: '🎓'
+  },
+  {
+    id: 5,
     title: 'Regional Science Olympiad Winners',
     description: 'Students won multiple awards in regional science competitions and olympiads.',
     year: '2024',
@@ -214,24 +207,34 @@ export { TESTIMONIALS };
 
 // Individual Student Achievements Data
 const STUDENT_ACHIEVEMENTS = [
-  // MHT-CET 2026 — shown first in hero slideshow
-  { id: 15, name: 'Rakesh Kataware', exam: 'MHT-CET 2026 (PCM)', score: '94.20%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/t_NikitaPujari/f_auto/q_auto/Screenshot_2026-07-04_075241_e3zwdb.png' },
-  { id: 14, name: 'Renuka Kamaji', exam: 'MHT-CET 2026 (PCM)', score: '92.20%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/t_Final%20Image/f_auto/q_auto/Screenshot_2026-07-04_074900_j0iitk.png' },
-  { id: 13, name: 'Sarthak Wandekar', exam: 'MHT-CET 2026 (PCM)', score: '88.75%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/t_NikitaPujari/f_auto/q_auto/Screenshot_2026-07-04_074852_tcwia0.png' },
-  // MHT-CET 2025
-  { id: 1, name: 'Sanvi Kadam', exam: 'MHT-CET 2025(PCM)', score: '93.26%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/tffrd_1_bcugdl.jpg' },
-  { id: 2, name: 'Nikita Pujari', exam: 'MHT-CET 2025(PCM)', score: '91.30%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751640954/IMG_6023_1_mzosyx.jpg' },
-  { id: 3, name: 'Gauri Mane', exam: 'MHT-CET 2025(PCB)', score: '87.89%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689333/Screenshot_2025-07-05_093826_iqvu2s_43156b.png' },
-  { id: 4, name: 'Payal Jadhav', exam: 'MHT-CET 2025(PCM)', score: '86.67%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/WhatsApp_Image_2025-07-04_at_6.43.43_PM_t19hxy.png' },
-  { id: 5, name: 'Dipali Thorbole', exam: 'MHT-CET 2025(PCM)', score: '86.71%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/WhatsApp_Image_2025-07-04_at_6.43.43_PM_1_gxxpnb.png' },
-  { id: 6, name: 'Veer Sonde', exam: 'MHT-CET 2025(PCM)', score: '86.67%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689358/Screenshot_2025-07-05_093826_iqvu2s_96434e.png' },
-  { id: 7, name: 'Harshada Kharade', exam: 'MHT-CET 2025(PCM)', score: '83.76%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689074/Screenshot_2025-07-05_093757_tl2vnn.png' },
-  { id: 8, name: 'Gauri Mane (PCM)', exam: 'MHT-CET 2025(PCM)', score: '82.88%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689333/Screenshot_2025-07-05_093826_iqvu2s_43156b.png' },
-  // Other results
-  { id: 9, name: 'Hridhika Patil', exam: '9th ICSE (Podar Int. School)', score: '83.0%', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1764334689/Screenshot_2025-11-28_182653_ai41ba.png' },
-  { id: 10, name: 'Aishani Harde', exam: '9th ICSE (Podar Int. School)', score: '90.0%', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1764335365/Screenshot_2025-11-28_183730_lbakph.png' },
-  { id: 11, name: 'Aalina Mulla', exam: '9th ICSE (Podar Int. School)', score: '93.44%', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1764335365/Screenshot_2025-11-28_183722_nejlld.png' },
-  { id: 12, name: 'Sejal Mane', exam: '11th SSC(Phy, Chem, Eng)', score: '93.33%', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1764335365/Screenshot_2025-11-28_183734_sxquvi.png' },
+  // ── MHT-CET 2026 (sorted by percentile, highest first) ──
+  { id: 1,  name: 'Rakesh Kataware',  exam: 'MHT-CET 2026 (PCM)', score: '94.20%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/t_NikitaPujari/f_auto/q_auto/Screenshot_2026-07-04_075241_e3zwdb.png' },
+  { id: 2,  name: 'Renuka Kamaji',    exam: 'MHT-CET 2026 (PCM)', score: '92.20%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/t_Final%20Image/f_auto/q_auto/Screenshot_2026-07-04_074900_j0iitk.png' },
+  { id: 3,  name: 'Sarthak Wandekar', exam: 'MHT-CET 2026 (PCM)', score: '88.75%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/t_NikitaPujari/f_auto/q_auto/Screenshot_2026-07-04_074852_tcwia0.png' },
+  { id: 4,  name: 'Mrunal Barge',     exam: 'MHT-CET 2026 (PCM)', score: '85.89%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1784725217/Mrunal_Barge_laxq0k.png' },
+  { id: 5,  name: 'Vaishnavi Dhore',  exam: 'MHT-CET 2026 (PCM)', score: '85.16%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/t_Final%20ImageGauri/f_auto/q_auto/Vaishani_Dhore_i1g3lv.png' },
+  // ── Board Toppers 2026 (sorted by score, highest first) ──
+  { id: 11, name: 'Advik Mane',       exam: '10th CBSE',           score: '97.2%',      image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/v1776872843/Screenshot_2026-04-22_211535_j9yitg.png' },
+  { id: 12, name: 'Allina Mulla',     exam: '9th ICSE',            score: '95.00%',     image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1764335365/Screenshot_2025-11-28_183722_nejlld.png' },
+  { id: 13, name: 'Rushabh Pise',     exam: '10th SSC',            score: '93.00%',     image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/t_Final%20ImageGauri/f_auto/q_auto/Rushabh_Pise_tmydib.png' },
+  { id: 14, name: 'Aishani Harde',    exam: '9th ICSE',            score: '93.00%',     image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1764335365/Screenshot_2025-11-28_183730_lbakph.png' },
+  { id: 15, name: 'Shreyas Kharbude', exam: '10th SSC',            score: '90.40%',     image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/t_Final%20ImageGauri/f_auto/q_auto/Shreyas_Kharbude_u809va.jpg' },
+  { id: 16, name: 'Sejal Pawar',      exam: '10th SSC',            score: '88.80%',     image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/t_Final%20ImageGauri/f_auto/q_auto/Sejal_Pawar_ny6dvt.png' },
+  { id: 17, name: 'Akshara Mule',     exam: '9th CBSE',            score: '87.00%',     image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/t_Final%20ImageGauri/f_auto/q_auto/Akshara_Mule_wabr0s.png' },
+  { id: 18, name: 'Hridhika Patil',   exam: '9th ICSE',            score: '87.00%',     image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1764334689/Screenshot_2025-11-28_182653_ai41ba.png' },
+  { id: 19, name: 'Shawn Shibiu',     exam: '10th SSC',            score: '87.00%',     image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/t_Final%20ImageGauri/f_auto/q_auto/Shawn_Shibun_quvtga.png' },
+  { id: 20, name: 'Darell Devadas',   exam: '10th SSC',            score: '84.20%',     image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/t_Final%20ImageGauri/f_auto/q_auto/Darell_Devadas_n8hbv4.png' },
+  { id: 22, name: 'Eden Thomas',      exam: '10th SSC',            score: '83.60%',     image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/t_Final%20ImageGauri/f_auto/q_auto/Eden_Thomas_scyq3s.png' },
+  { id: 23, name: 'Siddhi Mirgane',   exam: '11th Science',        score: '80.30%',     image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/t_Final%20ImageGauri/f_auto/q_auto/Sidhhi_Mirgane_fnmt4a.png' },
+  // ── MHT-CET 2025 ──
+  { id: 24, name: 'Sanvi Kadam',      exam: 'MHT-CET 2025 (PCM)', score: '93.26%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/tffrd_1_bcugdl.jpg' },
+  { id: 25, name: 'Nikita Pujari',    exam: 'MHT-CET 2025 (PCM)', score: '91.30%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751640954/IMG_6023_1_mzosyx.jpg' },
+  { id: 26, name: 'Gauri Mane',       exam: 'MHT-CET 2025 (PCB)', score: '87.89%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689333/Screenshot_2025-07-05_093826_iqvu2s_43156b.png' },
+  { id: 27, name: 'Dipali Thorbole',  exam: 'MHT-CET 2025 (PCM)', score: '86.71%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/WhatsApp_Image_2025-07-04_at_6.43.43_PM_1_gxxpnb.png' },
+  { id: 28, name: 'Payal Jadhav',     exam: 'MHT-CET 2025 (PCM)', score: '86.67%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/WhatsApp_Image_2025-07-04_at_6.43.43_PM_t19hxy.png' },
+  { id: 29, name: 'Veer Sonde',       exam: 'MHT-CET 2025 (PCM)', score: '86.67%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689358/Screenshot_2025-07-05_093826_iqvu2s_96434e.png' },
+  { id: 30, name: 'Harshada Kharade', exam: 'MHT-CET 2025 (PCM)', score: '83.76%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689074/Screenshot_2025-07-05_093757_tl2vnn.png' },
+  { id: 31, name: 'Gauri Mane (PCM)', exam: 'MHT-CET 2025 (PCM)', score: '82.88%tile', image: 'https://res.cloudinary.com/dapdhzjzc/image/upload/e_background_removal/f_png/v1751689333/Screenshot_2025-07-05_093826_iqvu2s_43156b.png' },
 ];
 
 export { STUDENT_ACHIEVEMENTS };
