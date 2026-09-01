@@ -124,7 +124,7 @@ function MessageFromSandeep() {
     <section className={`py-20 bg-gradient-to-br from-blue-50 to-yellow-50 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} ref={ref}>
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-montserrat font-bold text-primary mb-4">Message from Sandip Sir</h2>
+          <h2 className="text-4xl md:text-5xl font-montserrat font-bold text-primary mb-4">Director Desk</h2>
           <div className="w-24 h-1 bg-accent mx-auto rounded-full"></div>
         </div>
         
@@ -142,7 +142,7 @@ function MessageFromSandeep() {
                 <img 
                   src={sandipsir} 
                   alt="Sandeep Sir" 
-                  className="w-56 h-56 md:w-64 md:h-64 rounded-full object-cover border-8 border-white shadow-2xl transform hover:scale-105 transition-all duration-300" 
+                  className="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-8 border-white shadow-2xl transform hover:scale-105 transition-all duration-300" 
                   style={{ boxShadow: '0 20px 40px rgba(0,0,0,0.15)' }}
                 />
                 {/* Glow effect */}
@@ -186,9 +186,16 @@ function MessageFromSandeep() {
                   </p>
                 </div>
                 
-                <div className="mt-6 flex items-center gap-3">
-                  <div className="w-8 h-1 bg-primary rounded-full"></div>
-                  <span className="text-xl font-montserrat font-bold text-primary">Sandip Sir</span>
+                <div className="mt-6">
+                  <div className="flex items-center gap-3 mb-1">
+                    <div className="w-8 h-1 bg-primary rounded-full"></div>
+                    <span className="text-xl font-montserrat font-bold text-primary">Sandip Sir</span>
+                  </div>
+                  <div className="ml-11 space-y-0.5">
+                    <p className="text-sm font-semibold text-accent">Director</p>
+                    <p className="text-sm text-gray-600">M.Sc Mathematics, SET, B.Ed</p>
+                    <p className="text-sm text-gray-600">10+ Year Experienced</p>
+                  </div>
                 </div>
               </div>
             </div>

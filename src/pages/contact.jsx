@@ -101,18 +101,28 @@ function ContactDetails() {
       <div className="space-y-6">
         {/* Address */}
         <div className="flex items-start gap-4">
-          <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center flex-shrink-0">
+          <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
             <svg width="24" height="24" fill="#004AAD" viewBox="0 0 24 24">
               <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
             </svg>
           </div>
-          <div>
-            <h3 className="text-lg font-bold text-primary mb-2">Address</h3>
-            <p className="text-gray-700 leading-relaxed">
-              Saraswati Park, Vinayak Nagar,<br />
-              Mayur Nagari Road, Katepuram Chowk,<br />
-              New Sangvi, Pune, Maharashtra
-            </p>
+          <div className="space-y-4">
+            <div>
+              <h3 className="text-lg font-bold text-primary mb-1">Main Branch</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Saraswati Park, Vinayak Nagar,<br />
+                Mayur Nagari Road, Katepuram Chowk,<br />
+                New Sangvi, Pune, Maharashtra
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-primary mb-1">Second Branch</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Near Khade Baba Mandir,<br />
+                Katepuram Chowk,<br />
+                New Sagvi, Pimple Gurav, Pune
+              </p>
+            </div>
           </div>
         </div>
 
@@ -283,27 +293,70 @@ function ContactForm() {
 function GoogleMap() {
   const ref = useRef();
   const inView = useInViewOnce(ref, { threshold: 0.1 });
+  const [activeTab, setActiveTab] = useState('main');
+
   return (
     <div
       ref={ref}
       className={`bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 transition-all duration-700 ${inView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}
     >
       <div className="p-6 border-b border-gray-100">
-        <h2 className="text-2xl font-bold text-primary font-montserrat">Our Location</h2>
-        <p className="text-gray-600 mt-2">Find us at Saraswati Park, Vinayak Nagar</p>
+        <h2 className="text-2xl font-bold text-primary font-montserrat">Our Locations</h2>
+        <div className="flex gap-2 mt-4">
+          <button
+            onClick={() => setActiveTab('main')}
+            className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${activeTab === 'main' ? 'bg-primary text-white shadow' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+          >
+            Main Branch
+          </button>
+          <button
+            onClick={() => setActiveTab('second')}
+            className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${activeTab === 'second' ? 'bg-primary text-white shadow' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+          >
+            Second Branch
+          </button>
+        </div>
       </div>
       <div className="h-80 md:h-96">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.732666036576!2d73.81217337595761!3d18.586087367168144!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b9ddd8d5ce95%3A0x4e03963d0e177a1b!2sModulus%20Science%20Academy!5e0!3m2!1sen!2sus!4v1750845055678!5m2!1sen!2sus" 
-          width="100%"
-          height="100%"
-          style={{ border: 0 }}
-          allowFullScreen=""
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          title="Modulus Science Academy Location"
-        ></iframe>
+        {activeTab === 'main' ? (
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.732666036576!2d73.81217337595761!3d18.586087367168144!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b9ddd8d5ce95%3A0x4e03963d0e177a1b!2sModulus%20Science%20Academy!5e0!3m2!1sen!2sus!4v1750845055678!5m2!1sen!2sus"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Modulus Science Academy Main Branch"
+          ></iframe>
+        ) : (
+          <iframe
+            src="https://maps.google.com/maps?q=Khade+Baba+Mandir,+Pimple+Gurav,+Pune,+Maharashtra&output=embed"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Modulus Science Academy Second Branch"
+          ></iframe>
+        )}
       </div>
+      {activeTab === 'second' && (
+        <div className="px-6 py-3 bg-gray-50 border-t border-gray-100">
+          <a
+            href="https://maps.app.goo.gl/9peAufBX1JcTmhzy6"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-primary font-semibold hover:underline flex items-center gap-1"
+          >
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            Open in Google Maps →
+          </a>
+        </div>
+      )}
     </div>
   );
 }
